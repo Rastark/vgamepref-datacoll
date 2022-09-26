@@ -1,0 +1,172 @@
+{   
+    "items": [
+        {   
+            "id": 0,
+            "subject": "I can look at a painting for a long time.",
+            "dimension": "Openness to Experience",
+            "sub_dimension": "Aesthetic Appreciation",
+            "is_score_rev": false
+        },
+        {   
+            "id": 1,
+            "subject": "I make sure that things are in the right spot.",
+            "category": "Conscientiousness",
+            "sub_dimension": "Organization",
+            "is_score_rev": false
+        },
+        {   
+            "id": 2,
+            "subject": "I remain unfriendly to someone who was mean to me.",
+            "category": "Agreeableness",
+            "sub_dimension": "Forgiveness",
+            "is_score_rev": true
+        },
+        {   
+            "id": 3,
+            "subject": "Nobody likes talking with me.",
+            "category": "eXtraversion",
+            "sub_dimension": "Social Self-esteem",
+            "is_score_rev": true
+        },
+        {   
+            "id": 4,
+            "subject": "I am afraid of feeling pain.",
+            "category": "Emotionality",
+            "sub_dimension": "Fearfulness",
+            "is_score_rev": false
+        },
+        {   
+            "id": 5,
+            "subject": "I find it difficult to lie.",
+            "category": "Honesty-Humility",
+            "sub_dimension": "Sincerity",
+            "is_score_rev": false
+        },
+        {   
+            "id": 6,
+            "subject": "I think science is boring.",
+            "category": "Openness to Experience",
+            "sub_dimension": "Inquisitiveness",
+            "is_score_rev": true
+        },
+        {   
+            "id": 7,
+            "subject": "I postpone complicated tasks as long as possible.",
+            "category": "Conscientiousness",
+            "sub_dimension": "Diligence",
+            "is_score_rev": true
+        },
+        {   
+            "id": 8,
+            "subject": "I often express criticism.",
+            "category": "Agreeableness",
+            "sub_dimension": "Gentleness",
+            "is_score_rev": true
+        },
+        {   
+            "id": 9,
+            "subject": "I easily approach strangers.",
+            "category": "eXtraversion",
+            "sub_dimension": "Social Boldness",
+            "is_score_rev": false
+        },
+        {   
+            "id": 10,
+            "subject": "I worry less than others.",
+            "category": "Emotionality",
+            "sub_dimension": "Anxiety",
+            "is_score_rev": true
+        },
+        {   
+            "id": 11,
+            "subject": "I would like to know how to make lots of money in a dishonest manner.",
+            "category": "Honesty-Humility",
+            "sub_dimension": "Fairness",
+            "is_score_rev": true
+        },
+        {   
+            "id": 12,
+            "subject": "I have a lot of imagination.",
+            "category": "Openness to Experience",
+            "sub_dimension": "Creativity",
+            "is_score_rev": false
+        },
+        {   
+            "id": 13,
+            "subject": "I work very precisely.",
+            "category": "Conscientiousness",
+            "sub_dimension": "Perfectionism",
+            "is_score_rev": false
+        },
+        {   
+            "id": 14,
+            "subject": "I tend to quickly agree with others.",
+            "category": "Agreeableness",
+            "sub_dimension": "Flexibility",
+            "is_score_rev": false
+        },
+        {   
+            "id": 15,
+            "subject": "I like to talk with others.",
+            "category": "eXtraversion",
+            "sub_dimension": "Sociability",
+            "is_score_rev": false
+        },
+        {   
+            "id": 16,
+            "subject": "I can easily overcome difficulties on my own.",
+            "category": "Emotionality",
+            "sub_dimension": "Dependence",
+            "is_score_rev": true
+        },
+        {   
+            "id": 17,
+            "subject": "I want to be famous.",
+            "category": "Honesty-Humility",
+            "sub_dimension": "Greed Avoidance",
+            "is_score_rev": false
+        },
+        {   
+            "id": 18,
+            "subject": "I like people with strange ideas.",
+            "category": "Openness to Experience",
+            "sub_dimension": "Unconventionality",
+            "is_score_rev": false
+        },
+        {   
+            "id": 19,
+            "subject": "I often do things without really thinking.",
+            "category": "Conscientiousness",
+            "sub_dimension": "Prudence",
+            "is_score_rev": true
+        },
+        {   
+            "id": 20,
+            "subject": "Even when I am treated badly, I remain calm.",
+            "category": "Agreeableness",
+            "sub_dimension": "Patience",
+            "is_score_rev": false
+        },
+        {   
+            "id": 21,
+            "subject": "I am seldom cheerful.",
+            "category": "eXtraversion",
+            "sub_dimension": "Liveliness",
+            "is_score_rev": true
+        },
+        {   
+            "id": 22,
+            "subject": "I have to cry during sad or romantic movies.",
+            "category": "Emotionality",
+            "sub_dimension": "Sentimentality",
+            "is_score_rev": false
+        },
+        {   
+            "id": 23,
+            "subject": "I am entitled to special treatment.",
+            "category": "Honesty-Humility",
+            "sub_dimension": "Modesty",
+            "is_score_rev": true
+        }
+    ]
+}

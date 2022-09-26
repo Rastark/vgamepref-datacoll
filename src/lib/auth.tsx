@@ -13,14 +13,14 @@ interface Auth {
 interface AuthContext {
   auth: Auth | null;
   loading: boolean;
-  siginWithGoogle: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
 const authContext: Context<AuthContext> = createContext<AuthContext>({
   auth: null,
   loading: true,
-  siginWithGoogle: async () => {},
+  signInWithGoogle: async () => {},
   signOut: async () => {},
 });
 
@@ -63,7 +63,7 @@ function useProvideAuth() {
     setLoading(true);
   };
 
-  const siginWithGoogle = async () => {
+  const signInWithGoogle = async () => {
     setLoading(true);
     return firebase
       .auth()
@@ -82,7 +82,7 @@ function useProvideAuth() {
   return {
     auth,
     loading,
-    siginWithGoogle,
+    signInWithGoogle: signInWithGoogle,
     signOut,
   };
 }
