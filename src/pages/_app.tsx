@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import { AuthProvider } from '../lib/auth';
 
 import { useForm } from 'react-hook-form';
+import SidebarWithHeader from '../common/SidebarWithHeader';
 
 function App({ Component, pageProps }: AppProps) {
   const {
@@ -23,8 +24,8 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <AuthProvider>
-        <Component {...pageProps} />
-        <div>
+        <SidebarWithHeader children={<Component {...pageProps} />} />
+        {/* <div>
           <form 
             onSubmit={handleSubmit((data) => (
               console.log(data)
@@ -45,7 +46,7 @@ function App({ Component, pageProps }: AppProps) {
             <p>{errors.lastname?.message}</p>
             <input type='submit' />
           </form>
-        </div>
+        </div> */}
 
       </AuthProvider>
     </ChakraProvider>

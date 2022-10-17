@@ -1,0 +1,34 @@
+{
+  "items":[
+    { 
+      "id": 0,
+      "subject": "What is you gender?",
+      "options": ["Male", "Female", "Non-binary", "Other"]
+    },
+    { 
+      "id": 1,
+      "subject": "How old are you?",
+      "options": [""]
+    },
+    { 
+      "id": 2,
+      "subject": "Where do you come from?",
+      "options": [""]
+    },
+    {
+      "id": 3,
+      "subject": "What's your current marital status?",
+      "options": ["Single", "Married", "Widowed", "Divorced", "Separated", "Registered partnership"]
+    },
+    { 
+      "id": 4,
+      "subject": "What's your current occupation?",
+      "options": ["Student", "Employee", "Self-employed", "Unemployed", "Retired", "Other"]
+    },
+    { 
+      "id": 5,
+      "subject": "What's your educational level?",
+      "options": ["Student", "Worker"]
+    }
+  ]
+}

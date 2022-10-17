@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { getStorage } from 'firebase/storage';
 
 
 const firebaseConfig = {
@@ -11,7 +12,7 @@ const firebaseConfig = {
 
 try {
   firebase.initializeApp(firebaseConfig);
-} catch (err) {
+} catch (err: any) {
   if (!/already exists/.test(err.message)) {
     console.error('Firebase initialization error', err.stack);
   }
