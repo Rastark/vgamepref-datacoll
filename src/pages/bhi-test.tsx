@@ -21,6 +21,10 @@ const bhi_test = ({ bhiProps, demographicProps }: {
     console.log("questionnaire answers: ", answers);
     addNewDoc(answers, "hexaco-tests");
   };
+
+  const handleFakeSubmit = () => {
+    console.log("questionnaire answers: ", answers);
+  }
   
 
   // state declarations
@@ -61,10 +65,13 @@ const bhi_test = ({ bhiProps, demographicProps }: {
   const updateDemographics = (input: {show: boolean, formData: FormItem[]}) => 
     setDemographicQuestions(input);
 
+  const updateBhi = (input: {show: boolean, formData: FormItem[]}) => 
+    setBhiQuestions(input);
+
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
     <Flex direction="column" background="gray.100" p={12} rounded={6}>
-    <Button onClick={handleSubmit}>Submit</Button>
+    <Button onClick={handleFakeSubmit}>Fake Submit</Button>
       { demographicQuestions.show ? (
         <div className="demographic-questions">
           <Demographics 
@@ -78,6 +85,7 @@ const bhi_test = ({ bhiProps, demographicProps }: {
             <BHITest 
               questionProps={bhiProps} 
               showToggle={toggleBhiShow}
+              formData={updateBhi}
             />
             ) : (
               <div>

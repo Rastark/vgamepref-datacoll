@@ -11,18 +11,18 @@ import useHasMounted from "../utils/hasMounted";
 const Demographics: React.FC<{
   questionProps: QuestionProps<DemographicQuestion>, 
   showToggle: () => void,
-  formData: (input: {
+  formData: (
+    input: {
     show: boolean;
-    formData: FormItem[];
-}) => void
+    formData: FormItem[]
+  }) => void
 }> = (props) => {
-  
   const questions = props.questionProps.items;
   console.log("questions", questions)
 
+  // Update parent state on submit
   const handleSubmit = () => {
     // alert('Your responses are ' + inputValues);
-    // props.showToggle();
     props.showToggle()
     const updatedFormData: FormItem[] = inputValues.map((item, index) => ({
       id: index, 
@@ -30,11 +30,10 @@ const Demographics: React.FC<{
     }));
     console.log("updatedForm", updatedFormData);
     props.formData({show: false, formData: updatedFormData})
-    // console.log("submitted value: ", );
   }
 
   const [inputValues, setValues] = useState(new Array<DemographicOption>(questions.length).fill({label: "", value: -1}));
-  console.log(inputValues)
+  console.log(inputValues);
   console.log('qinitial', inputValues);
 
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
@@ -43,8 +42,10 @@ const Demographics: React.FC<{
   const handlePrevQuestion = () => setCurrentQuestionId(Math.max(currentQuestionId - 1, 0));
   const handleNextQuestion = () => setCurrentQuestionId(Math.min(currentQuestionId + 1, questions.length-1));
   const currentQuestion = questions[currentQuestionId];
-
   const options = currentQuestion.options.map((q,i) => ({ label: q, value: i}));
+
+  const isFirstQuestion = currentQuestionId === 0;
+  const isLastQuestion = currentQuestionId === questions.length-1;
 
   const changeValues = (value: DemographicOption | null) => {
     if (value) {
@@ -71,9 +72,21 @@ const Demographics: React.FC<{
           placeholder="choose an option..."
           onChange={changeValues}
         />
-        <Button onClick={handlePrevQuestion}>Prev</Button>
-        <Button onClick={handleNextQuestion}>Next</Button>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button 
+          isDisabled={ isFirstQuestion } 
+          onClick={handlePrevQuestion}>
+            Prev
+        </Button>
+        <Button 
+          isDisabled={ isLastQuestion } 
+          onClick={handleNextQuestion}>
+            Next
+        </Button>
+        { 
+          isLastQuestion ?
+          <Button onClick={handleSubmit}>Go to results</Button> :
+          <></>
+        }
       {/* </form> */}
     </div>
   )
