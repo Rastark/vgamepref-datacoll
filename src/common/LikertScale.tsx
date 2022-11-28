@@ -4,7 +4,7 @@ import {
     Stack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { QuestionProps, BHIQuestion } from "../types_interfaces/types";
+import { JsonProps, BHIQuestion } from "../types_interfaces/types";
 
 const LikertScale: React.FC<{value: string, onChange(v:any): any}> = (props) => {
     const value = props.value;

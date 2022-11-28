@@ -37,3 +37,6 @@ next-env.d.ts
 
 # secrets
 secrets.txt
+
+gem_table.csv
+gem_parser.ipynb

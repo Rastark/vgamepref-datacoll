@@ -1,6 +1,6 @@
 export type GameProps = Array<{ id: number, name: string }>;
 
-export type QuestionProps<T> = {
+export type JsonProps<T> = {
   items: T[];
 };
 
@@ -19,6 +19,11 @@ export type BHIQuestion = QuestionBase & {
   is_score_rev: boolean
 };
 
+export type SelfDetQuestion = QuestionBase & {
+  dimension: string, 
+  is_score_rev: boolean
+}
+
 export type FormItem = {
   id: number,
   selectedOption: string
@@ -27,4 +32,11 @@ export type FormItem = {
 export type QuestionnaireAnswers = {
   demographics: FormItem[],
   answers: FormItem[]
+}
+
+export type GameElemMech = {
+  id: number,
+  title: string,
+  elements: string[],
+  mechanics: string[]
 }
