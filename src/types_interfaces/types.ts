@@ -1,11 +1,9 @@
-export type GameProps = Array<{ id: number, name: string }>;
-
 export type JsonProps<T> = {
   items: T[];
 };
 
 export type QuestionBase = {
-  id: string, 
+  id: number, 
   subject: string 
 };
 
@@ -31,7 +29,9 @@ export type FormItem = {
 
 export type QuestionnaireAnswers = {
   demographics: FormItem[],
-  answers: FormItem[]
+  personality: FormItem[],
+  self_determination: FormItem[]
+  preferred_games: FormItem[]
 }
 
 export type GameElemMech = {
@@ -40,3 +40,15 @@ export type GameElemMech = {
   elements: string[],
   mechanics: string[]
 }
+
+export type GameProps = 
+  Array<{ id: number, name: string }>;
+
+export type GemProps = Array<{
+  id: number,
+  title: string,
+  publisher: string,
+  publish_date: number,
+  elements: string[],
+  mechanics: string[]
+}>

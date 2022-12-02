@@ -4,3 +4,8 @@ export interface QuestionOption extends OptionBase {
     label: string;
     value: number;
   }
+
+export interface SelectedOption extends OptionBase {
+    label: Array<QuestionOption>;
+    value: number;
+  }

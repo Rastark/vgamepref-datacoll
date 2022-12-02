@@ -1,4 +1,4 @@
-import { Button, Flex, TagLabel } from "@chakra-ui/react";
+import { Button, Progress, Flex, TagLabel } from "@chakra-ui/react";
 import { GroupBase, OptionBase, Select } from "chakra-react-select";
 import e from "cors";
 import React, { useEffect, useState } from "react";
@@ -50,29 +50,30 @@ const DemographicQre: React.FC<{
   return (!useHasMounted ? <></> :
     <div className="question-card">
       <h1>Brief-HEXACO-Personality-Inventory</h1>
+      <Progress value={((+currentQuestion.id + 1)/questions.length)*100}/>
       <h3 className="question-text">{currentQuestion.subject}</h3>
-        <Select<QuestionOption, false, GroupBase<QuestionOption>>
-          options={options}
-          name="optionValue"
-          value={ inputValues[currentQuestionId].label === "" 
-            ? null 
-            : inputValues[currentQuestionId] }
-          placeholder="choose an option..."
-          onChange={changeValues}
-          isRequired={true}
-        />
-        <NavButtons 
-          length={questions.length}
-          currId={currentQuestionId}
-          setCurrId={setCurrentQuestionId} 
-        />
-        { isLastQuestion 
-          ? <Button 
-              onClick={handleSubmit}>
-                Go to results
-            </Button> 
-          : <></> 
-        }
+      <Select<QuestionOption, false, GroupBase<QuestionOption>>
+        options={options}
+        name="optionValue"
+        value={ inputValues[currentQuestionId].label === "" 
+          ? null 
+          : inputValues[currentQuestionId] }
+        placeholder="choose an option..."
+        onChange={changeValues}
+        isRequired={true}
+      />
+      <NavButtons 
+        length={questions.length}
+        currId={currentQuestionId}
+        setCurrId={setCurrentQuestionId} 
+      />
+      { isLastQuestion 
+        ? <Button 
+            onClick={handleSubmit}>
+              Go to next survey
+          </Button> 
+        : <></> 
+      }
     </div>
   )
 }

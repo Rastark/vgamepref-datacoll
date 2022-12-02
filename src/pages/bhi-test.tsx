@@ -4,15 +4,19 @@ import { FormProvider, useForm } from "react-hook-form";
 import BhiQre from "../common/BhiQre";
 import DemographicQre from "../common/DemographicQre";
 import FinalResults from "../common/FInalResults";
+import GamesQre from "../common/GamesQre";
 import SelfDetQre from "../common/SelfDetQre";
+import { loadGames } from "../lib/load-games";
 import { QuestionOption } from "../types_interfaces/interfaces";
-import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion } from "../types_interfaces/types";
+import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion, GameProps, GemProps } from "../types_interfaces/types";
 import { addNewDoc } from "../utils/insertJson";
 
-const bhi_test = ({ bhiProps, demographicProps, selfDetProps }: { 
+const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProps}: { 
     bhiProps: JsonProps<BHIQuestion>, 
     demographicProps: JsonProps<DemographicQuestion>,
-    selfDetProps: JsonProps<SelfDetQuestion>})=> {
+    selfDetProps: JsonProps<SelfDetQuestion>
+    gameProps: GameProps
+    gemProps: GemProps})=> {
   
   console.log("demographic_test", demographicProps);
   
@@ -44,6 +48,11 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps }: {
     formData: Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: ""})
   });
 
+  const [gameQuestions, setGameQuestions] = useState({
+    show: true, 
+    formData: Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: ""})
+  });
+
   console.log("bhi_test", bhiProps);
   console.log(demographicQuestions)
 
@@ -64,14 +73,22 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps }: {
     }));
   
   const toggleSelfDetShow = () =>
-  setBhiQuestions(value => ({
+  setSelfDetQuestions(value => ({
+    show: !(value.show), 
+    formData: value.formData
+  }));
+
+  const toggleGameShow = () =>
+  setGameQuestions(value => ({
     show: !(value.show), 
     formData: value.formData
   }));
 
   const answers: QuestionnaireAnswers = {
     demographics: demographicQuestions.formData,
-    answers: bhiQuestions.formData
+    personality: bhiQuestions.formData,
+    self_determination: selfDetQuestions.formData,
+    preferred_games: gameQuestions.formData
   };
 
   const updateDemographics = (input: {show: boolean, formData: FormItem[]}) => 
@@ -82,6 +99,10 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps }: {
 
   const updateSelfDet = (input: {show: boolean, formData: FormItem[]}) => 
     setSelfDetQuestions(input);
+
+  const updateGames = (input: {show: boolean, formData: FormItem[]}) => 
+    setSelfDetQuestions(input);
+
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
@@ -109,6 +130,14 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps }: {
           showToggle={toggleSelfDetShow}
           formData={updateSelfDet} 
         />
+      : gameQuestions.show
+      ? <GamesQre
+          questionProps={gameProps}
+          gemProps={gemProps}
+          showToggle={toggleGameShow}
+          formData={updateGames}
+        />
+
       : <div>
           <FinalResults />
           <Button 
@@ -136,8 +165,14 @@ export async function getServerSideProps() {
       await fetch("http://localhost:3000/api/bpnsfs")
         .then(async response => await response.json());
 
+    const gameProps = await loadGames();
+
+    const gemProps =
+      await fetch("http://localhost:3000/api/gem")
+      .then(async response => await response.json());
+
     return {
-      props: { bhiProps, demographicProps, selfDetProps },
+      props: { bhiProps, demographicProps, selfDetProps, gameProps, gemProps},
     }
   }
 

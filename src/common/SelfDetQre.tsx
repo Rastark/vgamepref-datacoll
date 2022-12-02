@@ -1,4 +1,4 @@
-import { Button, Flex, TagLabel } from "@chakra-ui/react";
+import { Button, Flex, Progress, TagLabel } from "@chakra-ui/react";
 import { GroupBase, OptionBase, Select } from "chakra-react-select";
 import e from "cors";
 import React, { useEffect, useState } from "react";
@@ -53,6 +53,7 @@ const SelfDetQre: React.FC<{
   return (!useHasMounted ? <></> :
     <div className="question-card">
       <h1>Basic Personality Needs Satisfaction and Frustration Scale</h1>
+      <Progress value={((+currentQuestion.id + 1)/questions.length)*100}/>
       <h3 className="question-text">{currentQuestion.subject}</h3>
       <LikertScale value={ inputValues[currentQuestionId].label } 
         onChange={changeValues} 

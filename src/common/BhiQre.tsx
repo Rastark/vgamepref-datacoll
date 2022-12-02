@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Progress } from "@chakra-ui/react";
 import React, { useState } from "react";
 import LikertScale from "./LikertScale";
 import { JsonProps, BHIQuestion, FormItem } from "../types_interfaces/types";
@@ -45,6 +45,7 @@ const BhiQre: React.FC<{
   return (!useHasMounted ? <></> :
     <div className="question-card">
       <h1>Brief-HEXACO-Personality-Inventory</h1>
+      <Progress value={((+currentQuestion.id + 1)/questions.length)*100}/>
       <h3 className="question-text">{currentQuestion.subject}</h3>
       <LikertScale value={ inputValues[currentQuestionId].label } 
         onChange={changeValues} 
@@ -57,7 +58,7 @@ const BhiQre: React.FC<{
 
       { isLastQuestion 
         ? <Button onClick={handleSubmit}>
-          Go to results
+          Go to next survey
           </Button> 
         : <></>
       }
