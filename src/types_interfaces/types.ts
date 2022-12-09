@@ -1,3 +1,5 @@
+import { QuestionOption } from "./interfaces";
+
 export type JsonProps<T> = {
   items: T[];
 };
@@ -24,7 +26,7 @@ export type SelfDetQuestion = QuestionBase & {
 
 export type FormItem = {
   id: number,
-  selectedOption: string
+  selectedOption: QuestionOption | QuestionOption[]
 };
 
 export type QuestionnaireAnswers = {
@@ -52,3 +54,8 @@ export type GemProps = Array<{
   elements: string[],
   mechanics: string[]
 }>
+
+export type TestScore = { 
+  dimension: string, 
+  score: number 
+};

@@ -1,6 +1,7 @@
 import { Button, Flex  } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { string } from "yup";
 import BhiQre from "../common/BhiQre";
 import DemographicQre from "../common/DemographicQre";
 import FinalResults from "../common/FInalResults";
@@ -8,8 +9,9 @@ import GamesQre from "../common/GamesQre";
 import SelfDetQre from "../common/SelfDetQre";
 import { loadGames } from "../lib/load-games";
 import { QuestionOption } from "../types_interfaces/interfaces";
-import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion, GameProps, GemProps } from "../types_interfaces/types";
+import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion, GameProps, GemProps, TestScore } from "../types_interfaces/types";
 import { addNewDoc } from "../utils/insertJson";
+import { calcScore } from "../utils/qre-hooks";
 
 const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProps}: { 
     bhiProps: JsonProps<BHIQuestion>, 
@@ -35,22 +37,22 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
   // state declarations
   const [demographicQuestions, setDemographicQuestions] = useState({
     show: true, 
-    formData: Array<FormItem>(demographicProps.items.length).fill({id: -1, selectedOption: ""})
+    formData: Array<FormItem>(demographicProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
   });
 
   const [bhiQuestions, setBhiQuestions] = useState({
     show: true, 
-    formData: Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: ""})
+    formData: new Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
   });
 
   const [selfDetQuestions, setSelfDetQuestions] = useState({
     show: true, 
-    formData: Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: ""})
+    formData: new Array<FormItem>(selfDetProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
   });
 
   const [gameQuestions, setGameQuestions] = useState({
     show: true, 
-    formData: Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: ""})
+    formData: new Array<FormItem>(gameProps.length).fill({id: -1, selectedOption: new Array<QuestionOption>(3).fill({label: "", value:-1})})
   });
 
   console.log("bhi_test", bhiProps);
@@ -101,17 +103,19 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
     setSelfDetQuestions(input);
 
   const updateGames = (input: {show: boolean, formData: FormItem[]}) => 
-    setSelfDetQuestions(input);
+    setGameQuestions(input);
 
+  const calcBhiScore: TestScore[] = calcScore(bhiProps.items, answers.personality);
+  const calcSelfDetScore: TestScore[] = calcScore(selfDetProps.items, answers.self_determination);
+
+  console.log("answers: ", answers);
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
     <Flex direction="column" background="gray.100" p={12} rounded={6}>
     <Button onClick={handleFakeSubmit}>Fake Submit</Button>
     { demographicQuestions.show 
-      ? <div 
-          className="demographic-questions"
-        >
+      ? <div className="demographic-questions">
         <DemographicQre 
           questionProps={demographicProps} 
           showToggle={toggleDemographicShow} 
@@ -139,7 +143,7 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
         />
 
       : <div>
-          <FinalResults />
+          <FinalResults answers calcBhiScore calcSelfDetScore/>
           <Button 
             onClick={handleSubmit}>
               Submit Questionnaire

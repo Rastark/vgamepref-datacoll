@@ -42,34 +42,46 @@ const GenericQre: React.FC<{
   }
 
   // Input state
-  const [inputValues, setInputValues] = useState(new Array<SelectedOption>(questions.length)
-    .fill({label: (new Array<QuestionOption>(3).fill({label: "", value: -1})), value: -1}));
-  console.log(inputValues);
+  const [inputValues, setInputValues] = useState(new Array<SelectedOption>(
+    { label: (new Array<QuestionOption>(3).fill({label: "", value: -1})), value: -1 },
+    { label: (new Array<QuestionOption>(3).fill({label: "", value: -1})), value: -1 }));
+  console.log(inputValues, typeof(inputValues));
   console.log('qinitial', inputValues);
 
   // Current question state
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const currentQuestion = questions[currentQuestionId];
 
+  // useEffect(()=>{
+  //   setCurrentQuestionId(currentQuestionId), [inputValues[currentQuestionId].label[0]];
+  // })
+
   const isLastQuestion = currentQuestionId === questions.length-1;
 
   // Update inputValues dinamically on aswer change
   const changeValues = (newValue: QuestionOption | null, field: number) => {
     console.log("newValue: ", newValue, field)
+    console.log("inputValuesBefore", inputValues)
     if(newValue) {
       // const itemId = newValue.value;x
       console.log("itemId: ", field);
       let items = [...inputValues];
+      console.log("items", items)
       let itemToChange = {...items[currentQuestionId]}
+      console.log("itemToChange", itemToChange)
       let optionToChange = {...itemToChange.label[field]}
-      optionToChange.label = newValue.label;  
+      console.log("optionToChange", optionToChange)
+      console.log("label", optionToChange.label)
+      optionToChange.label = newValue.label;
+      console.log("value", optionToChange.value)  
       optionToChange.value = newValue.value;
       
       itemToChange.label[field] = optionToChange;
       itemToChange.value = currentQuestionId; 
       items[currentQuestionId] = itemToChange;
+      console.log(items[currentQuestionId+1])
       setInputValues(items);
-      console.log('new_values', items)
+      console.log('new_values', items)  
     }
     console.log('qfinal', inputValues);
   }
@@ -90,11 +102,10 @@ const GenericQre: React.FC<{
       <h3 className="question-text">{currentQuestion.subject}</h3>
         <Center>First Game</Center>
         <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+          key={currentQuestionId && inputValues[currentQuestionId].label[0].label!=="" ? currentQuestionId+"0" : null}
           options={options}
           name="optionValue"
-          value={ inputValues[currentQuestionId].label[0].label === "" 
-            ? null 
-            : inputValues[currentQuestionId].label[0] }
+          value={null}
           placeholder="choose an option..."
           loadOptions={loadOptions}
           onChange={option => changeValues(option, 0)}

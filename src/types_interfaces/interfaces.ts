@@ -6,6 +6,6 @@ export interface QuestionOption extends OptionBase {
   }
 
 export interface SelectedOption extends OptionBase {
-    label: Array<QuestionOption>;
+    label: QuestionOption[];
     value: number;
   }

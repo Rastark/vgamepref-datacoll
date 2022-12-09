@@ -23,7 +23,7 @@ const NavButtons: React.FC<{
         Prev
     </Button>
     <Button 
-      isDisabled={ isLast} 
+      isDisabled={ isLast } 
       onClick={ handleNext }>
         Next
     </Button>

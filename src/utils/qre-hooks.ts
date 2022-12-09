@@ -1,12 +1,12 @@
 import { QuestionOption } from "../types_interfaces/interfaces";
-import { FormItem } from "../types_interfaces/types";
+import { BHIQuestion, FormItem, SelfDetQuestion, TestScore } from "../types_interfaces/types";
 
 export const handleFormSubmit = (props: any, localInput: any) => {
   // alert('Your responses are ' + inputValues);
   props.showToggle();
   const updatedFormData: FormItem[] = localInput.map((item: any, index: number) => ({
     id: index, 
-    selectedOption: item.label
+    selectedOption: item
   }));
   console.log("updatedForm", updatedFormData);
   props.formData({show: false, formData: updatedFormData})
@@ -28,4 +28,21 @@ export const changeItemValuesById = (
     console.log('new_values', items)
   }
   console.log('qfinal', inputValues);
+}
+
+export const calcScore = (questions: BHIQuestion[] | SelfDetQuestion[], answers: FormItem[]) => {
+  const dim_set= new Set<string>();
+  questions.map(item => dim_set.add(item.dimension));
+  console.log("dim_set", dim_set);
+
+  //Initialize score array
+  let scores: TestScore[] = [];
+  dim_set.forEach(dim => scores.push({dimension: dim, score: 0}));
+
+  scores.forEach(elem => 
+    questions.filter(item => 
+      item.dimension == elem.dimension).forEach(dim_item =>
+        elem.score += parseInt(answers[dim_item.id].selectedOption.label)))
+  console.log("scores: ", scores);
+  return scores;
 }

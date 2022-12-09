@@ -51,9 +51,9 @@ const BhiQre: React.FC<{
         onChange={changeValues} 
       />
       <NavButtons 
-          length={questions.length}
-          currId={currentQuestionId}
-          setCurrId={setCurrentQuestionId} 
+        length={questions.length}
+        currId={currentQuestionId}
+        setCurrId={setCurrentQuestionId} 
       />
 
       { isLastQuestion 
