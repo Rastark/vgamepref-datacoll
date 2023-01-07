@@ -4,14 +4,14 @@ import { FormProvider, useForm } from "react-hook-form";
 import { string } from "yup";
 import BhiQre from "../common/BhiQre";
 import DemographicQre from "../common/DemographicQre";
-import FinalResults from "../common/FInalResults";
+import FinalResults from "../common/FinalResults";
 import GamesQre from "../common/GamesQre";
 import SelfDetQre from "../common/SelfDetQre";
 import { loadGames } from "../lib/load-games";
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion, GameProps, GemProps, TestScore } from "../types_interfaces/types";
 import { addNewDoc } from "../utils/insertJson";
-import { calcScore } from "../utils/qre-hooks";
+import { calcDimScores } from "../utils/qre-hooks";
 
 const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProps}: { 
     bhiProps: JsonProps<BHIQuestion>, 
@@ -105,8 +105,8 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
   const updateGames = (input: {show: boolean, formData: FormItem[]}) => 
     setGameQuestions(input);
 
-  const calcBhiScore: TestScore[] = calcScore(bhiProps.items, answers.personality);
-  const calcSelfDetScore: TestScore[] = calcScore(selfDetProps.items, answers.self_determination);
+  const calcBhiScore: TestScore[] = calcDimScores(bhiProps.items, answers.personality);
+  const calcSelfDetScore: TestScore[] = calcDimScores(selfDetProps.items, answers.self_determination);
 
   console.log("answers: ", answers);
 

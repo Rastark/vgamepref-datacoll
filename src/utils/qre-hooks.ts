@@ -30,7 +30,11 @@ export const changeItemValuesById = (
   console.log('qfinal', inputValues);
 }
 
-export const calcScore = (questions: BHIQuestion[] | SelfDetQuestion[], answers: FormItem[]) => {
+/* 
+  input: questionnaire data, questionnaire answers.
+  output: an object containing every dimension score, labeled by dimension.
+  */ 
+export const calcDimScores = (questions: BHIQuestion[] | SelfDetQuestion[], answers: FormItem[]) => {
   const dim_set= new Set<string>();
   questions.map(item => dim_set.add(item.dimension));
   console.log("dim_set", dim_set);
