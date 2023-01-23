@@ -11,15 +11,16 @@ import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAns
 import { addNewDoc } from "../utils/insertJson";
 import { useCalcDimScores } from "../utils/qre-hooks";
 
-const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gameCatalogProps, gemProps}: { 
+const bhi_test: React.FC<{ 
     bhiProps: JsonProps<BHIQuestion>, 
     demographicProps: JsonProps<DemographicQuestion>,
     selfDetProps: JsonProps<SelfDetQuestion>
     gameProps: GameProps,
     gameCatalogProps: GameProps,
-    gemProps: GemProps})=> {
+    gemProps: GemProps
+  }> = (props) => {
   
-  console.log("demographic_test", demographicProps);
+  console.log("demographic_test", props.demographicProps);
   
   // Uploads the json doc to cloud firebase
   const handleSubmit = () => {
@@ -36,25 +37,25 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gameCat
   // state declarations
   const [demographicQuestions, setDemographicQuestions] = useState({
     show: true, 
-    formData: Array<FormItem>(demographicProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
+    formData: Array<FormItem>(props.demographicProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
   });
 
   const [bhiQuestions, setBhiQuestions] = useState({
     show: true, 
-    formData: new Array<FormItem>(bhiProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
+    formData: new Array<FormItem>(props.bhiProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
   });
 
   const [selfDetQuestions, setSelfDetQuestions] = useState({
     show: true, 
-    formData: new Array<FormItem>(selfDetProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
+    formData: new Array<FormItem>(props.selfDetProps.items.length).fill({id: -1, selectedOption: {label: "", value:-1}})
   });
 
   const [gameQuestions, setGameQuestions] = useState({
     show: true, 
-    formData: new Array<FormItem>(gameProps.length).fill({id: -1, selectedOption: new Array<QuestionOption>(3).fill({label: "", value:-1})})
+    formData: new Array<FormItem>(props.gameProps.length).fill({id: -1, selectedOption: new Array<QuestionOption>(3).fill({label: "", value:-1})})
   });
 
-  console.log("bhi_test", bhiProps);
+  console.log("bhi_test", props.bhiProps);
   console.log(demographicQuestions)
 
   // state triggers
@@ -104,38 +105,38 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gameCat
   const updateGames = (input: {show: boolean, formData: FormItem[]}) => 
     setGameQuestions(input);
 
-  const calcBhiScore: TestScore[] = useCalcDimScores(bhiProps.items, answers.personality);
-  const calcSelfDetScore: TestScore[] = useCalcDimScores(selfDetProps.items, answers.self_determination);
+  const calcBhiScore: TestScore[] = useCalcDimScores(props.bhiProps.items, answers.personality);
+  const calcSelfDetScore: TestScore[] = useCalcDimScores(props.selfDetProps.items, answers.self_determination);
 
   console.log("answers: ", answers);
 
   return (
     <Box height="100vh" alignItems="center" justifyContent="center" className="page-box-ext">
-    <Box direction="column" background="gray.100" p={12} rounded={6} className="page-box-int">
+    <Box background="gray.100" p={12} rounded={6} className="page-box-int">
     { demographicQuestions.show 
       ? <div className="demographic-questions">
         <DemographicQre 
-          questionProps={demographicProps} 
+          questionProps={props.demographicProps} 
           showToggle={toggleDemographicShow} 
           formData={updateDemographics}
         />
       </div>
       : bhiQuestions.show 
       ? <BhiQre 
-          questionProps={bhiProps} 
+          questionProps={props.bhiProps} 
           showToggle={toggleBhiShow}
           formData={updateBhi}
         />
       : selfDetQuestions.show
       ? <SelfDetQre
-          questionProps={selfDetProps}
+          questionProps={props.selfDetProps}
           showToggle={toggleSelfDetShow}
           formData={updateSelfDet} 
         />
       : gameQuestions.show
       ? <GamesQre
-          questionProps={gameCatalogProps}
-          gemProps={gemProps}
+          questionProps={props.gameCatalogProps}
+          gemProps={props.gemProps}
           showToggle={toggleGameShow}
           formData={updateGames}
         />
