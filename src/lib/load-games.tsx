@@ -1,4 +1,5 @@
 import secrets from "../../config/secrets.json";
+import { GameProps } from "../types_interfaces/types";
 
 
 const gdb_api_url = 'https://api.igdb.com/v4';
@@ -19,7 +20,32 @@ export async function loadGames() {
                 "Client-ID": secrets.twitch_api.client_id,
                 "Authorization": `Bearer ${twitch_bearer}`,
             },
-            body: "fields name;"
+            body: "fields name,cover.url,cover.height,cover.width; limit 50"
+        });
+        games = await gdb_res.json();
+    // }
+    //TODO: isolate the error type
+    // catch {
+        // console.error("No twitch access token was returned")
+    // }
+    return games;    
+}
+
+export async function loadCatalogGames(titles: Array<string>) {
+    const titles_string = titles.join('","')
+    const twitch_res = await fetch(twitch_api_login, {method: 'POST'});
+    console.log(twitch_res)
+    const twitch_access_token = await twitch_res.json();
+    let games: GameProps;
+    // try {
+        const twitch_bearer = twitch_access_token.access_token;
+        const gdb_res = await fetch(`${gdb_api_url}/games`, {
+            method: 'POST', 
+            headers: {
+                "Client-ID": secrets.twitch_api.client_id,
+                "Authorization": `Bearer ${twitch_bearer}`,
+            },
+            body: `fields name,url,cover.url,cover.height,cover.width; where name=("${titles_string}"); limit 50;`
         });
         games = await gdb_res.json();
     // }

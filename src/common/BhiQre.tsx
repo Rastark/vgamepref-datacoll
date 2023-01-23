@@ -5,7 +5,7 @@ import { JsonProps, BHIQuestion, FormItem } from "../types_interfaces/types";
 import useHasMounted from "../utils/hasMounted";
 import {v4 as uuidv4} from "uuid";
 import NavButtons from "./NavButtons";
-import { changeItemValuesById, handleFormSubmit } from "../utils/qre-hooks";
+import { useChangeItemValuesById, useHandleFormSubmit } from "../utils/qre-hooks";
 import { QuestionOption } from "../types_interfaces/interfaces";
 
 const BhiQre: React.FC<{
@@ -22,7 +22,7 @@ const BhiQre: React.FC<{
   
   // Update parent state on submit
   const handleSubmit = () => {
-    return handleFormSubmit(props, inputValues);
+    return useHandleFormSubmit(props, inputValues);
   }
   
   const [inputValues, setInputValues] = useState(new Array<QuestionOption>(questions.length).fill({label: "3", value: -1}));
@@ -34,7 +34,7 @@ const BhiQre: React.FC<{
   const isLastQuestion = currentQuestionId === questions.length-1;
   
   const changeValues = (newValue: string) => {
-    return changeItemValuesById(
+    return useChangeItemValuesById(
       currentQuestionId,
       {label: newValue, value: +parseInt(newValue)},
       inputValues,
@@ -42,28 +42,33 @@ const BhiQre: React.FC<{
     )
   }
 
-  return (!useHasMounted ? <></> :
-    <div className="question-card">
-      <h1>Brief-HEXACO-Personality-Inventory</h1>
-      <Progress value={((+currentQuestion.id + 1)/questions.length)*100}/>
-      <h3 className="question-text">{currentQuestion.subject}</h3>
-      <LikertScale value={ inputValues[currentQuestionId].label } 
-        onChange={changeValues} 
-      />
+  return (!useHasMounted 
+    ? <></> 
+    : <div className="question-card">
+      <Flex height="20vh" alignItems="center" justifyContent="center">
+        <Flex direction="column" background="gray.100" p={12} rounded={6}>
+            <h1>Brief-HEXACO-Personality-Inventory</h1>
+            <Progress value={((+currentQuestion.id + 1)/questions.length)*100}/>
+            <h3 className="question-text">{currentQuestion.subject}</h3>
+            <LikertScale value={ inputValues[currentQuestionId].label } 
+              onChange={changeValues} 
+            />
+        </Flex>
+      </Flex>
       <NavButtons 
         length={questions.length}
         currId={currentQuestionId}
         setCurrId={setCurrentQuestionId} 
       />
-
       { isLastQuestion 
         ? <Button onClick={handleSubmit}>
           Go to next survey
           </Button> 
         : <></>
       }
-    </div>
-  )
+      </div>
+    )
+
 }
 
 export default BhiQre;

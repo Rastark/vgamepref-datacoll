@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { JsonProps, DemographicQuestion, FormItem, SelfDetQuestion } from "../types_interfaces/types";
 import useHasMounted from "../utils/hasMounted";
-import { changeItemValuesById, handleFormSubmit } from "../utils/qre-hooks";
+import { useChangeItemValuesById, useHandleFormSubmit } from "../utils/qre-hooks";
 import LikertScale from "./LikertScale";
 import NavButtons from "./NavButtons";
 
@@ -25,7 +25,7 @@ const SelfDetQre: React.FC<{
 
   // Update parent state on submit
   const handleSubmit = () => {
-    return handleFormSubmit(props, inputValues);
+    return useHandleFormSubmit(props, inputValues);
   }
 
   // Input state
@@ -41,7 +41,7 @@ const SelfDetQre: React.FC<{
 
   // Update inputValues dinamically on aswer change
   const changeValues = (newValue: string) => {
-    return changeItemValuesById(
+    return useChangeItemValuesById(
       currentQuestionId,
       {label: newValue, value: +parseInt(newValue)},
       inputValues,

@@ -1,7 +1,7 @@
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { BHIQuestion, FormItem, SelfDetQuestion, TestScore } from "../types_interfaces/types";
 
-export const handleFormSubmit = (props: any, localInput: any) => {
+export const useHandleFormSubmit = (props: any, localInput: any) => {
   // alert('Your responses are ' + inputValues);
   props.showToggle();
   const updatedFormData: FormItem[] = localInput.map((item: any, index: number) => ({
@@ -12,7 +12,7 @@ export const handleFormSubmit = (props: any, localInput: any) => {
   props.formData({show: false, formData: updatedFormData})
 }
 
-export const changeItemValuesById = (
+export const useChangeItemValuesById = (
   itemId: number,
   newValue: QuestionOption | null,
   inputValues: QuestionOption[],
@@ -34,7 +34,7 @@ export const changeItemValuesById = (
   input: questionnaire data, questionnaire answers.
   output: an object containing every dimension score, labeled by dimension.
   */ 
-export const calcDimScores = (questions: BHIQuestion[] | SelfDetQuestion[], answers: FormItem[]) => {
+export const useCalcDimScores = (questions: BHIQuestion[] | SelfDetQuestion[], answers: FormItem[]) => {
   const dim_set= new Set<string>();
   questions.map(item => dim_set.add(item.dimension));
   console.log("dim_set", dim_set);

@@ -1,12 +1,12 @@
-import { Button, Center, Flex, TagLabel } from "@chakra-ui/react";
+import { Button, Center, Card, CardBody, Text, Image, Flex, TagLabel, Grid, GridItem, Divider, CardHeader, CardFooter, Stack, Box, HStack, SimpleGrid, Link } from "@chakra-ui/react";
 import { AsyncSelect, GroupBase, OptionBase, Select } from "chakra-react-select";
 import React, { useEffect, useState } from "react";
 import { QuestionOption, SelectedOption } from "../types_interfaces/interfaces";
 import { JsonProps, DemographicQuestion, FormItem, GameProps, QuestionBase, GemProps } from "../types_interfaces/types";
 import useHasMounted from "../utils/hasMounted";
-import { changeItemValuesById, handleFormSubmit } from "../utils/qre-hooks";
+import { useChangeItemValuesById, useHandleFormSubmit } from "../utils/qre-hooks";
 import NavButtons from "./NavButtons";
-
+import igdb_icon from "../../public/igdb-icon.png";
 
 const GenericQre: React.FC<{
   questionProps: GameProps,
@@ -20,7 +20,24 @@ const GenericQre: React.FC<{
 }> = (props) => {
   
   const gameList = props.questionProps;
-  const gemGameList = props.gemProps
+  const gemGameList = props.gemProps;
+
+  const fixGameData = (gameList: GameProps) => {
+    for (let i=0; i<gameList.length; i++) {
+      if(!gameList[i].hasOwnProperty("cover")) {
+        // gameList[i]["cover"]["url"]= "https://publications.iarc.fr/uploads/media/default/0001/02/thumb_1240_default_publication.jpeg";
+        // gameList[i].cover.height = 300;
+        // gameList[i].cover.width = 200;
+      }
+      else {
+        gameList[i].cover.url = gameList[i].cover.url.replace("t_thumb", "t_cover_big");
+        console.log("replaced", gameList[i].cover.url)
+      }
+    }
+  }
+
+  fixGameData(gameList);
+
   console.log("game_list", gameList)
   const options = gameList.map((q, i) => ({ label: q.name, value: i}));
   const gemOptions = gemGameList.map((q, i) => ({ label: q.title, value: i}));
@@ -38,7 +55,7 @@ const GenericQre: React.FC<{
 
   // Update parent state on submit
   const handleSubmit = () => {
-    return handleFormSubmit(props, inputValues);
+    return useHandleFormSubmit(props, inputValues);
   }
 
   // Input state
@@ -95,46 +112,86 @@ const GenericQre: React.FC<{
     }, 3000);
   }
 
+  const listItems = gameList.map(item => 
+          <Card>
+          <CardHeader>
+              <Image 
+                src={item.hasOwnProperty("cover")
+                  ? item.cover.url
+                  : "https://publications.iarc.fr/uploads/media/default/0001/02/thumb_1240_default_publication.jpeg"} 
+                // height={item.hasOwnProperty("cover")
+                //   ? item.cover.height
+                //   : 300} 
+                // width={item.hasOwnProperty("cover")
+                //   ? item.cover.width
+                //   : 200} 
+                objectFit="cover"
+                align={"center"}
+              />
+          </CardHeader>
+          <CardBody>
+            <Text>{item.name}</Text>
+          </CardBody>
+          <CardFooter>
+            <Link href={item.url} isExternal><Image src={igdb_icon.src} height={"55px"} width={"80px"}/></Link>
+          </CardFooter>
+          <Divider/>
+        </Card>
+  )
+
   // Render component
   return (!useHasMounted ? <></> :
     <div className="question-card">
       <h1>Game preferences</h1>
       <h3 className="question-text">{currentQuestion.subject}</h3>
-        <Center>First Game</Center>
-        <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-          key={currentQuestionId && inputValues[currentQuestionId].label[0].label!=="" ? currentQuestionId+"0" : null}
-          options={options}
-          name="optionValue"
-          value={null}
-          placeholder="choose an option..."
-          loadOptions={loadOptions}
-          onChange={option => changeValues(option, 0)}
-          isRequired={true}
-        />
-        <Center>Second Game</Center>
-        <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-          options={options}
-          name="optionValue"
-          value={ inputValues[currentQuestionId].label[1].label === "" 
+      <SimpleGrid columns={3}>
+        <Box>
+          <Center>First Game</Center>
+          <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+            key={currentQuestionId && inputValues[currentQuestionId].label[0].label!=="" ? currentQuestionId+"0" : null}
+            options={options}
+            name="optionValue"
+            value={ inputValues[currentQuestionId].label[0].label === "" 
             ? null 
-            : inputValues[currentQuestionId].label[1] }
-          placeholder="choose an option..."
-          loadOptions={loadOptions}
-          onChange={option => changeValues(option, 1)}
-          isRequired={true}
-        />
-        <Center>Third Game</Center>
-        <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-          options={options}
-          name="optionValue"
-          value={ inputValues[currentQuestionId].label[2].label === "" 
-            ? null 
-            : inputValues[currentQuestionId].label[2] }
-          placeholder="choose an option..."
-          loadOptions={loadOptions}
-          onChange={option => changeValues(option, 2)}
-          isRequired={true}
-        />
+            : inputValues[currentQuestionId].label[0] }
+            placeholder="choose an option..."
+            loadOptions={loadOptions}
+            onChange={option => changeValues(option, 0)}
+            isRequired={true}
+          />
+        </Box>
+          <Box>
+            <Center>Second Game</Center>
+            <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+              options={options}
+              name="optionValue"
+              value={ inputValues[currentQuestionId].label[1].label === "" 
+                ? null 
+                : inputValues[currentQuestionId].label[1] }
+              placeholder="choose an option..."
+              loadOptions={loadOptions}
+              onChange={option => changeValues(option, 1)}
+              isRequired={true}
+            />
+          </Box>
+          <Box>
+            <Center>Third Game</Center>
+            <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+              options={options}
+              name="optionValue"
+              value={ inputValues[currentQuestionId].label[2].label === "" 
+                ? null 
+                : inputValues[currentQuestionId].label[2] }
+              placeholder="choose an option..."
+              loadOptions={loadOptions}
+              onChange={option => changeValues(option, 2)}
+              isRequired={true}
+            />
+          </Box>
+        </SimpleGrid>
+        <SimpleGrid columns={5}>
+          {listItems}
+        </SimpleGrid>
         <NavButtons 
           length={questions.length}
           currId={currentQuestionId}

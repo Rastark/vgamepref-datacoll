@@ -2,13 +2,13 @@
   "items": [
     { 
       "id": 0,
-      "subject": "What is you gender?",
-      "options": ["Male", "Female", "Non-binary", "Other"]
+      "subject": "Which gender you identify with?",
+      "options": ["Male", "Female", "Non-binary", "Prefer to self-describe"]
     },
     { 
       "id": 1,
       "subject": "How old are you?",
-      "options": [""]
+      "options": ["18-26", "27-36", "37-50", "Over 50"]
     },
     { 
       "id": 2,
@@ -28,7 +28,22 @@
     { 
       "id": 5,
       "subject": "What's your educational level?",
-      "options": ["Student", "Worker"]
+      "options": ["High school degree", "Bachelor level degree", "Master level degree"]
+    },
+    { 
+      "id": 6,
+      "subject": "In a typical week, how many days do you spend playing videogames for at least 30 minutes?",
+      "options": ["0-1", "2-3", "4-5", "6-7"]
+    },
+    { 
+      "id": 7,
+      "subject": "Which type of gamer do you consider yourself to be?",
+      "options": ["Casual: plays in short sessions or infrequently", "Core/Mid-core: regularly plays, but not particularly serious/competitive", "Hardcore: dedicated and serious/competitive"]
+    },
+    { 
+      "id": 8,
+      "subject": "Which platforms do you usually play on?",
+      "options": ["Home console", "PC/Mac", "Mobile", "Handheld console", "VR"]
     }
   ]
 }

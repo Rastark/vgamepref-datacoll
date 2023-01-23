@@ -43,8 +43,22 @@ export type GameElemMech = {
   mechanics: string[]
 }
 
-export type GameProps = 
-  Array<{ id: number, name: string }>;
+export type GameProps = Array<{ 
+  id: number, 
+  name: string,
+  url: string,
+  cover: {
+    id: number,
+    url: string,
+    height: number,
+    width: number
+  }
+}>;
+
+export type CoverProps = Array<{
+  id: number,
+  url: string
+}>;
 
 export type GemProps = Array<{
   id: number,

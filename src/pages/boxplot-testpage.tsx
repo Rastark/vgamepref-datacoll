@@ -1,13 +1,18 @@
+import { Flex } from '@chakra-ui/react';
 import Head from 'next/head';
+import HighchartsRadar from '../common/HighchartsRadar';
+import HighchartsTest from '../common/HighchartsTest';
+import Navbar from '../common/Navbar';
 
-export default function Home() {
+const boxplot_testpage = (props: any) => {
   return (
-    <div>
-      <Head>
-        <title>QuizApp</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main><Navbar /></main>
-      <footer></footer>
-    </div>
+    <Flex height="100vh" alignItems="center" justifyContent="center">
+    <Flex direction="column" background="gray.100" p={12} rounded={6}>
+      {/* <HighchartsTest /> */}
+      <HighchartsRadar />
+    </Flex>
+    </Flex>
   );
+}
+
+export default boxplot_testpage;

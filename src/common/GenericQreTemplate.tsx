@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { JsonProps, DemographicQuestion, FormItem } from "../types_interfaces/types";
 import useHasMounted from "../utils/hasMounted";
-import { handleFormSubmit } from "../utils/qre-hooks";
+import { useHandleFormSubmit } from "../utils/qre-hooks";
 import NavButtons from "./NavButtons";
 
 
@@ -24,7 +24,7 @@ const GenericQre: React.FC<{
 
   // Update parent state on submit
   const handleSubmit = () => {
-    return handleFormSubmit(props, inputValues);
+    return useHandleFormSubmit(props, inputValues);
   }
 
   // Input state

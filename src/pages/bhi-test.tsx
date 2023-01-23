@@ -1,23 +1,22 @@
-import { Button, Flex  } from "@chakra-ui/react";
+import { Box, Button, Flex  } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { string } from "yup";
 import BhiQre from "../common/BhiQre";
 import DemographicQre from "../common/DemographicQre";
 import FinalResults from "../common/FinalResults";
 import GamesQre from "../common/GamesQre";
 import SelfDetQre from "../common/SelfDetQre";
-import { loadGames } from "../lib/load-games";
+import { loadCatalogGames, loadGames } from "../lib/load-games";
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion, GameProps, GemProps, TestScore } from "../types_interfaces/types";
 import { addNewDoc } from "../utils/insertJson";
-import { calcDimScores } from "../utils/qre-hooks";
+import { useCalcDimScores } from "../utils/qre-hooks";
 
-const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProps}: { 
+const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gameCatalogProps, gemProps}: { 
     bhiProps: JsonProps<BHIQuestion>, 
     demographicProps: JsonProps<DemographicQuestion>,
     selfDetProps: JsonProps<SelfDetQuestion>
-    gameProps: GameProps
+    gameProps: GameProps,
+    gameCatalogProps: GameProps,
     gemProps: GemProps})=> {
   
   console.log("demographic_test", demographicProps);
@@ -105,15 +104,14 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
   const updateGames = (input: {show: boolean, formData: FormItem[]}) => 
     setGameQuestions(input);
 
-  const calcBhiScore: TestScore[] = calcDimScores(bhiProps.items, answers.personality);
-  const calcSelfDetScore: TestScore[] = calcDimScores(selfDetProps.items, answers.self_determination);
+  const calcBhiScore: TestScore[] = useCalcDimScores(bhiProps.items, answers.personality);
+  const calcSelfDetScore: TestScore[] = useCalcDimScores(selfDetProps.items, answers.self_determination);
 
   console.log("answers: ", answers);
 
   return (
-    <Flex height="100vh" alignItems="center" justifyContent="center">
-    <Flex direction="column" background="gray.100" p={12} rounded={6}>
-    <Button onClick={handleFakeSubmit}>Fake Submit</Button>
+    <Box height="100vh" alignItems="center" justifyContent="center" className="page-box-ext">
+    <Box direction="column" background="gray.100" p={12} rounded={6} className="page-box-int">
     { demographicQuestions.show 
       ? <div className="demographic-questions">
         <DemographicQre 
@@ -136,7 +134,7 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
         />
       : gameQuestions.show
       ? <GamesQre
-          questionProps={gameProps}
+          questionProps={gameCatalogProps}
           gemProps={gemProps}
           showToggle={toggleGameShow}
           formData={updateGames}
@@ -150,8 +148,9 @@ const bhi_test = ({ bhiProps, demographicProps, selfDetProps, gameProps, gemProp
           </Button>
         </div>
       }
-    </Flex>
-    </Flex>
+    {/* <div><Box><Box><Button onClick={handleFakeSubmit}>Fake Submit</Button></Box></Box></div> */}
+    </Box>
+    </Box>
   )}
 
 export async function getServerSideProps() {
@@ -169,14 +168,21 @@ export async function getServerSideProps() {
       await fetch("http://localhost:3000/api/bpnsfs")
         .then(async response => await response.json());
 
-    const gameProps = await loadGames();
+    const gameProps: GameProps = await loadGames();
 
-    const gemProps =
+    console.log("gameProps", gameProps)
+
+    const gemProps: GemProps =
       await fetch("http://localhost:3000/api/gem")
       .then(async response => await response.json());
 
+    const titles = gemProps.map(item => item.title)
+    const gameCatalogProps: GameProps = await loadCatalogGames(titles);
+
+    console.log("gameCatalogProps", gameCatalogProps);
+
     return {
-      props: { bhiProps, demographicProps, selfDetProps, gameProps, gemProps},
+      props: { bhiProps, demographicProps, selfDetProps, gameProps, gameCatalogProps, gemProps },
     }
   }
 
