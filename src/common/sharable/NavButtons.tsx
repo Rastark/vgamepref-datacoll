@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/button";
+import { SimpleGrid } from "@chakra-ui/react";
 import React, { useState } from "react";
-import useHasMounted from "../utils/hasMounted";
+import useHasMounted from "../../utils/hasMounted";
 
 const NavButtons: React.FC<{
   length: number,
@@ -16,7 +17,8 @@ const NavButtons: React.FC<{
 
   return (!useHasMounted 
     ? <></>
-    : <div className="question-card">
+    : <div className="nav-buttons">
+    <SimpleGrid columns={2} spacingX="5">
     <Button 
       isDisabled={ isFirst } 
       onClick={ handlePrev }>
@@ -27,6 +29,7 @@ const NavButtons: React.FC<{
       onClick={ handleNext }>
         Next
     </Button>
+    </SimpleGrid>
     </div>
   )
 }

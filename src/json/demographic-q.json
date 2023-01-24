@@ -2,23 +2,23 @@
   "items": [
     { 
       "id": 0,
-      "subject": "Which gender you identify with?",
-      "options": ["Male", "Female", "Non-binary", "Prefer to self-describe"]
+      "subject": "Which of the following genders do you identify with?",
+      "options": ["Male", "Female", "Non-binary", "Something else we should include"]
     },
     { 
       "id": 1,
       "subject": "How old are you?",
-      "options": ["18-26", "27-36", "37-50", "Over 50"]
+      "options": ["Under 18", "18-26", "27-36", "37-50", "Over 50"]
     },
     { 
       "id": 2,
       "subject": "Where do you come from?",
-      "options": [""]
+      "options": ["Africa", "America(North)", "America(South)", "Asia", "Europe", "Oceania"]
     },
     {
       "id": 3,
       "subject": "What's your current marital status?",
-      "options": ["Single", "Married", "Widowed", "Divorced", "Separated", "Registered partnership"]
+      "options": ["Single", "Married", "Widowed", "Divorced", "Separated", "Registered partnership", "Other"]
     },
     { 
       "id": 4,
@@ -28,7 +28,7 @@
     { 
       "id": 5,
       "subject": "What's your educational level?",
-      "options": ["High school degree", "Bachelor level degree", "Master level degree"]
+      "options": ["Pre-High School degree", "High school degree", "Bachelor level degree", "Master level degree", "PhD", "Other"]
     },
     { 
       "id": 6,

@@ -1,10 +1,10 @@
 import { Box, Button, Flex  } from "@chakra-ui/react";
 import React, { useState } from "react";
-import BhiQre from "../common/BhiQre";
-import DemographicQre from "../common/DemographicQre";
+import BhiQre from "../common/questionnaires/BhiQre";
+import DemographicQre from "../common/questionnaires/DemographicQre";
 import FinalResults from "../common/FinalResults";
-import GamesQre from "../common/GamesQre";
-import SelfDetQre from "../common/SelfDetQre";
+import GamesQre from "../common/questionnaires/GamesQre";
+import SelfDetQre from "../common/questionnaires/SelfDetQre";
 import { loadCatalogGames, loadGames } from "../lib/load-games";
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, QuestionnaireAnswers, SelfDetQuestion, GameProps, GemProps, TestScore } from "../types_interfaces/types";

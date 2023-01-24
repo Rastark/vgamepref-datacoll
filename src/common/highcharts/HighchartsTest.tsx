@@ -1,7 +1,7 @@
 import React from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
-import useHasMounted from "../utils/hasMounted";
+import useHasMounted from "../../utils/hasMounted";
 
 const HighchartsTest: React.FC<{}> = (props) => {
   const options = {

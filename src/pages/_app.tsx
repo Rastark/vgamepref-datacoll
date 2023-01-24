@@ -1,9 +1,9 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { AuthProvider } from '../lib/auth';
 
 import { useForm } from 'react-hook-form';
-import SidebarWithHeader from '../common/SidebarWithHeader';
+import SidebarWithHeader from '../common/sharable/SidebarWithHeader';
 
 function App({ Component, pageProps }: AppProps) {
   const {
@@ -22,32 +22,9 @@ function App({ Component, pageProps }: AppProps) {
   console.log(watch());
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <AuthProvider>
         <SidebarWithHeader children={<Component {...pageProps} />} />
-        {/* <div>
-          <form 
-            onSubmit={handleSubmit((data) => (
-              console.log(data)
-            ))}
-          >
-            <input 
-              {...register('firstname', { required: 'This is required' }) } 
-              placeholder='First name'
-            />
-            <p>{errors.firstname?.message}</p>
-            <input 
-              {...register('lastname', { required: 'This is required', minLength: {
-                value: 4,
-                message: 'min length is 4'
-              }})}
-              placeholder='Last name' 
-            />
-            <p>{errors.lastname?.message}</p>
-            <input type='submit' />
-          </form>
-        </div> */}
-
       </AuthProvider>
     </ChakraProvider>
   );

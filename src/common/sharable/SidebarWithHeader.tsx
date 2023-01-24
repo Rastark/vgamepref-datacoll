@@ -8,6 +8,7 @@ import {
   HStack,
   VStack,
   Icon,
+  Image,
   useColorModeValue,
   Link,
   Drawer,
@@ -34,6 +35,7 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
+import logo_roma_tre from "../../../public/Logo_Roma_Tre.jpg"
 
 interface LinkItemProps {
   name: string;
@@ -43,9 +45,9 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, url: '/#'},
   // { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Tests', icon: FiCompass, url: '/bhi-test'},
+  { name: 'Survey', icon: FiCompass, url: '/bhi-test'},
   // { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings, url: '/#'},
+  // { name: 'Settings', icon: FiSettings, url: '/#'},
 ];
 
 export default function SidebarWithHeader({
@@ -97,9 +99,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+        <Image src={logo_roma_tre.src} height="70px" width="140px" objectFit={"contain"} align={"center"} />
+        {/* <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Logo
-        </Text>
+        </Text> */}
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -170,22 +173,24 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
 
-      <Text
+      {/* <Text
         display={{ base: 'flex', md: 'none' }}
         fontSize="2xl"
         fontFamily="monospace"
         fontWeight="bold">
         Logo
-      </Text>
+      </Text> */}
+      <Image src={logo_roma_tre.src} height="30px" width="60px" objectFit={"contain"} />
 
-      <HStack spacing={{ base: '0', md: '6' }}>
+      {/* <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton
           size="lg"
           variant="ghost"
           aria-label="open menu"
           icon={<FiBell />}
-        />
-        <Flex alignItems={'center'}>
+        /> */}
+        {/* Profile Icon */}
+        {/* <Flex alignItems={'center'}>
           <Menu>
             <MenuButton
               py={2}
@@ -223,8 +228,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <MenuItem>Sign out</MenuItem>
             </MenuList>
           </Menu>
-        </Flex>
-      </HStack>
+        </Flex> */}
+      {/* </HStack> */}
     </Flex>
   );
 };

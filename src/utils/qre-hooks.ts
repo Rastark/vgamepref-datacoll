@@ -1,7 +1,7 @@
 import { QuestionOption } from "../types_interfaces/interfaces";
 import { BHIQuestion, FormItem, SelfDetQuestion, TestScore } from "../types_interfaces/types";
 
-export const useHandleFormSubmit = (props: any, localInput: any) => {
+export const handleFormSubmit = (props: any, localInput: any) => {
   // alert('Your responses are ' + inputValues);
   props.showToggle();
   const updatedFormData: FormItem[] = localInput.map((item: any, index: number) => ({

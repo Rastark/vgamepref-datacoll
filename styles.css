@@ -9,5 +9,9 @@
 }
 
 .questionnaire-box-int {
-  background: "gray.200";
+  background-color:  var(--chakra-colors-blue-500) !important;
+}
+
+.questionnaire-box-ext {
+  background-color:  var(--chakra-colors-blue-500) !important;
 }

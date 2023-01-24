@@ -9,15 +9,15 @@
     },
     {
         "id": 1,
-        "title": "Assassin's Creed 2",
+        "title": "Assassin's Creed II",
         "publisher": "Ubisoft Montreal",
         "publish_date": 2009,
         "elements": "Achievements, Avatar, Bars, Bonuses,  Chance, Collectables, Combo,  Currency, Items, Points, Quests,  Rewards, Story, Timer, Unlockables ",
-        "mechanics": "Collecting, Creating, Disabling, Enabling,  Finding, Keeping, Obtaining, Punishing,  Revealing, Shooting, Targeting, Using "
+        "mechanics": "Collecting, Creating, Disabling, Enabling,  Finding, Keeping, Obtaining, Punishing,  Revealing, Shooting, Targeting, Using"
     },
     {
         "id": 2,
-        "title": "Bioshock",
+        "title": "BioShock",
         "publisher": "2K Games",
         "publish_date": 2007,
         "elements": "Achievements, Avatar, Badges, Bars, Bonuses, Collectables, Combo, Currency, Items, Levels, Points, Quests, Rewards, Story, Timer, Unlockables",
@@ -65,7 +65,7 @@
     },
     {
         "id": 8,
-        "title": "Dear Ester",
+        "title": "Dear Esther",
         "publisher": "The Chinese Room",
         "publish_date": 2012,
         "elements": "Story",
@@ -129,7 +129,7 @@
     },
     {
         "id": 16,
-        "title": "Lost Planet",
+        "title": "Lost Planet: Extreme Condition",
         "publisher": "Capcom",
         "publish_date": 2007,
         "elements": "Avatar, Achievements, Levels, Story, Quests",
@@ -177,7 +177,7 @@
     },
     {
         "id": 22,
-        "title": "Munchkin (card game)",
+        "title": "Munchkin Digital",
         "publisher": "Jackson, S.; Kovalic, J.",
         "publish_date": 2001,
         "elements": "Avatar, Chance, Currency, Items, Levels, Permadeath, Rewards, Status",
@@ -185,7 +185,7 @@
     },
     {
         "id": 23,
-        "title": "Oddworld: Abe's Odyssey",
+        "title": "Oddworld: Abe's Oddysee",
         "publisher": "Oddworld Inhabitants",
         "publish_date": 1992,
         "elements": "Avatar, Items, Levels, Story, Timer",
@@ -289,7 +289,7 @@
     },
     {
         "id": 36,
-        "title": "Warcraft III: Reigns of Chaos",
+        "title": "Warcraft III: Reign of Chaos",
         "publisher": "Blizzard Entertainment",
         "publish_date": 2002,
         "elements": "Achievements, Avatar, Badges, Currency, Levels, Status, Story, Timer",
@@ -305,7 +305,7 @@
     },
     {
         "id": 38,
-        "title": "Wolf Among Us",
+        "title": "The Wolf Among Us",
         "publisher": "Telltale Games",
         "publish_date": 2013,
         "elements": "Achievements, Avatar, Leaderboard, Levels, Rewards, Story, Timer",
@@ -321,7 +321,7 @@
     },
     {
         "id": 40,
-        "title": "ZombieU",
+        "title": "ZombiU",
         "publisher": "Ubisoft",
         "publish_date": 2012,
         "elements": "Avatar, Quests, Items, Story",

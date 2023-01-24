@@ -1,7 +1,7 @@
 import { Box, Divider, Flex, Heading, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useAuth } from '../lib/auth';
+import { useAuth } from '../../lib/auth';
 
 const Navbar: React.FC<{}> = () => {
   const { auth, signOut } = useAuth();
@@ -13,7 +13,7 @@ const Navbar: React.FC<{}> = () => {
         <Heading onClick={() => router.push('/')} as="button">
           Gamer Motivation and Personality Inventory
         </Heading>
-        <Box>
+        {/* <Box>
           {auth ? (
             <Box p={2}>
               <Link
@@ -42,8 +42,8 @@ const Navbar: React.FC<{}> = () => {
               </Link>
             </Box>
           )}
-        </Box>
-      </Flex>
+        </Box> */}
+      </Flex> 
       <Divider
         css={{
           boxShadow: '1px 1px #888888',

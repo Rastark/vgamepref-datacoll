@@ -1,4 +1,10 @@
+import { string } from "yup";
 import { QuestionOption } from "./interfaces";
+
+export type GenericDict = {
+  value: number
+  label: string
+}
 
 export type JsonProps<T> = {
   items: T[];

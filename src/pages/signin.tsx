@@ -2,7 +2,7 @@ import { Button, Center, Container, Heading, VStack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import Navbar from '../common/Navbar';
+import Navbar from '../common/sharable/Navbar';
 import { useAuth } from '../lib/auth';
 
 const signin = () => {

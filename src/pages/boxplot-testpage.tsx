@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react';
 import Head from 'next/head';
-import HighchartsRadar from '../common/HighchartsRadar';
-import HighchartsTest from '../common/HighchartsTest';
-import Navbar from '../common/Navbar';
+import HighchartsRadar from '../common/highcharts/HighchartsRadar';
+import HighchartsTest from '../common/highcharts/HighchartsTest';
+import Navbar from '../common/sharable/Navbar';
 
 const boxplot_testpage = (props: any) => {
   return (
