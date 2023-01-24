@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import useHasMounted from "../../utils/hasMounted";
 
 const NavButtons: React.FC<{
+  isNextDisabled: boolean,
   length: number,
   currId: number,
   setCurrId: (id: number) => void
@@ -14,6 +15,7 @@ const NavButtons: React.FC<{
   const handleNext = () => props.setCurrId(Math.min(props.currId + 1, props.length-1));
   const isFirst = props.currId === 0;
   const isLast = props.currId === props.length-1;
+  const isNextDisabled = props.isNextDisabled
 
   return (!useHasMounted 
     ? <></>
@@ -25,7 +27,7 @@ const NavButtons: React.FC<{
         Prev
     </Button>
     <Button 
-      isDisabled={ isLast } 
+      isDisabled={ isLast || isNextDisabled} 
       onClick={ handleNext }>
         Next
     </Button>

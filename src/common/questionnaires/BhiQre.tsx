@@ -6,7 +6,7 @@ import useHasMounted from "../../utils/hasMounted";
 import { v4 as uuidv4 } from "uuid";
 import NavButtons from "../sharable/NavButtons";
 import { useChangeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
-import { QuestionOption } from "../../types_interfaces/interfaces";
+import { QuestionOption } from "../../types_interfaces/types";
 import LikertSlider from "../sharable/LikertSlider";
 
 const BhiQre: React.FC<{
@@ -62,12 +62,13 @@ const BhiQre: React.FC<{
         </Box>
         <Flex alignItems="center" justifyContent="center">
           <NavButtons
+            isNextDisabled={inputValues[currentQuestionId].value<1}
             length={questions.length}
             currId={currentQuestionId}
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            isDisabled={!isLastQuestion}
+            // isDisabled={!isLastQuestion}
             onClick={handleSubmit}>
             Next survey
           </Button>

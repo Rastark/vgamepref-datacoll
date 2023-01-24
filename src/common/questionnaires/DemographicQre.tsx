@@ -3,7 +3,7 @@ import { GroupBase, OptionBase, Select } from "chakra-react-select";
 import e from "cors";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { QuestionOption } from "../../types_interfaces/interfaces";
+import { QuestionOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
 import { useChangeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
@@ -68,12 +68,13 @@ const DemographicQre: React.FC<{
         </Box>
         <Flex alignItems="center" justifyContent="center">
           <NavButtons
+            isNextDisabled={inputValues[currentQuestionId].value===-1}
             length={questions.length}
             currId={currentQuestionId}
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            isDisabled={!isLastQuestion}
+            // isDisabled={!isLastQuestion}
             onClick={handleSubmit}>
             Next survey
           </Button>

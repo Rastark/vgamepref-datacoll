@@ -1,4 +1,4 @@
-import { QuestionOption } from "../types_interfaces/interfaces";
+import { QuestionOption } from "../types_interfaces/types";
 import { BHIQuestion, FormItem, SelfDetQuestion, TestScore } from "../types_interfaces/types";
 
 export const handleFormSubmit = (props: any, localInput: any) => {

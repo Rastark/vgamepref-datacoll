@@ -1,5 +1,7 @@
 import { string } from "yup";
-import { QuestionOption } from "./interfaces";
+// import { QuestionOption } from "./interfaces";
+import { OptionBase } from "chakra-react-select";
+
 
 export type GenericDict = {
   value: number
@@ -30,12 +32,32 @@ export type SelfDetQuestion = QuestionBase & {
   is_score_rev: boolean
 }
 
+export type PrefGamesQuestion = QuestionBase
+
 export type FormItem = {
   id: number,
   selectedOption: QuestionOption | QuestionOption[]
 };
 
-export type QuestionnaireAnswers = {
+//Question Options
+export type QuestionOption = OptionBase & {
+  label: string;
+  value: number;
+}
+
+export type SelectedOption = OptionBase  &{
+  label: QuestionOption[];
+  value: number;
+}
+
+export type SurveyQuestions = {
+  demographics: DemographicQuestion[],
+  personality: BHIQuestion[],
+  self_determination: SelfDetQuestion[],
+  preferred_games: PrefGamesQuestion[]
+}
+
+export type SurveyAnswers = {
   demographics: FormItem[],
   personality: FormItem[],
   self_determination: FormItem[]

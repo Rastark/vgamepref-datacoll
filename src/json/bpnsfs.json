@@ -3,145 +3,145 @@
         {   
             "id": 0,
             "subject": "I feel a sense of choice and freedom in the things I undertake.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 1,
             "subject": "Most of the things I do feel like “I have to”.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Frustration",
             "is_score_rev": true
         },
         {   
             "id": 2,
             "subject": "I feel that the people I care about also care about me.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 3,
             "subject": "I feel excluded from the group I want to belong to.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Frustration",
             "is_score_rev": true
         },
         {   
             "id": 4,
             "subject": "I feel confident that I can do things well.",
-            "dimension": "Competence",
+            "dimension": "Competence Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 5,
             "subject": "I have serious doubts about whether I can do things well.",
-            "dimension": "Competence",
+            "dimension": "Competence Frustration",
             "is_score_rev": true
         },
         {   
             "id": 6,
             "subject": "I feel that my decisions reflect what I really want.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 7,
             "subject": "I feel forced to do many things I wouldn't choose to do.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Frustration",
             "is_score_rev": true
         },
         {   
             "id": 8,
             "subject": "I feel connected with people who care for me, and for whom I care.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 9,
             "subject": "I feel that people who are important to me are cold and distant towards me.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Frustration",
             "is_score_rev": true
         },
         {   
             "id": 10,
             "subject": "I feel capable at what I do.",
-            "dimension": "Competence",
+            "dimension": "Competence Satisfaction",
             "is_score_rev": false     
         },
         {   
             "id": 11,
             "subject": "I feel disappointed with many of my performances.",
-            "dimension": "Competence",
+            "dimension": "Competence Frustration",
             "is_score_rev": true
         },
         {   
             "id": 12,
             "subject": "I feel my choices express who I really am.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 13,
             "subject": "I feel pressured to do too many things.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Frustration",
             "is_score_rev": true
         },
         {   
             "id": 14,
             "subject": "I feel close and connected with other people who are important to me.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 15,
             "subject": "I have the impression that people I spend time with dislike me.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Frustration",
             "is_score_rev": true
         },
         {   
             "id": 16,
             "subject": "I feel competent to achieve my goals.",
-            "dimension": "Competence",
+            "dimension": "Competence Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 17,
             "subject": "I feel insecure about my abilities.",
-            "dimension": "Competence",
+            "dimension": "Competence Frustration",
             "is_score_rev": true
         },
         {   
             "id": 18,
             "subject": "I feel I have been doing what really interests me.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 19,
             "subject": "My daily activities feel like a chain of obligations.",
-            "dimension": "Autonomy",
+            "dimension": "Autonomy Frustration",
             "is_score_rev": true
         },
         {   
             "id": 20,
             "subject": "I experience a warm feeling with the people I spend time with.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 21,
             "subject": "I feel the relationships I have are just superficial.",
-            "dimension": "Relatedness",
+            "dimension": "Relatedness Frustration",
             "is_score_rev": true
         },
         {   
             "id": 22,
             "subject": "I feel I can successfully complete difficult tasks.",
-            "dimension": "Competence",
+            "dimension": "Competence Satisfaction",
             "is_score_rev": false
         },
         {   
             "id": 23,
             "subject": "I feel like a failure because of the mistakes I make.",
-            "dimension": "Competence",
+            "dimension": "Competence Frustration",
             "is_score_rev": true
         }
     ]
