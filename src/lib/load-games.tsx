@@ -2,7 +2,9 @@ import secrets from "../../config/secrets.json";
 import { BHIQuestion, DemographicQuestion, GameProps, GemProps, JsonProps, PrefGamesQuestion, SelfDetQuestion } from "../types_interfaces/types";
 
 // const SERVER_URL = process.env
-const SERVER_URL = "localhost:3000"
+// const SERVER_URL = "http://localhost:3000"
+// const SERVER_URL = "https://vgamepref-datacoll-4qvzyqvxe-rastark.vercel.app/api/bhi"
+const SERVER_URL = process.env.API_URL;
 
 const gdb_api_url = 'https://api.igdb.com/v4';
 // const twitch_api_login = `https://id.twitch.tv/oauth2/token?client_id=${secrets.twitch_api.client_id}&client_secret=${secrets.twitch_api.client_secret}&grant_type=client_credentials`;
