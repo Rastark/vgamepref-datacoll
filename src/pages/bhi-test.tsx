@@ -251,22 +251,23 @@ const Bhi_test: React.FC<{
 }
 
 export async function getServerSideProps() {
+  const SERVER_URL = process.env;
 
   const bhiProps =
-    await fetch("http://localhost:3000/api/bhi")
+    await fetch(`${SERVER_URL}/api/bhi`)
       .then(async response => await response.json())
   // .then(json => console.log(json)); 
 
   const demographicProps =
-    await fetch("http://localhost:3000/api/demographics")
+    await fetch(`${SERVER_URL}/api/demographics`)
       .then(async response => await response.json());
 
   const selfDetProps =
-    await fetch("http://localhost:3000/api/bpnsfs")
+    await fetch(`${SERVER_URL}/api/bpnsfs`)
       .then(async response => await response.json());
 
   const prefGamesProps =
-    await fetch("http://localhost:3000/api/prefgames")
+    await fetch(`${SERVER_URL}/api/prefgames`)
       .then(async response => await response.json());
 
   const gameProps: GameProps[] = await loadGames();
@@ -274,7 +275,7 @@ export async function getServerSideProps() {
   console.log("gameProps", gameProps)
 
   const gemProps: GemProps =
-    await fetch("http://localhost:3000/api/gem")
+    await fetch(`${SERVER_URL}/api/gem`)
       .then(async response => await response.json());
 
   const titles = gemProps.map(item => item.title)
