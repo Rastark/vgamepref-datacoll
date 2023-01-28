@@ -22,7 +22,7 @@ const NavButtons: React.FC<{
   const isLast = props.currId === props.length-1;
   const isNextDisabled = props.isNextDisabled
 
-  useEffect(() => setIsLoading(false));
+  useEffect(() => { return setIsLoading(false) });
 
   return (!useHasMounted 
     ? <></>
