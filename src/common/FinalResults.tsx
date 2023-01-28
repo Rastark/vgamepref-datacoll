@@ -54,10 +54,11 @@ const FinalResults: React.FC<{
       {selfDetQuestions[item.id]} {"->"} {item.selectedOption.label}
     </Text>)
 
-  const printPrefGamesAnswers =
-    answers.preferred_games.map(item => <Text key={"pref-games"+item.id}>
-      {prefGamesQuestions[item.id]} {"->"} {item.selectedOption.map(item => item.label)}
-    </Text>)
+  // const printPrefGamesAnswers =
+  //   answers.preferred_games.map(item => <Text key={"pref-games"+item.id}>
+  //     {prefGamesQuestions[item.id]} {"->"} {item.selectedOption.map(item => item.label)}
+  //   </Text>)
+
 
   return (!useHasMounted
     ? <></>
