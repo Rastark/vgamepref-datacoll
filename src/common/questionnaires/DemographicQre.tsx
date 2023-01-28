@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { QuestionOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
-import { useChangeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
+import { changeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
 import NavButtons from "../sharable/NavButtons";
 
 
@@ -38,7 +38,7 @@ const DemographicQre: React.FC<{
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
   const changeValues = (newValue: QuestionOption | null) => {
-    return useChangeItemValuesById(
+    return changeItemValuesById(
       currentQuestionId,
       newValue,
       inputValues,

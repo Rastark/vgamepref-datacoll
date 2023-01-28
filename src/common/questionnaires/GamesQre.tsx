@@ -4,7 +4,7 @@ import React, { SetStateAction, useEffect, useMemo, useState } from "react";
 import { QuestionOption, SelectedOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem, GameProps, QuestionBase, GemProps, PrefGamesQuestion } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
-import { useChangeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
+import { changeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
 import NavButtons from "../sharable/NavButtons";
 import igdb_icon from "../../../public/igdb-icon.png";
 import { FiAlignCenter, FiAlignJustify } from "react-icons/fi";
@@ -125,6 +125,7 @@ const GamesQre: React.FC<{
 
   const listItems = gameList.map(item =>
     <Card
+      key={"game_item"+item.id}
       alignItems="center"
       alignContent="center"
       verticalAlign="center"
@@ -164,6 +165,7 @@ const GamesQre: React.FC<{
 
   const listGemItems = gemGameList.map(item =>
     <Card
+      key={"gem_item"+item.id}
       alignItems="center"
       alignContent="center"
       verticalAlign="center"

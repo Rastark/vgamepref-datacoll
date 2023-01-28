@@ -21,14 +21,14 @@ const FinalResults: React.FC<{
 
   const printBhiScores =
     bhiScores.map(item =>
-      <Text>
+      <Text key={item.dimension}>
         <u>{item.dimension}:</u> {item.score}
       </Text>
     )
 
   const printSelfDetScores =
     selfDetScores.map(item =>
-      <Text>
+      <Text key={item.dimension}>
         <u>{item.dimension}:</u> {item.score}
       </Text>
     )
@@ -43,22 +43,22 @@ const FinalResults: React.FC<{
     questions.preferred_games.map(item => item.subject)
 
   const printDemographicAnswers =
-    answers.demographics.map(item => <Text>
+    answers.demographics.map(item => <Text key={"demographics"+item.id}>
       {demographicQuestions[item.id]} {"->"} {item.selectedOption.label}
     </Text>)
 
   const printPersonalityAnswers =
-    answers.personality.map(item => <Text>
+    answers.personality.map(item => <Text key={"personality"+item.id}>
       {personalityQuestions[item.id]} {"->"} {item.selectedOption.label}
     </Text>)
 
   const printSelfDetAnswers =
-    answers.self_determination.map(item => <Text>
+    answers.self_determination.map(item => <Text key={"self-det"+item.id}>
       {selfDetQuestions[item.id]} {"->"} {item.selectedOption.label}
     </Text>)
 
   const printPrefGamesAnswers =
-    answers.preferred_games.map(item => <Text>
+    answers.preferred_games.map(item => <Text key={"pref-games"+item.id}>
       {prefGamesQuestions[item.id]} {"->"} {item.selectedOption.label.map(item => item.label)}
     </Text>)
 

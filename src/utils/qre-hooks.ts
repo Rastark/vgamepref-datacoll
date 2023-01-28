@@ -12,7 +12,7 @@ export const handleFormSubmit = (props: any, localInput: any) => {
   props.formData({show: false, formData: updatedFormData})
 }
 
-export const useChangeItemValuesById = (
+export const changeItemValuesById = (
   itemId: number,
   newValue: QuestionOption | null,
   inputValues: QuestionOption[],

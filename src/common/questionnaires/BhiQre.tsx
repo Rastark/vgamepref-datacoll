@@ -5,7 +5,7 @@ import { JsonProps, BHIQuestion, FormItem } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
 import { v4 as uuidv4 } from "uuid";
 import NavButtons from "../sharable/NavButtons";
-import { useChangeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
+import { changeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
 import { QuestionOption } from "../../types_interfaces/types";
 import LikertSlider from "../sharable/LikertSlider";
 
@@ -35,7 +35,7 @@ const BhiQre: React.FC<{
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
   const changeValues = (newValue: number) => {
-    return useChangeItemValuesById(
+    return changeItemValuesById(
       currentQuestionId,
       { label: newValue.toString(), value: newValue },
       inputValues,

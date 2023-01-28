@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { QuestionOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem, SelfDetQuestion } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
-import { handleFormSubmit, useChangeItemValuesById } from "../../utils/qre-hooks";
+import { handleFormSubmit, changeItemValuesById } from "../../utils/qre-hooks";
 import LikertRadio from "../sharable/LikertRadio";
 import LikertSlider from "../sharable/LikertSlider";
 import NavButtons from "../sharable/NavButtons";
@@ -42,7 +42,7 @@ const SelfDetQre: React.FC<{
 
   // Update inputValues dinamically on aswer change
   const changeValues = (newValue: string) => {
-    return useChangeItemValuesById(
+    return changeItemValuesById(
       currentQuestionId,
       { label: newValue, value: +parseInt(newValue) },
       inputValues,
