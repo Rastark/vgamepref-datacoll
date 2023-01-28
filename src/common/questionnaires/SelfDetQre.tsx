@@ -1,13 +1,9 @@
-import { Box, Button, Flex, Heading, HStack, Progress, TagLabel, Text } from "@chakra-ui/react";
-import { GroupBase, OptionBase, Select } from "chakra-react-select";
-import e from "cors";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Box, Button, Flex, Heading, Progress, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { QuestionOption } from "../../types_interfaces/types";
-import { JsonProps, DemographicQuestion, FormItem, SelfDetQuestion } from "../../types_interfaces/types";
+import { JsonProps, FormItem, SelfDetQuestion } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
 import { handleFormSubmit, changeItemValuesById } from "../../utils/qre-hooks";
-import LikertRadio from "../sharable/LikertRadio";
 import LikertSlider from "../sharable/LikertSlider";
 import NavButtons from "../sharable/NavButtons";
 
