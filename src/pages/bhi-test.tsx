@@ -25,6 +25,8 @@ const Bhi_test: React.FC<{
 
   console.log("demographic_test", props.demographicProps);
 
+  const [timestamp, setTimestamp] = useState(-1);
+
   const [submittedDocId, setSubmittedDocId] = useState("")
   const [isDocSubmitted, setIsDocSubmitted] = useState(false)
 
@@ -32,7 +34,10 @@ const Bhi_test: React.FC<{
   const handleSubmit = async () => {
     console.log("questionnaire answers: ", answers);
     // setSubmittedDocId(await addNewDoc(answers, "hexaco-tests"));
+    console.log("before_submit", isDocSubmitted);
     setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
+    console.log("after_submit", submittedDocId);
+    setTimestamp(Date.now());
     setIsDocSubmitted(true);
   };
 
@@ -40,7 +45,6 @@ const Bhi_test: React.FC<{
   const handleFakeSubmit = () => {
     console.log("questionnaire answers: ", answers);
   }
-
 
   // state declarations
   const [demographicQuestions, setDemographicQuestions] = useState({
@@ -150,7 +154,8 @@ const Bhi_test: React.FC<{
     demographics: demographicQuestions.formData,
     personality: bhiQuestions.formData,
     self_determination: selfDetQuestions.formData,
-    preferred_games: prefGameQuestions.formData
+    preferred_games: prefGameQuestions.formData,
+    timestamp: timestamp
   };
 
   const questions = {
@@ -236,7 +241,7 @@ const Bhi_test: React.FC<{
                     >
                       Submit Questionnaire
                     </Button>
-                    {!isDocSubmitted
+                    {isDocSubmitted
                       ? <Text bg="green.200">
                         Your results have been saved with the code: {simpleHash(submittedDocId)}.
                       </Text>

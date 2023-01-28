@@ -65,8 +65,9 @@ export type SurveyQuestions = {
 export type SurveyAnswers = {
   demographics: FormItem[],
   personality: FormItem[],
-  self_determination: FormItem[]
-  preferred_games: FormItems[]
+  self_determination: FormItem[],
+  preferred_games: FormItems[],
+  timestamp: number
 }
 
 export type GameElemMech = {
