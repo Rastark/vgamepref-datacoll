@@ -8,7 +8,9 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <AuthProvider>
-        <SidebarWithHeader children={<Component {...pageProps} />} />
+        <SidebarWithHeader>
+          <Component {...pageProps} />
+        </SidebarWithHeader>
       </AuthProvider>
     </ChakraProvider>
   );

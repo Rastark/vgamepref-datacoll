@@ -2,7 +2,7 @@ import { Box, Button, Flex, FormControl, Input, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { answersSnap, getDoc } from "../utils/insertJson";
 
-const result_viz: React.FC<{
+const Result_viz: React.FC<{
 }> = (props) => {
 
   const [resultsId, setResultsId] = useState("");
@@ -35,4 +35,4 @@ const result_viz: React.FC<{
   )
 }
 
-export default result_viz;
+export default Result_viz;
