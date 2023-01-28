@@ -1,4 +1,4 @@
-import { Box, Text, List, Button, OrderedList, ListItem, Spinner } from "@chakra-ui/react";
+import { Box, Text, Button, OrderedList, ListItem} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useHasMounted from "../utils/hasMounted";

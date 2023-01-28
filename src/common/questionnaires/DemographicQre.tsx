@@ -1,8 +1,6 @@
 import { Button, Progress, Flex, Box, Heading, TagLabel, Text, background } from "@chakra-ui/react";
 import { GroupBase, OptionBase, Select } from "chakra-react-select";
-import e from "cors";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { QuestionOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";

@@ -1,9 +1,6 @@
-import { Box, Divider, Heading, Text } from "@chakra-ui/react";
-import { BHIQuestion, SurveyAnswers, SurveyQuestions, SelfDetQuestion, TestScore } from "../types_interfaces/types";
+import { Box, Heading, Text } from "@chakra-ui/react";
+import { SurveyAnswers, SurveyQuestions, TestScore } from "../types_interfaces/types";
 import useHasMounted from "../utils/hasMounted";
-// import "../styles.css";
-// import BoxPlot from "./BoxPlot";
-import { useCalcDimScores } from "../utils/qre-hooks";
 
 const FinalResults: React.FC<{
   questions: SurveyQuestions,

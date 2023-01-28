@@ -1,3 +1,4 @@
+import { TagLabel } from "@chakra-ui/react";
 import { QuestionOption } from "../types_interfaces/types";
 import { BHIQuestion, FormItem, SelfDetQuestion, TestScore } from "../types_interfaces/types";
 

@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Heading, Progress, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
-import LikertRadio from "../sharable/LikertRadio";
 import { JsonProps, BHIQuestion, FormItem } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
 import { v4 as uuidv4 } from "uuid";
