@@ -1,6 +1,7 @@
 import secrets from "../../config/secrets.json";
-import { GameProps } from "../types_interfaces/types";
+import { BHIQuestion, DemographicQuestion, GameProps, GemProps, JsonProps, PrefGamesQuestion, SelfDetQuestion } from "../types_interfaces/types";
 
+const SERVER_URL = process.env
 
 const gdb_api_url = 'https://api.igdb.com/v4';
 // const twitch_api_login = `https://id.twitch.tv/oauth2/token?client_id=${secrets.twitch_api.client_id}&client_secret=${secrets.twitch_api.client_secret}&grant_type=client_credentials`;
@@ -11,7 +12,7 @@ export async function loadGames() {
     const twitch_res = await fetch(twitch_api_login, {method: 'POST'});
     console.log(twitch_res)
     const twitch_access_token = await twitch_res.json();
-    let games;
+    let games: GameProps[];
     // try {
         const twitch_bearer = twitch_access_token.access_token;
         const gdb_res = await fetch(`${gdb_api_url}/games`, {
@@ -31,12 +32,14 @@ export async function loadGames() {
     return games;    
 }
 
-export async function loadCatalogGames(titles: Array<string>) {
+export async function loadCatalogGames() {
+    const gemProps = await loadGemProps();
+    const titles = gemProps.map(item => item.title)
     const titles_string = titles.join('","')
     const twitch_res = await fetch(twitch_api_login, {method: 'POST'});
     console.log(twitch_res)
     const twitch_access_token = await twitch_res.json();
-    let games: GameProps;
+    let games: GameProps[];
     // try {
         const twitch_bearer = twitch_access_token.access_token;
         const gdb_res = await fetch(`${gdb_api_url}/games`, {
@@ -54,4 +57,34 @@ export async function loadCatalogGames(titles: Array<string>) {
         // console.error("No twitch access token was returned")
     // }
     return games;    
+}
+
+export async function loadBhiProps() {
+    const bhiProps: JsonProps<BHIQuestion> = await fetch(`${SERVER_URL}/api/bhi`)
+      .then(async response => await response.json());
+      return bhiProps;
+}
+
+export async function loadDemographicProps() {
+    const demographicProps: JsonProps<DemographicQuestion> = await fetch(`${SERVER_URL}/api/demographics`)
+      .then(async response => await response.json());
+      return demographicProps;
+}
+
+export async function loadSelfDetProps() {
+    const selfDetProps: JsonProps<SelfDetQuestion> = await fetch(`${SERVER_URL}/api/bpnsfs`)
+      .then(async response => await response.json());
+      return selfDetProps;
+}
+
+export async function loadPrefGamesProps() {
+    const prefGamesProps: JsonProps<PrefGamesQuestion> = await fetch(`${SERVER_URL}/api/prefgames`)
+      .then(async response => await response.json())
+      return prefGamesProps;
+}
+
+export async function loadGemProps() {
+    const gemProps: GemProps[] = await fetch(`${SERVER_URL}/api/gem`)
+      .then(async response => await response.json())
+      return gemProps;
 }

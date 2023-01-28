@@ -1,21 +1,19 @@
-import { Button, Center, Card, CardBody, Text, Image, Flex, TagLabel, Grid, GridItem, Divider, CardHeader, CardFooter, Stack, Box, HStack, SimpleGrid, Link, VStack, Heading, StackDivider, StackItem } from "@chakra-ui/react";
-import { AsyncSelect, GroupBase, OptionBase, Select } from "chakra-react-select";
-import React, { SetStateAction, useEffect, useMemo, useState } from "react";
+import { Button, Center, Card, CardBody, Text, Image, Flex, CardFooter, Stack, Box, SimpleGrid, Link, Heading, StackItem } from "@chakra-ui/react";
+import { AsyncSelect, GroupBase} from "chakra-react-select";
+import React, { useEffect, useMemo, useState } from "react";
 import { FormItems, QuestionOption, SelectedOption } from "../../types_interfaces/types";
-import { JsonProps, DemographicQuestion, FormItem, GameProps, QuestionBase, GemProps, PrefGamesQuestion } from "../../types_interfaces/types";
+import { JsonProps, GameProps, GemProps, PrefGamesQuestion } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
-import { changeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
+import { handleFormSubmit } from "../../utils/qre-hooks";
 import NavButtons from "../sharable/NavButtons";
 import igdb_icon from "../../../public/igdb-icon.png";
-import { FiAlignCenter, FiAlignJustify } from "react-icons/fi";
 import { shuffleArray } from "../../utils/array-utils";
-import { timeStamp } from "console";
 
 const GamesQre: React.FC<{
   questionProps: JsonProps<PrefGamesQuestion>
   gameProps: GameProps[],
   gameCatalogProps: GameProps[],
-  gemProps: GemProps,
+  gemProps: GemProps[],
   showToggle: () => void,
   formData: (
     input: {

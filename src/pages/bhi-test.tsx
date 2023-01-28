@@ -5,7 +5,7 @@ import DemographicQre from "../common/questionnaires/DemographicQre";
 import FinalResults from "../common/FinalResults";
 import GamesQre from "../common/questionnaires/GamesQre";
 import SelfDetQre from "../common/questionnaires/SelfDetQre";
-import { loadCatalogGames, loadGames } from "../lib/load-games";
+import { loadBhiProps, loadCatalogGames, loadDemographicProps, loadGames, loadGemProps, loadPrefGamesProps, loadSelfDetProps } from "../lib/load-games";
 import { FormItems, QuestionOption } from "../types_interfaces/types";
 import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, SurveyAnswers, SelfDetQuestion, GameProps, GemProps, TestScore, PrefGamesQuestion } from "../types_interfaces/types";
 import { addNewAnswersDoc, addNewDoc } from "../utils/insertJson";
@@ -20,7 +20,7 @@ const Bhi_test: React.FC<{
   prefGamesProps: JsonProps<PrefGamesQuestion>
   gameProps: GameProps[],
   gameCatalogProps: GameProps[],
-  gemProps: GemProps
+  gemProps: GemProps[]
 }> = (props) => {
 
   console.log("demographic_test", props.demographicProps);
@@ -251,35 +251,23 @@ const Bhi_test: React.FC<{
 }
 
 export async function getServerSideProps() {
-  const SERVER_URL = process.env;
+  const bhiProps: JsonProps<BHIQuestion> = await loadBhiProps();
 
-  const bhiProps =
-    await fetch(`${SERVER_URL}/api/bhi`)
-      .then(async response => await response.json())
-  // .then(json => console.log(json)); 
+  const demographicProps: JsonProps<DemographicQuestion> = await loadDemographicProps();
 
-  const demographicProps =
-    await fetch(`${SERVER_URL}/api/demographics`)
-      .then(async response => await response.json());
+  const selfDetProps: JsonProps<SelfDetQuestion> = await loadSelfDetProps();
 
-  const selfDetProps =
-    await fetch(`${SERVER_URL}/api/bpnsfs`)
-      .then(async response => await response.json());
-
-  const prefGamesProps =
-    await fetch(`${SERVER_URL}/api/prefgames`)
-      .then(async response => await response.json());
+  const prefGamesProps: JsonProps<PrefGamesQuestion> = await loadPrefGamesProps();
 
   const gameProps: GameProps[] = await loadGames();
 
   console.log("gameProps", gameProps)
 
-  const gemProps: GemProps =
-    await fetch(`${SERVER_URL}/api/gem`)
-      .then(async response => await response.json());
+  const gemProps: GemProps[] = await loadGemProps();
 
-  const titles = gemProps.map(item => item.title)
-  const gameCatalogProps: GameProps = await loadCatalogGames(titles);
+  // const titles = gemProps.map(item => item.title)
+  
+  const gameCatalogProps: GameProps[] = await loadCatalogGames();
 
   console.log("gameCatalogProps", gameCatalogProps);
 

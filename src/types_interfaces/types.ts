@@ -93,14 +93,14 @@ export type CoverProps = Array<{
   url: string
 }>;
 
-export type GemProps = Array<{
+export type GemProps = {
   id: number,
   title: string,
   publisher: string,
   publish_date: number,
   elements: string[],
   mechanics: string[]
-}>
+}
 
 export type TestScore = { 
   dimension: string, 
