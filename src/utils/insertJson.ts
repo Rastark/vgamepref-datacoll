@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import firebase from "../lib/firebase";
 import { SurveyAnswers } from "../types_interfaces/types";
 
@@ -9,7 +10,8 @@ const answersConverter = {
       demographics: answers.demographics, 
       personality: answers.personality,
       self_determination: answers.self_determination,
-      preferred_games: answers.preferred_games
+      preferred_games: answers.preferred_games,
+      timestamp: answers.timestamp
     }
   },
   fromFirestore(
@@ -21,7 +23,8 @@ const answersConverter = {
       demographics: data.demographics,
       personality: data.personality,
       self_determination: data.self_determination,
-      preferred_games: data.preferred_games
+      preferred_games: data.preferred_games,
+      timestamp: data.timestamp
     }
   }
 }
