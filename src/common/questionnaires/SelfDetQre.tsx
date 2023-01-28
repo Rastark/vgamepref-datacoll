@@ -56,9 +56,9 @@ const SelfDetQre: React.FC<{
         
           <br />
           <Heading size={"md"}>Basic Personality Needs Satisfaction and Frustration Scale</Heading>
-          <Text>Below, we ask you about the kind of experiences you actually have in your life. Please read each of
+          {/* <Text>Below, we ask you about the kind of experiences you actually have in your life. Please read each of
             the following items carefully. You can choose from 1 to 5 to indicate the degree to which the
-            statement is true for you at this point in your life. </Text>
+            statement is true for you at this point in your life. </Text> */}
           <br />
           <h3 className="question-text">{currentQuestion.subject}</h3>
           {/* <LikertScale value={inputValues[currentQuestionId].label}
