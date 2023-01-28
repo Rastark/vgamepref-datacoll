@@ -13,7 +13,7 @@ import { useCalcDimScores } from "../utils/qre-hooks";
 import { simpleHash } from "../utils/security-utils";
 import QreDescription from "../common/sharable/QreDescription";
 
-const bhi_test: React.FC<{
+const Bhi_test: React.FC<{
   bhiProps: JsonProps<BHIQuestion>,
   demographicProps: JsonProps<DemographicQuestion>,
   selfDetProps: JsonProps<SelfDetQuestion>,
@@ -287,4 +287,4 @@ export async function getServerSideProps() {
   }
 }
 
-export default bhi_test;
+export default Bhi_test;
