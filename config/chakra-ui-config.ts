@@ -14,6 +14,12 @@ const theme = extendTheme({
                 variant: 'sm', // default is solid
                 colorScheme: 'green', // default is gray
             },
+        },
+        Button: {
+            baseStyle: {
+                bg: "blue.700", 
+                textColor: "white"
+            }
         }
     }
 })

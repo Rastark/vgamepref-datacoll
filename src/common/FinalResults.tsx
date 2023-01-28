@@ -19,25 +19,17 @@ const FinalResults: React.FC<{
   console.log("props", props);
   console.log("final_scores: ", bhiScores, selfDetScores);
 
-  // const printAnswers = (answers: QuestionnaireAnswers) => {
-  //   return (
-  //     for(let i=0; i<answers.length; i++) {
-
-  //     }
-  //   )
-  // }
-
   const printBhiScores =
     bhiScores.map(item =>
       <Text>
-        {item.dimension}: {item.score}
+        <u>{item.dimension}:</u> {item.score}
       </Text>
     )
 
   const printSelfDetScores =
     selfDetScores.map(item =>
       <Text>
-        {item.dimension}: {item.score}
+        <u>{item.dimension}:</u> {item.score}
       </Text>
     )
 
@@ -86,7 +78,7 @@ const FinalResults: React.FC<{
             <br />
             <Heading size={"md"}>Your Basic Personality Needs Satisfaction and Frustration Scale scores</Heading>
             {printSelfDetScores}
-            <br />
+            {/* <br />
             <br />
             <Heading size={"md"}>Your Survey Answers</Heading>
             <Heading size={"sm"}>Demographic</Heading>
@@ -96,7 +88,7 @@ const FinalResults: React.FC<{
             <Heading size={"sm"}>Self Determination</Heading>
             {printSelfDetAnswers}
             <Heading size={"sm"}>Preferred Games</Heading>
-            {printPrefGamesAnswers}
+            {printPrefGamesAnswers} */}
 
           </>
         </Box>

@@ -2,11 +2,11 @@
     "items": [
         {
             "id": 0,
-            "subject": "Please list your 3 favourite games from our catalog."
+            "subject": "Please select your 3 most favourite games from the research catalog down below."
         },
         {
             "id": 1,
-            "subject": "Please list your 3 most favourite games of all time."
+            "subject": "Please select your 3 most favourite games from the list of famous games down below."
         }
     ]
 }

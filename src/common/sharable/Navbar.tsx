@@ -11,7 +11,7 @@ const Navbar: React.FC<{}> = () => {
     <>
       <Flex justify="space-between" m={4}>
         <Heading onClick={() => router.push('/')} as="button">
-          Gamer Motivation and Personality Inventory
+          Welcome to our Recommender Platform!
         </Heading>
         {/* <Box>
           {auth ? (

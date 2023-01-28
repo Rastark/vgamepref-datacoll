@@ -1,6 +1,7 @@
 import firebase from '../lib/firebase'; 
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { useState } from 'react';
+import { db } from '../lib/firebase-admin';
 
 
 export const addUser = async (authUser: any) => {
@@ -11,3 +12,6 @@ export const addUser = async (authUser: any) => {
     .set({ ...authUser }, { merge: true });
   return resp;
 };
+  
+
+

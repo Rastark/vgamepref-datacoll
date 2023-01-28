@@ -71,7 +71,7 @@ export type GameElemMech = {
   mechanics: string[]
 }
 
-export type GameProps = Array<{ 
+export type GameProps = {
   id: number, 
   name: string,
   url: string,
@@ -81,7 +81,7 @@ export type GameProps = Array<{
     height: number,
     width: number
   }
-}>;
+};
 
 export type CoverProps = Array<{
   id: number,

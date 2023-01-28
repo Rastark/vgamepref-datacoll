@@ -3,47 +3,47 @@
     { 
       "id": 0,
       "subject": "Which of the following genders do you identify with?",
-      "options": ["Male", "Female", "Non-binary", "Something else we should include"]
+      "options": ["Male", "Female", "Non-binary", "Other", "Prefer not to say"]
     },
     { 
       "id": 1,
       "subject": "How old are you?",
-      "options": ["Under 18", "18-26", "27-36", "37-50", "Over 50"]
+      "options": ["Under 18", "18-26", "27-36", "37-50", "Over 50", "Prefer not to say"]
     },
     { 
       "id": 2,
       "subject": "Where do you come from?",
-      "options": ["Africa", "America(North)", "America(South)", "Asia", "Europe", "Oceania"]
+      "options": ["Africa", "America(North)", "America(South)", "Asia", "Europe", "Oceania", "Prefer not to say"]
     },
     {
       "id": 3,
       "subject": "What's your current marital status?",
-      "options": ["Single", "Married", "Widowed", "Divorced", "Separated", "Registered partnership", "Other"]
+      "options": ["Single", "Married", "Widowed", "Divorced", "Separated", "Registered partnership", "Other", "Prefer not to say"]
     },
     { 
       "id": 4,
       "subject": "What's your current occupation?",
-      "options": ["Student", "Employee", "Self-employed", "Unemployed", "Retired", "Other"]
+      "options": ["Student", "Employee", "Self-employed", "Unemployed", "Retired", "Other", "Prefer not to say"]
     },
     { 
       "id": 5,
       "subject": "What's your educational level?",
-      "options": ["Pre-High School degree", "High school degree", "Bachelor level degree", "Master level degree", "PhD", "Other"]
+      "options": ["Under High School degree", "High school degree", "Bachelor level degree", "Master level degree", "PhD", "Other", "Prefer not to say"]
     },
     { 
       "id": 6,
-      "subject": "In a typical week, how many days do you spend playing videogames for at least 30 minutes?",
-      "options": ["0-1", "2-3", "4-5", "6-7"]
+      "subject": "In a typical week, how many hours a day do you spend playing videogames?",
+      "options": ["<1", "1-2", "3-4", "5-6", "7-8",">8", "Prefer not to say"]
     },
     { 
       "id": 7,
       "subject": "Which type of gamer do you consider yourself to be?",
-      "options": ["Casual: plays in short sessions or infrequently", "Core/Mid-core: regularly plays, but not particularly serious/competitive", "Hardcore: dedicated and serious/competitive"]
+      "options": ["Casual: plays in short sessions or infrequently", "Core/Mid-core: regularly plays, but not particularly serious/competitive", "Hardcore: dedicated and serious/competitive", "Prefer not to say"]
     },
     { 
       "id": 8,
       "subject": "Which platforms do you usually play on?",
-      "options": ["Home console", "PC/Mac", "Mobile", "Handheld console", "VR"]
+      "options": ["Home console", "PC/Mac", "Mobile", "Handheld console", "VR", "Prefer not to say"]
     }
   ]
 }

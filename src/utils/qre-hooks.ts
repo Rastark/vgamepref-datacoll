@@ -47,6 +47,6 @@ export const useCalcDimScores = (questions: BHIQuestion[] | SelfDetQuestion[], a
     questions.filter(item => 
       item.dimension == elem.dimension).forEach(dim_item =>
         elem.score += parseInt(answers[dim_item.id].selectedOption.label)))
-  console.log("scores: ", scores);
+  console.log("scores:", scores);
   return scores;
 }

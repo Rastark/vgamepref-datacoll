@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Progress } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Progress, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import LikertRadio from "../sharable/LikertRadio";
 import { JsonProps, BHIQuestion, FormItem } from "../../types_interfaces/types";
@@ -47,14 +47,17 @@ const BhiQre: React.FC<{
     ? <></>
     : <div className="question-card">
       <Box height="20vh" alignItems="center" justifyContent="center" className="questionnaire-box-ext">
-        <Box p={12} rounded={6} marginX="10px" padding={"var(--chakra-space-4)"} className="questionnaire-box-int">
-          <h1>Brief-HEXACO-Personality-Inventory</h1>
+        <Box p={12} rounded={6} marginX="10%" className="questionnaire-box-int">
+          <Text align={"right"}>{Math.round(((+currentQuestion.id + 1) / questions.length) * 100)}%</Text>
           <Progress value={((+currentQuestion.id + 1) / questions.length) * 100} />
+          <br/>
+          <Heading size={"md"}>Brief-HEXACO-Personality-Inventory</Heading>
+          <br/>
           <h3 className="question-text">{currentQuestion.subject}</h3>
           {/* <LikertScale value={inputValues[currentQuestionId].label}
             onChange={changeValues}
           /> */}
-          <LikertSlider 
+          <LikertSlider
             key={currentQuestionId}
             value={+inputValues[currentQuestionId].label}
             onChange={changeValues}
@@ -62,7 +65,7 @@ const BhiQre: React.FC<{
         </Box>
         <Flex alignItems="center" justifyContent="center">
           <NavButtons
-            isNextDisabled={inputValues[currentQuestionId].value<1}
+            isNextDisabled={inputValues[currentQuestionId].value < 1}
             length={questions.length}
             currId={currentQuestionId}
             setCurrId={setCurrentQuestionId}

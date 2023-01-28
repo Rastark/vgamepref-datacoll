@@ -1,4 +1,4 @@
-import { Button, Progress, Flex, Box, TagLabel, background } from "@chakra-ui/react";
+import { Button, Progress, Flex, Box, Heading, TagLabel, Text, background } from "@chakra-ui/react";
 import { GroupBase, OptionBase, Select } from "chakra-react-select";
 import e from "cors";
 import React, { useEffect, useState } from "react";
@@ -52,8 +52,11 @@ const DemographicQre: React.FC<{
     : <div className="question-card">
       <Box height="20vh" alignItems="center" justifyContent="center" className="questionnaire-box-ext">
         <Box p={12} rounded={6} marginX="10%" className="questionnaire-box-int">
-          <h1>Brief-HEXACO-Personality-Inventory</h1>
+          <Text align={"right"}>{Math.round(((+currentQuestion.id + 1) / questions.length) * 100)}%</Text>
           <Progress value={((+currentQuestion.id + 1) / questions.length) * 100} />
+          <br/>
+          <Heading size={"md"}>Demographics</Heading>
+          <br/>
           <h3 className="question-text">{currentQuestion.subject}</h3>
           <Select<QuestionOption, false, GroupBase<QuestionOption>>
             options={options}

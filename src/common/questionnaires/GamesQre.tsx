@@ -1,6 +1,6 @@
 import { Button, Center, Card, CardBody, Text, Image, Flex, TagLabel, Grid, GridItem, Divider, CardHeader, CardFooter, Stack, Box, HStack, SimpleGrid, Link, VStack, Heading, StackDivider, StackItem } from "@chakra-ui/react";
 import { AsyncSelect, GroupBase, OptionBase, Select } from "chakra-react-select";
-import React, { useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useMemo, useState } from "react";
 import { QuestionOption, SelectedOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem, GameProps, QuestionBase, GemProps, PrefGamesQuestion } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
@@ -8,9 +8,13 @@ import { useChangeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks
 import NavButtons from "../sharable/NavButtons";
 import igdb_icon from "../../../public/igdb-icon.png";
 import { FiAlignCenter, FiAlignJustify } from "react-icons/fi";
+import { shuffleArray } from "../../utils/array-utils";
+import { timeStamp } from "console";
 
 const GamesQre: React.FC<{
-  questionProps: GameProps,
+  questionProps: JsonProps<PrefGamesQuestion>
+  gameProps: GameProps[],
+  gameCatalogProps: GameProps[],
   gemProps: GemProps,
   showToggle: () => void,
   formData: (
@@ -20,44 +24,49 @@ const GamesQre: React.FC<{
     }) => void
 }> = (props) => {
 
-  const gameList = props.questionProps;
-  const gemGameProps = props.gemProps;
+  // const gameList = props.gameProps;
+  // const gameCatalogList = props.gameCatalogProps;
+  // const gemGameProps = props.gemProps;
 
-  const gameTitles = gemGameProps.map(item => item.title);
-  const gemGameList = gemGameProps.map(item => item.title)
-    .map(title => gameList.filter(item => item.name == title))
-    .map(item => item[0]).filter(item => item);
-  console.log("filtered", gemGameList);
+  // const gameTitles = gemGameProps.map(item => item.title);
+  // let gemGameList: GameProps = [];
 
-  const fixGameData = (gameList: GameProps) => {
+  const gameTitles = props.gemProps.map(item => item.title);
 
+  const fixGameData = (gameList: GameProps[]) => {
+    console.log("gameList", gameList);
     for (let i = 0; i < gameList.length; i++) {
       if (!gameList[i].hasOwnProperty("cover")) {
       }
       else {
         gameList[i].cover.url = gameList[i].cover.url.replace("t_thumb", "t_cover_big");
-        console.log("replaced", gameList[i].cover.url)
+        console.log("replaced", gameList.map(item => item.name), gameList[i].cover.url)
       }
     }
+    return gameList;
   }
 
-  fixGameData(gameList);
-  fixGameData(gemGameList);
+  const formatData = (gameList: GameProps[]) => {
+    shuffleArray(gameList);
+    fixGameData(gameList);
+    return gameList;
+  }
+
+  const [gameList, setGameList] = useState(props.gameProps);
+  const [gemGameList, setGemGameList] = useState(gameTitles
+    .map(title => props.gameCatalogProps.filter(item => item.name == title))
+    .map(item => item[0]).filter(item => item));
+
+  useEffect(() => {
+    formatData(gameList);
+  }, [])
+
+  useMemo(() => formatData(gemGameList), [gemGameList]);
 
   console.log("game_list", gameList)
   const options = [gemGameList.map((q, i) => ({ label: q.name, value: i })), gameList.map((q, i) => ({ label: q.name, value: i }))];
-  // const gemOptions = ;
 
-  const questions: PrefGamesQuestion[] = [
-    {
-      id: 0,
-      subject: "Please list your 3 favourite games from our catalog.",
-    },
-    {
-      id: 1,
-      subject: "Please list your 3 most favourite games of all time.",
-    },
-  ]
+  const questions: PrefGamesQuestion[] = props.questionProps.items;
 
   // Update parent state on submit
   const handleSubmit = () => {
@@ -74,10 +83,6 @@ const GamesQre: React.FC<{
   // Current question state
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const currentQuestion = questions[currentQuestionId];
-
-  // useEffect(()=>{
-  //   setCurrentQuestionId(currentQuestionId), [inputValues[currentQuestionId].label[0]];
-  // })
 
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
@@ -119,48 +124,80 @@ const GamesQre: React.FC<{
   }
 
   const listItems = gameList.map(item =>
-    <Card padding={2}>
-      <CardHeader>
+    <Card
+      alignItems="center"
+      alignContent="center"
+      verticalAlign="center"
+      justifyContent="center"
+      border={"sm"}
+      padding={"var(--chakra-space-2)"}
+    >
+      <CardBody>
         <Image
           src={item.hasOwnProperty("cover")
             ? item.cover.url
             : "https://publications.iarc.fr/uploads/media/default/0001/02/thumb_1240_default_publication.jpeg"}
-
+          objectFit={"contain"}
+          align={"center"}
+          verticalAlign={"center"}
+          borderRadius={"md"}
+          minWidth={["110px", "110px", "110px", "200px"]}
+          minHeight={["161px", "161px", "161px", "255px"]}
         />
-      </CardHeader>
-      <CardBody>
-        <Text>{item.name}</Text>
+        <Stack mt='3' mb='0' spacing='3'>
+          <Heading size={"md"}>{item.name}</Heading>
+        </Stack>
       </CardBody>
-      <CardFooter>
-        <Link href={item.url} isExternal><Image src={igdb_icon.src} object-fit="contain" /></Link>
+      <CardFooter margin={"-6"}>
+        <SimpleGrid columns={[2]}>
+          <Link href={item.url} isExternal>
+            <Image src={igdb_icon.src}
+              borderRadius={"md"}
+              margin={"2"}
+            />
+          </Link>
+        </SimpleGrid>
       </CardFooter>
-      <Divider />
+      {/* <Divider /> */}
     </Card>
   )
 
   const listGemItems = gemGameList.map(item =>
-    <Card alignItems="center" alignContent="center" verticalAlign="center" justifyContent="center">
+    <Card
+      alignItems="center"
+      alignContent="center"
+      verticalAlign="center"
+      justifyContent="center"
+      border={"sm"}
+      padding={"var(--chakra-space-2)"}
+    >
       <CardBody>
         <Image
           src={item.hasOwnProperty("cover")
             ? item.cover.url
             : "https://publications.iarc.fr/uploads/media/default/0001/02/thumb_1240_default_publication.jpeg"}
-          objectFit="contain"
+          objectFit={"contain"}
           align={"center"}
           verticalAlign={"center"}
-          borderRadius={"lg"}
-          minHeight={["161px", "161px", "161px", "340px"]}
+          borderRadius={"md"}
+          minWidth={["110px", "110px", "110px", "200px"]}
+          minHeight={["161px", "161px", "161px", "255px"]}
         />
-        <Stack mt='6' spacing='3'>
+        <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
         </Stack>
       </CardBody>
-      <CardFooter>
+      <CardFooter margin={"-6"}>
         <SimpleGrid columns={[2]}>
-          <Link href={item.url} isExternal><Image src={igdb_icon.src} objectFit="contain" /></Link>
+          <Link href={item.url} isExternal>
+            <Image src={igdb_icon.src}
+              borderRadius={"md"}
+              margin={"2"}
+            />
+          </Link>
         </SimpleGrid>
       </CardFooter>
-      <Divider />
+      {/* <Divider /> */}
     </Card>
   )
 
@@ -168,8 +205,9 @@ const GamesQre: React.FC<{
   return (!useHasMounted
     ? <></>
     : <div className="question-card">
-      <h1>Game preferences</h1>
-      <h3 className="question-text">{currentQuestion.subject}</h3>
+      <Heading size={"md"}>Game preferences</Heading>
+      <br/>
+      <Text className="question-text">{currentQuestion.subject}</Text>
       <SimpleGrid columns={3}>
         <Box>
           <Center>First</Center>
@@ -189,11 +227,15 @@ const GamesQre: React.FC<{
         <Box>
           <Center>Second</Center>
           <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-            isClearable
-            backspaceRemovesValue
-            escapeClearsValue
+            // isClearable
+            // backspaceRemovesValue
+            // escapeClearsValue  
+            // cacheOptions
+            key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
+            // inputValue={inputValues[currentQuestionId].label[1].label}
             options={options[currentQuestionId]}
             name="optionValue"
+            // inputValue={inputValues[currentQuestionId].label[1].label}
             value={inputValues[currentQuestionId].label[1].label === ""
               ? null
               : inputValues[currentQuestionId].label[1]}
@@ -206,6 +248,7 @@ const GamesQre: React.FC<{
         <Box>
           <Center>Third</Center>
           <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+            key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
             options={options[currentQuestionId]}
             name="optionValue"
             value={inputValues[currentQuestionId].label[2].label === ""
@@ -222,9 +265,9 @@ const GamesQre: React.FC<{
         <SimpleGrid columns={2} alignItems="center" justifyContent="center">
           <NavButtons
             isNextDisabled={
-              inputValues[currentQuestionId].label[0].value===(-1 || "") ||
-              inputValues[currentQuestionId].label[1].value===(-1 || "") ||
-              inputValues[currentQuestionId].label[2].value===(-1 || "") }
+              inputValues[currentQuestionId].label[0].value === (-1 || "") ||
+              inputValues[currentQuestionId].label[1].value === (-1 || "") ||
+              inputValues[currentQuestionId].label[2].value === (-1 || "")}
             length={questions.length}
             currId={currentQuestionId}
             setCurrId={setCurrentQuestionId}
@@ -240,7 +283,7 @@ const GamesQre: React.FC<{
       <SimpleGrid columns={[2, 3, 4, 5]}>
         {currentQuestionId === 0
           ? listGemItems
-          : <></>
+          : listItems
         }
       </SimpleGrid>
     </div>

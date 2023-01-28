@@ -14,7 +14,6 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { JsonProps, BHIQuestion, GenericDict } from "../../types_interfaces/types";
 
 const LikertSlider: React.FC<{ value: number, onChange(v: any): any }> = (props) => {
   const value = props.value;
@@ -31,9 +30,6 @@ const LikertSlider: React.FC<{ value: number, onChange(v: any): any }> = (props)
     <br />
     <Box>
       <Slider
-        opacity={sliderState
-          ? "100%"
-          : "50%"}
         defaultValue={value}
         min={1}
         max={5}

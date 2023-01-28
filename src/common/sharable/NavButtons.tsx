@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { SimpleGrid } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useHasMounted from "../../utils/hasMounted";
 
 const NavButtons: React.FC<{
@@ -10,12 +10,19 @@ const NavButtons: React.FC<{
   setCurrId: (id: number) => void
 }> = (props) => {
 
+  const [isLoading, setIsLoading] = useState(false);
+
   {/* Question change buttons logic */}
   const handlePrev = () => props.setCurrId(Math.max(props.currId - 1, 0));
-  const handleNext = () => props.setCurrId(Math.min(props.currId + 1, props.length-1));
+  const handleNext = () => {
+    setIsLoading(true);
+    props.setCurrId(Math.min(props.currId + 1, props.length-1));
+  }
   const isFirst = props.currId === 0;
   const isLast = props.currId === props.length-1;
   const isNextDisabled = props.isNextDisabled
+
+  useEffect(() => setIsLoading(false));
 
   return (!useHasMounted 
     ? <></>
@@ -28,7 +35,9 @@ const NavButtons: React.FC<{
     </Button>
     <Button 
       isDisabled={ isLast || isNextDisabled} 
-      onClick={ handleNext }>
+      onClick={ handleNext }
+      isLoading={isLoading}
+      >
         Next
     </Button>
     </SimpleGrid>

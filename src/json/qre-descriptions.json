@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "questionnaire": "Demographics",
+      "description": "Thank you for having decided to help our research!\nHere, you will be ask a set of demographical questions, to better understand your background."
+    },
+    {
+      "id": 1,
+      "questionnaire": "Brief HEXACO Inventory",
+      "description": "The Brief HEXACO Inventory (BHI) is a shortened version of the HEXACO Personality Inventory (HPI) which is a measure of the six personality traits of the HEXACO model: Honesty-Humility, Emotionality, Extraversion, Agreeableness, Conscientiousness and Openness to experience. The BHI is designed to be a shorter and more efficient version of the HPI, while still maintaining good reliability and validity.\n\n Answer considering how much you agree with the following statements in a scale of 1 (Strongly Disagree) to 5 (Strongly Agree)."
+    },
+    {
+      "id": 2,
+      "questionnaire": "Basic Needs Satisfaction and Frustration Scale",
+      "description": "The Basic Needs Satisfaction and Frustration Scale (BNFS) is a tool that is used to assess the degree to which people's basic psychological needs are being met or thwarted. The three basic psychological needs that the BNFS measures are autonomy, competence, and relatedness.\n\n Lik"
+    },
+    {
+      "id": 3,
+      "questionnaire": "Game Preferences",
+      "description": "Congrats for having reached the last section of the survey!\nThere are just a couple of question left. ;)\n You'll be asked about your game preferences regarding two subsets of games: the first one is pretty "
+    }
+  ]
+}
