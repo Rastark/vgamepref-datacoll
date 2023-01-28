@@ -3,6 +3,6 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "jsx-a11y/alt-text": "off",
-    "hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off"
   }
 }

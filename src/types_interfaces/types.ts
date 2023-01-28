@@ -36,7 +36,12 @@ export type PrefGamesQuestion = QuestionBase
 
 export type FormItem = {
   id: number,
-  selectedOption: QuestionOption | QuestionOption[]
+  selectedOption: QuestionOption
+};
+
+export type FormItems = {
+  id: number,
+  selectedOption: QuestionOption[]
 };
 
 //Question Options
@@ -61,7 +66,7 @@ export type SurveyAnswers = {
   demographics: FormItem[],
   personality: FormItem[],
   self_determination: FormItem[]
-  preferred_games: FormItem[]
+  preferred_games: FormItems[]
 }
 
 export type GameElemMech = {

@@ -6,7 +6,7 @@ import FinalResults from "../common/FinalResults";
 import GamesQre from "../common/questionnaires/GamesQre";
 import SelfDetQre from "../common/questionnaires/SelfDetQre";
 import { loadCatalogGames, loadGames } from "../lib/load-games";
-import { QuestionOption } from "../types_interfaces/types";
+import { FormItems, QuestionOption } from "../types_interfaces/types";
 import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, SurveyAnswers, SelfDetQuestion, GameProps, GemProps, TestScore, PrefGamesQuestion } from "../types_interfaces/types";
 import { addNewAnswersDoc, addNewDoc } from "../utils/insertJson";
 import { useCalcDimScores } from "../utils/qre-hooks";
@@ -112,7 +112,7 @@ const Bhi_test: React.FC<{
   </>
   const [prefGameQuestions, setPrefGameQuestions] = useState({
     show: true,
-    formData: new Array<FormItem>(props.gameProps.length).fill({ id: -1, selectedOption: new Array<QuestionOption>(3).fill({ label: "", value: -1 }) })
+    formData: new Array<FormItems>(props.gameProps.length).fill({ id: -1, selectedOption: new Array<QuestionOption>(3).fill({ label: "", value: -1 }) })
   });
 
   console.log("bhi_test", props.bhiProps);
@@ -169,7 +169,7 @@ const Bhi_test: React.FC<{
   const updateSelfDet = (input: { show: boolean, formData: FormItem[] }) =>
     setSelfDetQuestions(input);
 
-  const updateGames = (input: { show: boolean, formData: FormItem[] }) =>
+  const updateGames = (input: { show: boolean, formData: FormItems[] }) =>
     setPrefGameQuestions(input);
 
   const calcBhiScore: TestScore[] = useCalcDimScores(props.bhiProps.items, answers.personality);

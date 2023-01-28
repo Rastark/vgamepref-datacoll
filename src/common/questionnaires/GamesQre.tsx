@@ -1,7 +1,7 @@
 import { Button, Center, Card, CardBody, Text, Image, Flex, TagLabel, Grid, GridItem, Divider, CardHeader, CardFooter, Stack, Box, HStack, SimpleGrid, Link, VStack, Heading, StackDivider, StackItem } from "@chakra-ui/react";
 import { AsyncSelect, GroupBase, OptionBase, Select } from "chakra-react-select";
 import React, { SetStateAction, useEffect, useMemo, useState } from "react";
-import { QuestionOption, SelectedOption } from "../../types_interfaces/types";
+import { FormItems, QuestionOption, SelectedOption } from "../../types_interfaces/types";
 import { JsonProps, DemographicQuestion, FormItem, GameProps, QuestionBase, GemProps, PrefGamesQuestion } from "../../types_interfaces/types";
 import useHasMounted from "../../utils/hasMounted";
 import { changeItemValuesById, handleFormSubmit } from "../../utils/qre-hooks";
@@ -20,7 +20,7 @@ const GamesQre: React.FC<{
   formData: (
     input: {
       show: boolean;
-      formData: FormItem[]
+      formData: FormItems[]
     }) => void
 }> = (props) => {
 

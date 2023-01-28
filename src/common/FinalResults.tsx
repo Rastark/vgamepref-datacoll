@@ -59,7 +59,7 @@ const FinalResults: React.FC<{
 
   const printPrefGamesAnswers =
     answers.preferred_games.map(item => <Text key={"pref-games"+item.id}>
-      {prefGamesQuestions[item.id]} {"->"} {item.selectedOption.label.map(item => item.label)}
+      {prefGamesQuestions[item.id]} {"->"} {item.selectedOption.map(item => item.label)}
     </Text>)
 
   return (!useHasMounted

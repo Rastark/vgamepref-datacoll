@@ -18,20 +18,20 @@ const Result_viz: React.FC<{
     console.log(doc)
   }
 
-  return (
-    <Box height="100vh" alignItems="center" justifyContent="center" className="page-box-ext">
-      <Box background="gray.100" p={12} rounded={6} className="page-box-int">
-        <FormControl>
-        <Input value={"" + resultsId.toString()} onChange={handleInputChange} />
-        <Button
-          type={"submit"}
-          onClick={handleSubmit}>
-          Submit
-        </Button>
-        </FormControl>
-        {resultData}
-      </Box>
-    </Box>
+  return (<></>
+    // <Box height="100vh" alignItems="center" justifyContent="center" className="page-box-ext">
+    //   <Box background="gray.100" p={12} rounded={6} className="page-box-int">
+    //     <FormControl>
+    //     <Input value={"" + resultsId.toString()} onChange={handleInputChange} />
+    //     <Button
+    //       type={"submit"}
+    //       onClick={handleSubmit}>
+    //       Submit
+    //     </Button>
+    //     </FormControl>
+    //     {resultData}
+    //   </Box>
+    // </Box>
   )
 }
 
