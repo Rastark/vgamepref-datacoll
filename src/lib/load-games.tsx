@@ -2,8 +2,8 @@ import secrets from "../../config/secrets.json";
 import { BHIQuestion, DemographicQuestion, GameProps, GemProps, JsonProps, PrefGamesQuestion, SelfDetQuestion } from "../types_interfaces/types";
 
 // const SERVER_URL = process.env
-// const SERVER_URL = "http://localhost:3000"
-const SERVER_URL = process.env.API_URL;
+const SERVER_URL = "http://localhost:3000"
+// const SERVER_URL = process.env.API_URL;
 
 const gdb_api_url = 'https://api.igdb.com/v4';
 // const twitch_api_login = `https://id.twitch.tv/oauth2/token?client_id=${secrets.twitch_api.client_id}&client_secret=${secrets.twitch_api.client_secret}&grant_type=client_credentials`;
@@ -50,7 +50,7 @@ export async function loadCatalogGames() {
                 "Client-ID": secrets.twitch_api.client_id,
                 "Authorization": `Bearer ${twitch_bearer}`,
             },
-            body: `fields name,url,cover.url,cover.height,cover.width; where name=("${titles_string}"); sort follows desc; limit 100;`
+            body: `fields name,url,cover.url,cover.height,cover.width,release_dates.y; where name=("${titles_string}") & release_dates.y>2000 & release_dates.y<2023; sort follows desc; limit 100;`
         });
         games = await gdb_res.json();
     // }

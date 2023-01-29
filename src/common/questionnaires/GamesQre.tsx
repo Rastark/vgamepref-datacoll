@@ -7,6 +7,7 @@ import useHasMounted from "../../utils/hasMounted";
 import { handleFormSubmit } from "../../utils/qre-hooks";
 import NavButtons from "../sharable/NavButtons";
 import igdb_icon from "../../../public/igdb-icon.png";
+import google_play_icon from "../../../public/google-play-icon.png";
 import { shuffleArray } from "../../utils/array-utils";
 
 const GamesQre: React.FC<{
@@ -26,6 +27,12 @@ const GamesQre: React.FC<{
 
   const fixGameData = (gameList: GameProps[]) => {
     for (let i = 0; i < gameList.length; i++) {
+      if (gameList[i].name==="Skyward") {
+        gameList[i].url="https://play.google.com/store/apps/details?id=com.ketchapp.skyward&hl=it&gl=US";
+        gameList[i].cover.url="https://play-lh.googleusercontent.com/SRX7JGu4AeF8WT7igHOdOf9mr4X08-M7lxZtn3AKQg72KsRglBMMJvwI6blz7lWWjvs";
+        gameList[i].cover.height=512;
+        gameList[i].cover.width=384;  
+      }
       if (!gameList[i].hasOwnProperty("cover")) {
       }
       else {
@@ -126,7 +133,8 @@ const GamesQre: React.FC<{
             <Image src={igdb_icon.src}
               borderRadius={"md"}
               margin={"2"}
-              width={["70px", "70px", "70px", "100px"]}
+              minWidth={["50px", "50px", "50px", "85px"]}
+              maxWidth={["70px", "70px", "70px", "100px"]}
               height={["40px", "40px", "40px", "68px"]}
             />
           </Link>
@@ -164,11 +172,15 @@ const GamesQre: React.FC<{
       <CardFooter margin={"-6"}>
         <SimpleGrid columns={[2]}>
           <Link href={item.url} isExternal>
-            <Image src={igdb_icon.src}
+            <Image src={item.name !== "Skyward"
+              ? igdb_icon.src
+              : google_play_icon.src 
+            }
               borderRadius={"md"}
               margin={"2"}
-              width={["70px", "70px", "70px", "100px"]}
-              height={["40px", "40px", "40px", "68px"]}
+                minWidth={["50px", "50px", "50px", "85px"]}
+                maxWidth={["70px", "70px", "70px", "100px"]}
+                height={["40px", "40px", "40px", "68px"]}
             />
           </Link>
         </SimpleGrid>
