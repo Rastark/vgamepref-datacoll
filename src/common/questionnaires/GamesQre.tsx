@@ -153,8 +153,8 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          width={["110px", "110px", "110px", "120px"]}
-          height={["161px", "161px", "161px", "255px"]}
+          minWidth={["110px", "110px", "110px", "120px"]}
+          minHeight={["161px", "161px", "161px", "255px"]}
         />
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
@@ -166,6 +166,8 @@ const GamesQre: React.FC<{
             <Image src={igdb_icon.src}
               borderRadius={"md"}
               margin={"2"}
+              width={["70px", "70px", "70px", "100px"]}
+              height={["40px", "40px", "40px", "58px"]}
             />
           </Link>
         </SimpleGrid>
