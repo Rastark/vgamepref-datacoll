@@ -215,17 +215,16 @@ const Survey: React.FC<{
                         formData={updateGames}
                       />
                       : <>
-                      <Text>
-                        You want to submit your results or to start again withou
-                        <br/>
-                        Else, you can clik on
+                        <Text>
+                          We've reached the end! To submit your result and visualize your scores, click on the button below!
+                          <br />
                         </Text>
                         <Button
                           alignItems={"center"}
                           isDisabled={isDocSubmitted}
                           onClick={handleSubmit}
                         >
-                          Submit Questionnaire!
+                          Submit my Answers!
                         </Button>
                       </>
         }
