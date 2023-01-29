@@ -13,36 +13,6 @@ const Navbar: React.FC<{}> = () => {
         <Heading onClick={() => router.push('/')} as="button">
           Welcome to our Recommender Platform!
         </Heading>
-        {/* <Box>
-          {auth ? (
-            <Box p={2}>
-              <Link
-                p={2}
-                fontWeight={
-                  router.pathname === '/quiz/new' ? 'extrabold' : 'normal'
-                }
-                onClick={() => router.push('/quiz/new')}
-              >
-                Add new quiz
-              </Link>
-              <Link p={2} onClick={() => signOut()}>
-                Logout
-              </Link>
-            </Box>
-          ) : (
-            <Box p={2}>
-              <Link
-                p={2}
-                onClick={() => router.push('/signin')}
-                fontWeight={
-                  router.pathname === '/signin' ? 'extrabold' : 'normal'
-                }
-              >
-                Sign In
-              </Link>
-            </Box>
-          )}
-        </Box> */}
       </Flex> 
       <Divider
         css={{
