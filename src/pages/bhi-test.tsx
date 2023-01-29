@@ -35,9 +35,9 @@ const Bhi_test: React.FC<{
     console.log("questionnaire answers: ", answers);
     // setSubmittedDocId(await addNewDoc(answers, "hexaco-tests"));
     console.log("before_submit", isDocSubmitted);
+    setTimestamp(Date.now());
     setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
     console.log("after_submit", submittedDocId);
-    setTimestamp(Date.now());
     setIsDocSubmitted(true);
   };
 
