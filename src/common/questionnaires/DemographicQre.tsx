@@ -68,7 +68,7 @@ const DemographicQre: React.FC<{
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            isDisabled={!isLastQuestion}
+            // isDisabled={!isLastQuestion || inputValues[currentQuestionId].value===-1}
             onClick={handleSubmit}>
             Next survey
           </Button>

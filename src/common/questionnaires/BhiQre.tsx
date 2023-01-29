@@ -64,7 +64,7 @@ const BhiQre: React.FC<{
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            isDisabled={!isLastQuestion}
+            // isDisabled={!isLastQuestion || inputValues[currentQuestionId].value < 1}
             onClick={handleSubmit}>
             Next Questionnaire
           </Button>
