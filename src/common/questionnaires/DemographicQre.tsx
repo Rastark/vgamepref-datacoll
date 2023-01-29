@@ -18,7 +18,6 @@ const DemographicQre: React.FC<{
     }) => void
 }> = (props) => {
   const questions = props.questionProps.items;
-  console.log("questions", questions)
 
   // Update parent state on submit
   const handleSubmit = () => {
@@ -26,16 +25,12 @@ const DemographicQre: React.FC<{
   }
 
   const [inputValues, setInputValues] = useState(new Array<QuestionOption>(questions.length).fill({ label: "", value: -1 }));
-  console.log(inputValues);
-  console.log('qinitial', inputValues);
-
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const currentQuestion = questions[currentQuestionId];
   const options = currentQuestion.options.map((q, i) => ({ label: q, value: i }));
-
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
-  const changeValues = (newValue: QuestionOption | null) => {
+  const handleChange = (newValue: QuestionOption | null) => {
     return changeItemValuesById(
       currentQuestionId,
       newValue,
@@ -43,8 +38,6 @@ const DemographicQre: React.FC<{
       setInputValues
     )
   }
-  console.log('qfinal', inputValues);
-
   return (!useHasMounted
     ? <></>
     : <div className="question-card">
@@ -55,7 +48,7 @@ const DemographicQre: React.FC<{
           <br/>
           <Heading size={"md"}>Demographics</Heading>
           <br/>
-          <h3 className="question-text">{currentQuestion.subject}</h3>
+          <Text className="question-text">{currentQuestion.subject}</Text>
           <Select<QuestionOption, false, GroupBase<QuestionOption>>
             options={options}
             name="optionValue"
@@ -63,7 +56,7 @@ const DemographicQre: React.FC<{
               ? null
               : inputValues[currentQuestionId]}
             placeholder="choose an option..."
-            onChange={changeValues}
+            onChange={handleChange}
             isRequired={true}
           />
         </Box>
@@ -75,7 +68,7 @@ const DemographicQre: React.FC<{
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            // isDisabled={!isLastQuestion}
+            isDisabled={!isLastQuestion}
             onClick={handleSubmit}>
             Next survey
           </Button>

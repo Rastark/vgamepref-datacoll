@@ -1,4 +1,4 @@
-import { Box, Text, Button, OrderedList, ListItem} from "@chakra-ui/react";
+import { Box, Text, Button, OrderedList, ListItem } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useHasMounted from "../utils/hasMounted";
@@ -10,7 +10,7 @@ const Introduction: React.FC<{}> = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (e: any) => {
-    router.push("/bhi-test");
+    router.push("/survey");
     setIsLoading(true);
   }
 
@@ -21,7 +21,7 @@ const Introduction: React.FC<{}> = () => {
       <br />
       The survey is composed by the following questionnaires:
       <OrderedList>
-        <ListItem>Demographic</ListItem>
+        <ListItem>Demographics</ListItem>
         <ListItem>Brief HEXACO Inventory (BHI)</ListItem>
         <ListItem>Basic Needs Satisfaction and Frustration Scale (BNSF)</ListItem>
         <ListItem>Game preferences</ListItem>
@@ -36,19 +36,20 @@ const Introduction: React.FC<{}> = () => {
       <br />
       We hope you'll have fun!
     </Text>
+    <br/>
   </>
 
   return (!useHasMounted() ? <></> : <>
     <Box height={"max-content"} alignItems="center" justifyContent="center" className="questionnaire-box-ext">
       <Box p={12} rounded={6} marginX="10px" padding={"var(--chakra-space-4)"} className="questionnaire-box-int">
         {text}
+        <Button
+          onClick={handleClick}
+          isLoading={isLoading}>
+          Take me to the survey!
+        </Button>
       </Box>
     </Box>
-    <Button
-      onClick={handleClick}
-      isLoading={isLoading}>
-      Take me to the survey!
-    </Button>
   </>)
 }
 

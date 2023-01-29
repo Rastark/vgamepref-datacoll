@@ -26,10 +26,7 @@ const BhiQre: React.FC<{
   }
 
   const [inputValues, setInputValues] = useState(new Array<QuestionOption>(questions.length).fill({ label: "3", value: -1 }));
-  console.log('qinitial', inputValues);
-
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
-
   const currentQuestion = questions[currentQuestionId];
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
@@ -53,9 +50,6 @@ const BhiQre: React.FC<{
           <Heading size={"md"}>Brief-HEXACO-Personality-Inventory</Heading>
           <br/>
           <h3 className="question-text">{currentQuestion.subject}</h3>
-          {/* <LikertScale value={inputValues[currentQuestionId].label}
-            onChange={changeValues}
-          /> */}
           <LikertSlider
             key={currentQuestionId}
             value={+inputValues[currentQuestionId].label}
@@ -70,9 +64,9 @@ const BhiQre: React.FC<{
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            // isDisabled={!isLastQuestion}
+            isDisabled={!isLastQuestion}
             onClick={handleSubmit}>
-            Next survey
+            Next Questionnaire
           </Button>
           }
         </Flex>

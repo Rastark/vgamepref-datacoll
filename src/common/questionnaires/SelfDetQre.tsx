@@ -18,7 +18,6 @@ const SelfDetQre: React.FC<{
     }) => void
 }> = (props) => {
   const questions = props.questionProps.items;
-  console.log("questions", questions)
 
   // Update parent state on submit
   const handleSubmit = () => {
@@ -27,17 +26,14 @@ const SelfDetQre: React.FC<{
 
   // Input state
   const [inputValues, setInputValues] = useState(new Array<QuestionOption>(questions.length).fill({ label: "3", value: -1 }));
-  console.log(inputValues);
-  console.log('qinitial', inputValues);
 
   // Current question state
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
-
   const currentQuestion = questions[currentQuestionId];
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
   // Update inputValues dinamically on aswer change
-  const changeValues = (newValue: string) => {
+  const handleChange = (newValue: string) => {
     return changeItemValuesById(
       currentQuestionId,
       { label: newValue, value: +parseInt(newValue) },
@@ -53,24 +49,16 @@ const SelfDetQre: React.FC<{
         <Box p={12} rounded={6} marginX="10%" className="questionnaire-box-int">
         <Text align={"right"}>{Math.round(((+currentQuestion.id + 1) / questions.length) * 100)}%</Text>
         <Progress value={((+currentQuestion.id + 1) / questions.length) * 100} />
-        
           <br />
           <Heading size={"md"}>Basic Personality Needs Satisfaction and Frustration Scale</Heading>
-          {/* <Text>Below, we ask you about the kind of experiences you actually have in your life. Please read each of
-            the following items carefully. You can choose from 1 to 5 to indicate the degree to which the
-            statement is true for you at this point in your life. </Text> */}
-          <br />
-          <h3 className="question-text">{currentQuestion.subject}</h3>
-          {/* <LikertScale value={inputValues[currentQuestionId].label}
-            onChange={changeValues}
-          /> */}
+          <br/>
+          <Text className="question-text">{currentQuestion.subject}</Text>
           <LikertSlider
             key={currentQuestionId}
             value={+inputValues[currentQuestionId].label}
-            onChange={changeValues}
+            onChange={handleChange}
           />
         </Box>
-
         <Flex alignItems="center" justifyContent="center">
           <NavButtons
             isNextDisabled={inputValues[currentQuestionId].value<1}
@@ -79,7 +67,7 @@ const SelfDetQre: React.FC<{
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            // isDisabled={!isLastQuestion}
+            isDisabled={!isLastQuestion || inputValues[currentQuestionId].value<1}
             onClick={handleSubmit}>
             Next survey
           </Button>

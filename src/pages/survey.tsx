@@ -13,7 +13,7 @@ import { useCalcDimScores } from "../utils/qre-hooks";
 import { simpleHash } from "../utils/security-utils";
 import QreDescription from "../common/sharable/QreDescription";
 
-const Bhi_test: React.FC<{
+const Survey: React.FC<{
   bhiProps: JsonProps<BHIQuestion>,
   demographicProps: JsonProps<DemographicQuestion>,
   selfDetProps: JsonProps<SelfDetQuestion>,
@@ -23,8 +23,6 @@ const Bhi_test: React.FC<{
   gemProps: GemProps[]
 }> = (props) => {
 
-  console.log("demographic_test", props.demographicProps);
-
   const [timestamp, setTimestamp] = useState(-1);
 
   const [submittedDocId, setSubmittedDocId] = useState("")
@@ -32,28 +30,19 @@ const Bhi_test: React.FC<{
 
   // Uploads the json doc to cloud firebase
   const handleSubmit = async () => {
-    console.log("questionnaire answers: ", answers);
-    // setSubmittedDocId(await addNewDoc(answers, "hexaco-tests"));
-    console.log("before_submit", isDocSubmitted);
     setTimestamp(Date.now());
     setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
-    console.log("after_submit", submittedDocId);
     setIsDocSubmitted(true);
   };
 
-  // Test button. Doesn't upload on DB.
-  const handleFakeSubmit = () => {
-    console.log("questionnaire answers: ", answers);
-  }
-
-  // state declarations
+  // Demographic vars
   const [demographicQuestions, setDemographicQuestions] = useState({
     show: true,
     formData: Array<FormItem>(props.demographicProps.items.length).fill({ id: -1, selectedOption: { label: "", value: -1 } })
   });
 
+  // BHI vars
   const [showBhi, setShowBhi] = useState(true);
-  const handleQreStart = () => setShowBhi(!showBhi)
   const bhiDescription = <>
     <Text>
       <Heading size="md">2. Brief-HEXACO Personality Inventory</Heading>
@@ -73,6 +62,7 @@ const Bhi_test: React.FC<{
     formData: new Array<FormItem>(props.bhiProps.items.length).fill({ id: -1, selectedOption: { label: "", value: -1 } })
   });
 
+  // BPNS vars
   const [showSelfDet, setShowSelfDet] = useState(true);
   const selfDetDescription = <>
     <Text>
@@ -92,17 +82,17 @@ const Bhi_test: React.FC<{
     formData: new Array<FormItem>(props.selfDetProps.items.length).fill({ id: -1, selectedOption: { label: "", value: -1 } })
   });
 
-
+  // Preferred Games vars
   const [showPrefGame, setShowPrefGame] = useState(true);
   const prefGameDescription = <>
     <Text>
       <Heading size="md">4. Game Preferences</Heading>
       <br />
-      Congrats for having reached the last section of the survey! There are just a couple of question left. ;) <br /> <br/>
+      Congrats for having reached the last section of the survey! There are just a couple of question left. ;) <br /> <br />
       You'll be asked about your game preferences regarding two subsets of games:
       <UnorderedList>
         <ListItem>
-          The first one is pretty small and contains relatively old games; 
+          The first one is pretty small and contains relatively old games;
           for this reason, shouldn't you know any of the games on the list,
           there will be links below to check on each game information on IGDB.
         </ListItem>
@@ -119,10 +109,7 @@ const Bhi_test: React.FC<{
     formData: new Array<FormItems>(props.gameProps.length).fill({ id: -1, selectedOption: new Array<QuestionOption>(3).fill({ label: "", value: -1 }) })
   });
 
-  console.log("bhi_test", props.bhiProps);
-  console.log(demographicQuestions)
-
-  // state triggers
+  // Page state triggers
   const toggleDemographicShow = () => {
     // console.log("HEY", !showDemographicQuestions.show)
     setDemographicQuestions(value => ({
@@ -150,6 +137,7 @@ const Bhi_test: React.FC<{
       formData: value.formData
     }));
 
+  // Survey data structures init
   const answers: SurveyAnswers = {
     demographics: demographicQuestions.formData,
     personality: bhiQuestions.formData,
@@ -165,6 +153,7 @@ const Bhi_test: React.FC<{
     preferred_games: props.prefGamesProps.items
   }
 
+  // Update methods
   const updateDemographics = (input: { show: boolean, formData: FormItem[] }) =>
     setDemographicQuestions(input);
 
@@ -179,8 +168,6 @@ const Bhi_test: React.FC<{
 
   const calcBhiScore: TestScore[] = useCalcDimScores(props.bhiProps.items, answers.personality);
   const calcSelfDetScore: TestScore[] = useCalcDimScores(props.selfDetProps.items, answers.self_determination);
-
-  console.log("answers: ", answers);
 
   return (
     <Box height="100vh" alignItems="center" justifyContent="center" className="page-box-ext">
@@ -202,60 +189,68 @@ const Bhi_test: React.FC<{
                 showToggle={toggleBhiShow}
                 formData={updateBhi}
               />
-                : showSelfDet
+              : showSelfDet
                 ? <QreDescription
                   description={selfDetDescription}
                   setShow={setShowSelfDet}
                 />
-              : selfDetQuestions.show
-                ? <SelfDetQre
-                  questionProps={props.selfDetProps}
-                  showToggle={toggleSelfDetShow}
-                  formData={updateSelfDet}
-                />
-                : showPrefGame
-                ? <QreDescription
-                    description={prefGameDescription}
-                    setShow={setShowPrefGame}
+                : selfDetQuestions.show
+                  ? <SelfDetQre
+                    questionProps={props.selfDetProps}
+                    showToggle={toggleSelfDetShow}
+                    formData={updateSelfDet}
                   />
-                : prefGameQuestions.show
-                  ? <GamesQre
-                    questionProps={props.prefGamesProps}
-                    gameProps={props.gameProps}
-                    gameCatalogProps={props.gameCatalogProps}
-                    gemProps={props.gemProps}
-                    showToggle={toggleGameShow}
-                    formData={updateGames}
-                  />
-
-                  : <div>
-                    <FinalResults
-                      questions={questions}
-                      answers={answers}
-                      bhiScores={calcBhiScore}
-                      selfDetScores={calcSelfDetScore}
+                  : showPrefGame
+                    ? <QreDescription
+                      description={prefGameDescription}
+                      setShow={setShowPrefGame}
                     />
-                    <Button
-                      isDisabled={isDocSubmitted}
-                      onClick={handleSubmit}
-                    >
-                      Submit Questionnaire
-                    </Button>
-                    {isDocSubmitted
-                      ? <Text bg="green.200">
-                        Your results have been saved with the code: {simpleHash(submittedDocId)}.
-                      </Text>
-                      : <></>
-                    }
-                  </div>
+                    : prefGameQuestions.show
+                      ? <GamesQre
+                        questionProps={props.prefGamesProps}
+                        gameProps={props.gameProps}
+                        gameCatalogProps={props.gameCatalogProps}
+                        gemProps={props.gemProps}
+                        showToggle={toggleGameShow}
+                        formData={updateGames}
+                      />
+                      : <>
+                      <Text>
+                        You want to submit your results or to start again withou
+                        <br/>
+                        Else, you can clik on
+                        </Text>
+                        <Button
+                          alignItems={"center"}
+                          isDisabled={isDocSubmitted}
+                          onClick={handleSubmit}
+                        >
+                          Submit Questionnaire!
+                        </Button>
+                      </>
         }
-        {/* <div><Box><Box><Button onClick={handleFakeSubmit}>Fake Submit</Button></Box></Box></div> */}
+        {isDocSubmitted
+          ? <>
+            <Text bg="green.200">
+              Your results have been saved with the code: {simpleHash(submittedDocId)}.
+            </Text>
+            <FinalResults
+              questions={questions}
+              answers={answers}
+              bhiScores={calcBhiScore}
+              selfDetScores={calcSelfDetScore}
+            /></>
+          : <></>
+        }
+
       </Box>
     </Box>
   )
 }
 
-export async function getServerSideProps() {
+// Switch to SSR if fetched data is stale
+// export async function getServerSideProps() {
+export async function getStaticProps() {
   const bhiProps: JsonProps<BHIQuestion> = await loadBhiProps();
 
   const demographicProps: JsonProps<DemographicQuestion> = await loadDemographicProps();
@@ -266,19 +261,13 @@ export async function getServerSideProps() {
 
   const gameProps: GameProps[] = await loadGames();
 
-  console.log("gameProps", gameProps)
-
   const gemProps: GemProps[] = await loadGemProps();
 
-  // const titles = gemProps.map(item => item.title)
-  
   const gameCatalogProps: GameProps[] = await loadCatalogGames();
-
-  console.log("gameCatalogProps", gameCatalogProps);
 
   return {
     props: { bhiProps, demographicProps, selfDetProps, prefGamesProps, gameProps, gameCatalogProps, gemProps },
   }
 }
 
-export default Bhi_test;
+export default Survey;

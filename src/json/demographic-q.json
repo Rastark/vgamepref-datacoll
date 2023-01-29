@@ -15,33 +15,28 @@
       "subject": "Where do you come from?",
       "options": ["Africa", "America(North)", "America(South)", "Asia", "Europe", "Oceania", "Prefer not to say"]
     },
-    {
-      "id": 3,
-      "subject": "What's your current marital status?",
-      "options": ["Single", "Married", "Widowed", "Divorced", "Separated", "Registered partnership", "Other", "Prefer not to say"]
-    },
     { 
-      "id": 4,
+      "id": 3,
       "subject": "What's your current occupation?",
       "options": ["Student", "Employee", "Self-employed", "Unemployed", "Retired", "Other", "Prefer not to say"]
     },
     { 
-      "id": 5,
+      "id": 4,
       "subject": "What's your educational level?",
       "options": ["Under High School degree", "High school degree", "Bachelor level degree", "Master level degree", "PhD", "Other", "Prefer not to say"]
     },
     { 
-      "id": 6,
-      "subject": "In a typical week, how many hours a day do you spend playing videogames?",
+      "id": 5,
+      "subject": "In a typical week, how many hours a day do you spend playing videogames on average?",
       "options": ["<1", "1-2", "3-4", "5-6", "7-8",">8", "Prefer not to say"]
     },
     { 
-      "id": 7,
+      "id": 6,
       "subject": "Which type of gamer do you consider yourself to be?",
       "options": ["Casual: plays in short sessions or infrequently", "Core/Mid-core: regularly plays, but not particularly serious/competitive", "Hardcore: dedicated and serious/competitive", "Prefer not to say"]
     },
     { 
-      "id": 8,
+      "id": 7,
       "subject": "Which platforms do you usually play on?",
       "options": ["Home console", "PC/Mac", "Mobile", "Handheld console", "VR", "Prefer not to say"]
     }

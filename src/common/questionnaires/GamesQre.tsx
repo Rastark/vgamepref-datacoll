@@ -22,13 +22,6 @@ const GamesQre: React.FC<{
     }) => void
 }> = (props) => {
 
-  // const gameList = props.gameProps;
-  // const gameCatalogList = props.gameCatalogProps;
-  // const gemGameProps = props.gemProps;
-
-  // const gameTitles = gemGameProps.map(item => item.title);
-  // let gemGameList: GameProps = [];
-
   const gameTitles = props.gemProps.map(item => item.title);
 
   const fixGameData = (gameList: GameProps[]) => {
@@ -38,7 +31,6 @@ const GamesQre: React.FC<{
       }
       else {
         gameList[i].cover.url = gameList[i].cover.url.replace("t_thumb", "t_cover_big");
-        console.log("replaced", gameList.map(item => item.name), gameList[i].cover.url)
       }
     }
     return gameList;
@@ -58,12 +50,9 @@ const GamesQre: React.FC<{
   useEffect(() => {
     formatData(gameList);
   }, [])
-
   useMemo(() => formatData(gemGameList), [gemGameList]);
 
-  console.log("game_list", gameList)
   const options = [gemGameList.map((q, i) => ({ label: q.name, value: i })), gameList.map((q, i) => ({ label: q.name, value: i }))];
-
   const questions: PrefGamesQuestion[] = props.questionProps.items;
 
   // Update parent state on submit
@@ -75,41 +64,26 @@ const GamesQre: React.FC<{
   const [inputValues, setInputValues] = useState(new Array<SelectedOption>(
     { label: (new Array<QuestionOption>(3).fill({ label: "", value: -1 })), value: -1 },
     { label: (new Array<QuestionOption>(3).fill({ label: "", value: -1 })), value: -1 }));
-  console.log(inputValues, typeof (inputValues));
-  console.log('qinitial', inputValues);
 
   // Current question state
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const currentQuestion = questions[currentQuestionId];
-
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
   // Update inputValues dinamically on aswer change
   const changeValues = (newValue: QuestionOption | null, field: number) => {
-    console.log("newValue: ", newValue, field)
-    console.log("inputValuesBefore", inputValues)
     if (newValue) {
-      // const itemId = newValue.value;x
-      console.log("itemId: ", field);
       let items = [...inputValues];
-      console.log("items", items)
       let itemToChange = { ...items[currentQuestionId] }
-      console.log("itemToChange", itemToChange)
       let optionToChange = { ...itemToChange.label[field] }
-      console.log("optionToChange", optionToChange)
-      console.log("label", optionToChange.label)
       optionToChange.label = newValue.label;
-      console.log("value", optionToChange.value)
       optionToChange.value = newValue.value;
-
       itemToChange.label[field] = optionToChange;
       itemToChange.value = currentQuestionId;
       items[currentQuestionId] = itemToChange;
       console.log(items[currentQuestionId + 1])
       setInputValues(items);
-      console.log('new_values', items)
     }
-    console.log('qfinal', inputValues);
   }
 
   const loadOptions = (inputValue: string, callback: (arg0: { label: string; value: number; }[]) => void) => {
@@ -157,7 +131,6 @@ const GamesQre: React.FC<{
           </Link>
         </SimpleGrid>
       </CardFooter>
-      {/* <Divider /> */}
     </Card>
   )
 
@@ -197,7 +170,6 @@ const GamesQre: React.FC<{
           </Link>
         </SimpleGrid>
       </CardFooter>
-      {/* <Divider /> */}
     </Card>
   )
 
@@ -273,7 +245,9 @@ const GamesQre: React.FC<{
             setCurrId={setCurrentQuestionId}
           />
           {<Button
-            // isDisabled={!isLastQuestion}
+            isDisabled={!isLastQuestion || (inputValues[currentQuestionId].label[0].value === (-1 || "") ||
+            inputValues[currentQuestionId].label[1].value === (-1 || "") ||
+            inputValues[currentQuestionId].label[2].value === (-1 || ""))}
             onClick={handleSubmit}>
             Results
           </Button>
