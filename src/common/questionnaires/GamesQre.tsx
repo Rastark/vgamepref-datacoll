@@ -153,8 +153,8 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          minWidth={["110px", "110px", "110px", "200px"]}
-          minHeight={["161px", "161px", "161px", "255px"]}
+          width={["110px", "110px", "110px", "120px"]}
+          height={["161px", "161px", "161px", "255px"]}
         />
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
