@@ -167,7 +167,7 @@ const GamesQre: React.FC<{
               borderRadius={"md"}
               margin={"2"}
               width={["70px", "70px", "70px", "100px"]}
-              height={["40px", "40px", "40px", "58px"]}
+              height={["40px", "40px", "40px", "68px"]}
             />
           </Link>
         </SimpleGrid>
