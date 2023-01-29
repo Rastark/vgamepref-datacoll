@@ -114,8 +114,8 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          minWidth={["110px", "110px", "110px", "200px"]}
-          minHeight={["161px", "161px", "161px", "255px"]}
+          minWidth={["11.714589989350372vh", "11.714589989350372vhpx", "11.714589989350372vhpx", "21.299254526091588vh"]}
+          minHeight={["8.721560130010834vw", "8.721560130010834vw", "8.721560130010834vw", "13.8136511375948vw"]}
         />
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
@@ -127,6 +127,8 @@ const GamesQre: React.FC<{
             <Image src={igdb_icon.src}
               borderRadius={"md"}
               margin={"2"}
+              width={["70px", "70px", "70px", "100px"]}
+              height={["40px", "40px", "40px", "68px"]}
             />
           </Link>
         </SimpleGrid>
@@ -153,8 +155,8 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          minWidth={["110px", "110px", "110px", "120px"]}
-          minHeight={["161px", "161px", "161px", "255px"]}
+          minWidth={["11.714589989350372vh", "11.714589989350372vhpx", "11.714589989350372vhpx", "21.299254526091588vh"]}
+          minHeight={["8.721560130010834vw", "8.721560130010834vw", "8.721560130010834vw", "13.8136511375948vw"]}
         />
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
