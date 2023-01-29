@@ -69,7 +69,7 @@ const SelfDetQre: React.FC<{
           {<Button
             // isDisabled={!isLastQuestion || inputValues[currentQuestionId].value<1}
             onClick={handleSubmit}>
-            Next survey
+            Next Questionnaire
           </Button>
           }
         </Flex>

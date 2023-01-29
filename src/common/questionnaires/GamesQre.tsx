@@ -249,7 +249,7 @@ const GamesQre: React.FC<{
             // inputValues[currentQuestionId].label[1].value === (-1 || "") ||
             // inputValues[currentQuestionId].label[2].value === (-1 || ""))}
             onClick={handleSubmit}>
-            Results
+            Go to Submission Page
           </Button>
           }
         </SimpleGrid>
