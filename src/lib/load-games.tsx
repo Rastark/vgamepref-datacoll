@@ -50,7 +50,7 @@ export async function loadCatalogGames() {
                 "Client-ID": secrets.twitch_api.client_id,
                 "Authorization": `Bearer ${twitch_bearer}`,
             },
-            body: `fields name,url,cover.url,cover.height,cover.width; where name=("${titles_string}"); limit 100;`
+            body: `fields name,url,cover.url,cover.height,cover.width; where name=("${titles_string}"); sort follows desc; limit 100;`
         });
         games = await gdb_res.json();
     // }

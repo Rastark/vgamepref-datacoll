@@ -25,7 +25,6 @@ const GamesQre: React.FC<{
   const gameTitles = props.gemProps.map(item => item.title);
 
   const fixGameData = (gameList: GameProps[]) => {
-    console.log("gameList", gameList);
     for (let i = 0; i < gameList.length; i++) {
       if (!gameList[i].hasOwnProperty("cover")) {
       }
