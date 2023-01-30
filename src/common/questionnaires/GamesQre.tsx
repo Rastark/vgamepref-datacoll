@@ -116,7 +116,7 @@ const GamesQre: React.FC<{
           src={item.hasOwnProperty("cover")
             ? item.cover.url
             : "https://publications.iarc.fr/uploads/media/default/0001/02/thumb_1240_default_publication.jpeg"}
-          objectFit={"contain"}
+          objectFit={"cover"}
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
@@ -160,7 +160,7 @@ const GamesQre: React.FC<{
           src={item.hasOwnProperty("cover")
             ? item.cover.url
             : "https://publications.iarc.fr/uploads/media/default/0001/02/thumb_1240_default_publication.jpeg"}
-          objectFit={"contain"}
+          objectFit={"cover"}
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
