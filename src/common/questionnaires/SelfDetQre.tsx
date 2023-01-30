@@ -45,8 +45,8 @@ const SelfDetQre: React.FC<{
   // Render component
   return (!useHasMounted ? <></> :
     <div className="question-card">
-      <Box height="20vh" alignItems="center" justifyContent="center" className="questionnaire-box-ext">
-        <Box p={12} rounded={6} marginX="10%" className="questionnaire-box-int">
+      <Box height="100vh" alignItems="center" justifyContent="center" className="questionnaire-box-ext">
+        <Box p={4} rounded={6} marginX="10%" className="questionnaire-box-int">
         <Text align={"right"}>{Math.round(((+currentQuestion.id + 1) / questions.length) * 100)}%</Text>
         <Progress value={((+currentQuestion.id + 1) / questions.length) * 100} />
           <br />
@@ -59,7 +59,7 @@ const SelfDetQre: React.FC<{
             onChange={handleChange}
           />
         </Box>
-        <Flex alignItems="center" justifyContent="center">
+        <Flex alignItems="center" justifyContent="center" noOfLines={0}>
           <NavButtons
             isNextDisabled={inputValues[currentQuestionId].value<1}
             length={questions.length}

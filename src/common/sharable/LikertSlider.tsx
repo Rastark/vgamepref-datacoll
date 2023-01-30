@@ -72,19 +72,20 @@ const LikertSlider: React.FC<{ value: number, onChange(v: any): any }> = (props)
           bg='blue.500'
           color='white'
           mt='-10'
-          ml='-7'
+          ml='-20'
           w="auto"
           h="auto"
+          noOfLines={1}
         >
           {value === 3
             ? "Neutral"
             : value === 1
-              ? "Strongly Disagree"
+              ? "Str. Disagree"
               : value === 2
                 ? "Disagree"
                 : value === 4
                   ? "Agree"
-                  : 5
+                  : "Str. Agree"
           }
         </SliderMark>
         <SliderTrack bg='red.300'>

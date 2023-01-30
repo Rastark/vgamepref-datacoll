@@ -1,5 +1,5 @@
 import { Button, Center, Card, CardBody, Text, Image, Flex, CardFooter, Stack, Box, SimpleGrid, Link, Heading, StackItem } from "@chakra-ui/react";
-import { AsyncSelect, GroupBase} from "chakra-react-select";
+import { AsyncSelect, GroupBase } from "chakra-react-select";
 import React, { useEffect, useMemo, useState } from "react";
 import { FormItems, QuestionOption, SelectedOption } from "../../types_interfaces/types";
 import { JsonProps, GameProps, GemProps, PrefGamesQuestion } from "../../types_interfaces/types";
@@ -27,11 +27,11 @@ const GamesQre: React.FC<{
 
   const fixGameData = (gameList: GameProps[]) => {
     for (let i = 0; i < gameList.length; i++) {
-      if (gameList[i].name==="Skyward") {
-        gameList[i].url="https://play.google.com/store/apps/details?id=com.ketchapp.skyward&hl=it&gl=US";
-        gameList[i].cover.url="https://play-lh.googleusercontent.com/SRX7JGu4AeF8WT7igHOdOf9mr4X08-M7lxZtn3AKQg72KsRglBMMJvwI6blz7lWWjvs";
-        gameList[i].cover.height=512;
-        gameList[i].cover.width=384;  
+      if (gameList[i].name === "Skyward") {
+        gameList[i].url = "https://play.google.com/store/apps/details?id=com.ketchapp.skyward&hl=it&gl=US";
+        gameList[i].cover.url = "https://play-lh.googleusercontent.com/SRX7JGu4AeF8WT7igHOdOf9mr4X08-M7lxZtn3AKQg72KsRglBMMJvwI6blz7lWWjvs";
+        gameList[i].cover.height = 512;
+        gameList[i].cover.width = 384;
       }
       if (!gameList[i].hasOwnProperty("cover")) {
       }
@@ -103,13 +103,13 @@ const GamesQre: React.FC<{
 
   const listItems = gameList.map(item =>
     <Card
-      key={"game_item"+item.id}
+      key={"game_item" + item.id}
       alignItems="center"
       alignContent="center"
       verticalAlign="center"
       justifyContent="center"
       border={"sm"}
-      padding={"var(--chakra-space-2)"}
+      p={1}
     >
       <CardBody>
         <Image
@@ -120,10 +120,10 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          minWidth={["8.714589989350372vw", "8.714589989350372vw", "8.714589989350372vw", "12.299254526091588vw"]}
-          maxWidth={["11.714589989350372vw", "11.714589989350372vw", "11.714589989350372vw", "15.299254526091588vw"]}
-          minHeight={["12.721560130010834vh", "12.721560130010834vh", "12.721560130010834vh", "18.8136511375948vh"]}
-          maxHeight={["16.721560130010834vh", "16.721560130010834vh", "16.721560130010834vh", "37.48668796592119vh"]}
+          minWidth={["11.714589989350372vw", "12.714589989350372vw", "13.714589989350372vw", "14.299254526091588vw"]}
+          maxWidth={["15.714589989350372vw", "15.714589989350372vw", "15.714589989350372vw", "15.299254526091588vw"]}
+          minHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "30.721560130010834vh"]}
+          maxHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "37.48668796592119vh"]}
         />
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
@@ -135,6 +135,7 @@ const GamesQre: React.FC<{
             <Image src={igdb_icon.src}
               borderRadius={"md"}
               margin={"2"}
+              objectFit={"scale-down"}
               minWidth={["50px", "50px", "50px", "85px"]}
               maxWidth={["70px", "70px", "70px", "100px"]}
               height={["40px", "40px", "40px", "68px"]}
@@ -147,15 +148,15 @@ const GamesQre: React.FC<{
 
   const listGemItems = gemGameList.map(item =>
     <Card
-      key={"gem_item"+item.id}
+      key={"gem_item" + item.id}
       alignItems="center"
       alignContent="center"
       verticalAlign="center"
       justifyContent="center"
       border={"sm"}
-      padding={"var(--chakra-space-2)"}
+      padding={1}
     >
-      <CardBody>
+      <CardBody p={1}>
         <Image
           src={item.hasOwnProperty("cover")
             ? item.cover.url
@@ -164,10 +165,10 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          minWidth={["8.714589989350372vw", "8.714589989350372vw", "8.714589989350372vw", "12.299254526091588vw"]}
-          maxWidth={["11.714589989350372vw", "11.714589989350372vw", "11.714589989350372vw", "15.299254526091588vw"]}
-          minHeight={["12.721560130010834vh", "12.721560130010834vh", "12.721560130010834vh", "18.8136511375948vh"]}
-          maxHeight={["16.721560130010834vh", "16.721560130010834vh", "16.721560130010834vh", "37.48668796592119vh"]}
+          minWidth={["11.714589989350372vw", "12.714589989350372vw", "13.714589989350372vw", "14.299254526091588vw"]}
+          maxWidth={["15.714589989350372vw", "15.714589989350372vw", "15.714589989350372vw", "15.299254526091588vw"]}
+          minHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "30.721560130010834vh"]}
+          maxHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "37.48668796592119vh"]}
         />
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
@@ -178,13 +179,14 @@ const GamesQre: React.FC<{
           <Link href={item.url} isExternal>
             <Image src={item.name !== "Skyward"
               ? igdb_icon.src
-              : google_play_icon.src 
+              : google_play_icon.src
             }
               borderRadius={"md"}
+              objectFit={"scale-down"}
               margin={"2"}
-                minWidth={["50px", "50px", "50px", "85px"]}
-                maxWidth={["70px", "70px", "70px", "100px"]}
-                height={["40px", "40px", "40px", "68px"]}
+              minWidth={["50px", "50px", "50px", "85px"]}
+              maxWidth={["70px", "70px", "70px", "100px"]}
+              height={["40px", "40px", "40px", "68px"]}
             />
           </Link>
         </SimpleGrid>
@@ -195,91 +197,95 @@ const GamesQre: React.FC<{
   // Render component
   return (!useHasMounted
     ? <></>
-    : <div className="question-card">
-      <Heading size={"md"}>Game preferences</Heading>
-      <br/>
-      <Text className="question-text">{currentQuestion.subject}</Text>
-      <SimpleGrid columns={3}>
-        <Box>
-          <Center>First</Center>
-          <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-            key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
-            options={options[currentQuestionId]}
-            name="optionValue"
-            value={inputValues[currentQuestionId].label[0].label === ""
-              ? null
-              : inputValues[currentQuestionId].label[0]}
-            placeholder="choose an option..."
-            loadOptions={loadOptions}
-            onChange={option => changeValues(option, 0)}
-            isRequired={true}
-          />
+    : <>
+      <Box height="100vh" alignItems="center" justifyContent="center" className="questionnaire-box-ext">
+        <Box bg="gray.100" p={4} rounded={6} marginX="10%" className="questionnaire-box-int">
+          <Heading size={"md"}>Game preferences</Heading>
+          <br />
+          <Text className="question-text">{currentQuestion.subject}</Text>
+          <SimpleGrid columns={3}>
+            <Box>
+              <Center>First</Center>
+              <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+                key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
+                options={options[currentQuestionId]}
+                name="optionValue"
+                value={inputValues[currentQuestionId].label[0].label === ""
+                  ? null
+                  : inputValues[currentQuestionId].label[0]}
+                placeholder="choose an option..."
+                loadOptions={loadOptions}
+                onChange={option => changeValues(option, 0)}
+                isRequired={true}
+              />
+            </Box>
+            <Box>
+              <Center>Second</Center>
+              <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+                // isClearable
+                // backspaceRemovesValue
+                // escapeClearsValue  
+                // cacheOptions
+                key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
+                // inputValue={inputValues[currentQuestionId].label[1].label}
+                options={options[currentQuestionId]}
+                name="optionValue"
+                // inputValue={inputValues[currentQuestionId].label[1].label}
+                value={inputValues[currentQuestionId].label[1].label === ""
+                  ? null
+                  : inputValues[currentQuestionId].label[1]}
+                placeholder="choose an option..."
+                loadOptions={loadOptions}
+                onChange={option => changeValues(option, 1)}
+                isRequired={true}
+              />
+            </Box>
+            <Box>
+              <Center>Third</Center>
+              <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
+                key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
+                options={options[currentQuestionId]}
+                name="optionValue"
+                value={inputValues[currentQuestionId].label[2].label === ""
+                  ? null
+                  : inputValues[currentQuestionId].label[2]}
+                placeholder="choose an option..."
+                loadOptions={loadOptions}
+                onChange={option => changeValues(option, 2)}
+                isRequired={true}
+              />
+            </Box>
+          </SimpleGrid>
+          <Flex alignItems="center" justifyContent="center" noOfLines={0}>
+            {/* <SimpleGrid columns={2} alignItems="center" justifyContent="center"> */}
+              <NavButtons
+                isNextDisabled={
+                  inputValues[currentQuestionId].label[0].value === (-1 || "") ||
+                  inputValues[currentQuestionId].label[1].value === (-1 || "") ||
+                  inputValues[currentQuestionId].label[2].value === (-1 || "")}
+                length={questions.length}
+                currId={currentQuestionId}
+                setCurrId={setCurrentQuestionId}
+              />
+              {<Button
+                // isDisabled={!isLastQuestion || (inputValues[currentQuestionId].label[0].value === (-1 || "") ||
+                // inputValues[currentQuestionId].label[1].value === (-1 || "") ||
+                // inputValues[currentQuestionId].label[2].value === (-1 || ""))}
+                onClick={handleSubmit}>
+                Go to Submission Page
+              </Button>
+              }
+            {/* </SimpleGrid> */}
+          </Flex>
+          <SimpleGrid columns={[1, 2, 3, 4]}>
+            {currentQuestionId === 0
+              ? listGemItems
+              : listItems
+            }
+          </SimpleGrid>
         </Box>
-        <Box>
-          <Center>Second</Center>
-          <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-            // isClearable
-            // backspaceRemovesValue
-            // escapeClearsValue  
-            // cacheOptions
-            key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
-            // inputValue={inputValues[currentQuestionId].label[1].label}
-            options={options[currentQuestionId]}
-            name="optionValue"
-            // inputValue={inputValues[currentQuestionId].label[1].label}
-            value={inputValues[currentQuestionId].label[1].label === ""
-              ? null
-              : inputValues[currentQuestionId].label[1]}
-            placeholder="choose an option..."
-            loadOptions={loadOptions}
-            onChange={option => changeValues(option, 1)}
-            isRequired={true}
-          />
-        </Box>
-        <Box>
-          <Center>Third</Center>
-          <AsyncSelect<QuestionOption, false, GroupBase<QuestionOption>>
-            key={currentQuestionId && inputValues[currentQuestionId].label[0].label !== "" ? currentQuestionId + "0" : null}
-            options={options[currentQuestionId]}
-            name="optionValue"
-            value={inputValues[currentQuestionId].label[2].label === ""
-              ? null
-              : inputValues[currentQuestionId].label[2]}
-            placeholder="choose an option..."
-            loadOptions={loadOptions}
-            onChange={option => changeValues(option, 2)}
-            isRequired={true}
-          />
-        </Box>
-      </SimpleGrid>
-      <Flex alignItems="center" justifyContent="center">
-        <SimpleGrid columns={2} alignItems="center" justifyContent="center">
-          <NavButtons
-            isNextDisabled={
-              inputValues[currentQuestionId].label[0].value === (-1 || "") ||
-              inputValues[currentQuestionId].label[1].value === (-1 || "") ||
-              inputValues[currentQuestionId].label[2].value === (-1 || "")}
-            length={questions.length}
-            currId={currentQuestionId}
-            setCurrId={setCurrentQuestionId}
-          />
-          {<Button
-            // isDisabled={!isLastQuestion || (inputValues[currentQuestionId].label[0].value === (-1 || "") ||
-            // inputValues[currentQuestionId].label[1].value === (-1 || "") ||
-            // inputValues[currentQuestionId].label[2].value === (-1 || ""))}
-            onClick={handleSubmit}>
-            Go to Submission Page
-          </Button>
-          }
-        </SimpleGrid>
-      </Flex>
-      <SimpleGrid columns={[2, 3, 4, 5]}>
-        {currentQuestionId === 0
-          ? listGemItems
-          : listItems
-        }
-      </SimpleGrid>
-    </div>
+      </Box>
+    </>
   )
 }
 

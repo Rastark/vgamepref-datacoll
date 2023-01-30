@@ -170,8 +170,8 @@ const Survey: React.FC<{
   const calcSelfDetScore: TestScore[] = useCalcDimScores(props.selfDetProps.items, answers.self_determination);
 
   return (
-    <Box height="100vh" alignItems="center" justifyContent="center" className="page-box-ext">
-      <Box background="gray.100" p={12} rounded={6} className="page-box-int">
+    <Box height="auto" alignItems="center" justifyContent="center" className="page-box-ext">
+      <Box height="auto" background="gray.100" p={12} rounded={6} className="page-box-int">
         {demographicQuestions.show
           ? <DemographicQre
             questionProps={props.demographicProps}
@@ -241,7 +241,6 @@ const Survey: React.FC<{
             /></>
           : <></>
         }
-
       </Box>
     </Box>
   )
