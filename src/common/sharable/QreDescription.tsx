@@ -14,7 +14,7 @@ const QreDescription: React.FC<{
     ? <></>
     : <div className="questionnaire-description">
       <Box height="20vh" alignItems="center" justifyContent="center" className="questionnaire-box-ext">
-        <Box p={12} rounded={6} marginX="10%" className="questionnaire-box-int">
+        <Box p={4} rounded={6} marginX="10%" className="questionnaire-box-int">
           {props.description}
           <br/>
           <Button onClick={handleClick}>

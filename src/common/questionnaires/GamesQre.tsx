@@ -277,7 +277,7 @@ const GamesQre: React.FC<{
               }
             {/* </SimpleGrid> */}
           </Flex>
-          <SimpleGrid columns={[1, 2, 3, 4]}>
+          <SimpleGrid columns={[1, 2, 3, 4, 4, 4, 5]}>
             {currentQuestionId === 0
               ? listGemItems
               : listItems
