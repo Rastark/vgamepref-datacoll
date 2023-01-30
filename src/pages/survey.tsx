@@ -30,7 +30,9 @@ const Survey: React.FC<{
 
   // Uploads the json doc to cloud firebase
   const handleSubmit = async () => {
-    setTimestamp(Date.now());
+    const ts = Date.now()
+    setTimestamp(ts);
+    answers.timestamp = ts;
     setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
     setIsDocSubmitted(true);
   };
