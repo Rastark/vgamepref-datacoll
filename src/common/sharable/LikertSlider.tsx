@@ -28,6 +28,7 @@ const LikertSlider: React.FC<{ value: number, onChange(v: any): any }> = (props)
 
   return (<>
     <br />
+    <br />
     <Box>
       <Slider
         defaultValue={value}
@@ -88,8 +89,8 @@ const LikertSlider: React.FC<{ value: number, onChange(v: any): any }> = (props)
                   : "Str. Agree"
           }
         </SliderMark>
-        <SliderTrack bg='red.300'>
-          <SliderFilledTrack bg='green.300' />
+        <SliderTrack bg='linear-gradient(90deg, rgba(220,0,0,1) 0%, rgba(250,214,0,1) 50%, rgba(50,220,0,1) 100%)'>
+          <SliderFilledTrack bg='green.300' opacity={"0%"} />
         </SliderTrack>
         <SliderThumb defaultValue={value} boxSize={3} />
       </Slider>

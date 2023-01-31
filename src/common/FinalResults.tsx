@@ -63,7 +63,7 @@ const FinalResults: React.FC<{
       <Box height={"max-content"} alignItems="center" justifyContent="center" className="questionnaire-box-ext">
         <Box p={12} rounded={6} marginX="10px" padding={"var(--chakra-space-4)"} className="questionnaire-box-int">
           <>
-            <Heading>Thank you for your contribution! </Heading>
+            <Heading>Thank you for your contribution!</Heading>
             <br/>
             <br/>
             <Heading size={"sm"}><u>Please take note of your submission code for the eventual game recommendation phase!</u>
@@ -71,7 +71,7 @@ const FinalResults: React.FC<{
             <br/>
             <br/>
             <Text>
-            As promised, here's your scores, expressed in a scale of 1 to 100. Stay tuned for a better data visualization! (And remember to keep your code!) ;)
+            As promised, here's your scores, expressed on a scale of 1 to 100. Stay tuned for a better data visualization! (And remember to keep your code!) ;)
             </Text>
             
             <Divider color={"black"} size={"lg"}/>

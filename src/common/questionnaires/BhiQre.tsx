@@ -28,6 +28,7 @@ const BhiQre: React.FC<{
   const [inputValues, setInputValues] = useState(new Array<QuestionOption>(questions.length).fill({ label: "3", value: -1 }));
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const currentQuestion = questions[currentQuestionId];
+  const isFirstQuestion = currentQuestionId === 0;
   const isLastQuestion = currentQuestionId === questions.length - 1;
 
   const changeValues = (newValue: number) => {
@@ -70,6 +71,12 @@ const BhiQre: React.FC<{
           </Button>
           }
         </Flex>
+        <Box p={4} rounded={6} marginX="10%" className="disclaimer-box">
+          { isFirstQuestion
+          ? <Text><u>Disclaimer:</u> Even if the cursor is on 3 (Neutral), you need to click on it to validate your response and continue! ;)</Text>
+          :<></>
+          }
+        </Box>
       </Box>
     </div>
   )

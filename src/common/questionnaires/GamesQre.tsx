@@ -157,6 +157,7 @@ const GamesQre: React.FC<{
       padding={1}
     >
       <CardBody p={1}>
+      <Link href={item.url} isExternal>
         <Image
           src={item.hasOwnProperty("cover")
             ? item.cover.url
@@ -165,16 +166,17 @@ const GamesQre: React.FC<{
           align={"center"}
           verticalAlign={"center"}
           borderRadius={"md"}
-          minWidth={["11.714589989350372vw", "12.714589989350372vw", "13.714589989350372vw", "14.299254526091588vw"]}
-          maxWidth={["15.714589989350372vw", "15.714589989350372vw", "15.714589989350372vw", "15.299254526091588vw"]}
+          minWidth={["10.714589989350372vw", "11.714589989350372vw", "12.714589989350372vw", "13.299254526091588vw"]}
+          maxWidth={["12.714589989350372vw", "12.714589989350372vw", "13.714589989350372vw", "14.299254526091588vw"]}
           minHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "30.721560130010834vh"]}
-          maxHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "37.48668796592119vh"]}
+          maxHeight={["20.721560130010834vh", "20.721560130010834vh", "20.721560130010834vh", "35.48668796592119vh"]}
         />
+        </Link>
         <Stack mt='3' mb='0' spacing='3'>
           <Heading size={"md"}>{item.name}</Heading>
         </Stack>
       </CardBody>
-      <CardFooter margin={"-6"}>
+      {/* <CardFooter margin={"-6"}>
         <SimpleGrid columns={[2]}>
           <Link href={item.url} isExternal>
             <Image src={item.name !== "Skyward"
@@ -190,7 +192,7 @@ const GamesQre: React.FC<{
             />
           </Link>
         </SimpleGrid>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   )
 

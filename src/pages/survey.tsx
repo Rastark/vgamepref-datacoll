@@ -55,7 +55,7 @@ const Survey: React.FC<{
       Emotionality, Extraversion, Agreeableness, Conscientiousness and Openness to experience.
       The BHI is designed to be a shorter and more efficient version of the HPI, while still maintaining good reliability and validity.
       <br /><br />
-      Please answer considering how much you agree with the following statements in a scale from 1 (Strongly Disagree) to 5 (Strongly Agree).
+      Please answer considering how much you agree with the following statements on a scale from 1 (Strongly Disagree) to 5 (Strongly Agree).
       <br />
     </Text>
   </>
@@ -70,12 +70,12 @@ const Survey: React.FC<{
     <Text>
       <Heading size="md">3. Basic Needs Satisfaction and Frustration Scale</Heading>
       <br />
-      The Basic Needs Satisfaction and Frustration Scale (BNFS)
+      The Basic Needs Satisfaction and Frustration Scale (BPNS-FS)
       is a tool that is used to assess the degree to which people's
       basic psychological needs are being met or thwarted.
       three basic psychological needs that the BNFS measures are autonomy, competence, and relatedness.
       <br /><br />
-      Please answer considering how much you agree with the following statements in a scale from 1 (Strongly Disagree) to 5 (Strongly Agree).
+      Please answer considering how much you agree with the following statements on a scale from 1 (Strongly Disagree) to 5 (Strongly Agree).
       <br />
     </Text>
   </>
