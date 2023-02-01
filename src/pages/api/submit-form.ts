@@ -59,7 +59,7 @@ export default async function handler(
                 } else {
                     res.status(200).json({
                         status: "failure",
-                        message: "Google ReCaptcha Failure",
+                        message: `Google ReCaptcha Failure ${reCaptchaRes?.score}`,
                     })
                 }
             });
