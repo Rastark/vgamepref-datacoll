@@ -4,6 +4,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import Cors from 'cors';
 import { METHODS } from 'http';
+import { ReCAPTCHAProps } from 'react-google-recaptcha';
 
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -11,7 +12,6 @@ const cors = Cors({
     methods: ['POST'],
 })
 
-const SECRET_KEY = process.env.SECRETKEY;
 
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware
@@ -31,28 +31,28 @@ function runMiddleware(
     })
 }
 
+const verifyReCaptcha = async (token: any) => {
+    const SECRET_KEY = process.env.SECRETKEY;
+
+    const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
+    console.log("verifyUrl", verifyUrl)
+    return await fetch(verifyUrl);
+}
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
     // Run the middleware
     await runMiddleware(req, res, cors)
-
-    const { gReCaptchaToken } = await req.body;
-
-    const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${gReCaptchaToken}`;
-    console.log("verifyUrl", verifyUrl)
-
-    if (req.method === "POST") {
-        res.status(200).json({
-            status: "success",
-            message: "Form submitted successfully",
-        });
-    } else {
-        res.status(200).json({
-            status: "failure",
-            message: `Google ReCaptcha Failure ${res.json}`,
-        })
+    
+    if (req.method === "POST")
+    try {
+        const { token } = await JSON.parse(req.body);
+        const response = await verifyReCaptcha(token);
+        console.log(response);
+    } catch (e: any) {
+        res.status(400).json(`Failure. ${res}`);
     }
     }
 
