@@ -48,7 +48,7 @@ const Survey: React.FC<{
     })
   }, []);
 
-  const submitForm = async (gReCaptchaToken: any) => {
+  const submitForm = async (gReCaptchaToken: string) => {
     const data = { gReCaptchaToken: gReCaptchaToken }
     console.log("stringified", JSON.stringify(data));
     await fetch("/api/submit-form", {
