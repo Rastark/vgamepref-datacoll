@@ -38,7 +38,7 @@ export default async function handler(
     // Run the middleware
     await runMiddleware(req, res, cors)
 
-    const {recaptchaResponse} = req.body.gRecaptchaToken;
+    const {recaptchaResponse} = req.body;
 
     const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${recaptchaResponse}`;
 
