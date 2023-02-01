@@ -38,9 +38,9 @@ export default async function handler(
     // Run the middleware
     await runMiddleware(req, res, cors)
 
-    const {recaptchaResponse} = JSON.parse(req.body);
+    const { gReCaptchaToken } = JSON.parse(req.body);
 
-    const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${recaptchaResponse}`;
+    const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${gReCaptchaToken}`;
     console.log("verifyUrl", verifyUrl)
 
     if (req.method === "POST") {
