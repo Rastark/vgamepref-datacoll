@@ -23,7 +23,7 @@ const Introduction: React.FC<{}> = () => {
       <OrderedList>
         <ListItem>Demographics</ListItem>
         <ListItem>Brief HEXACO Inventory (BHI)</ListItem>
-        <ListItem>Basic Needs Satisfaction and Frustration Scale (BNSF)</ListItem>
+        <ListItem>Basic Personality Needs Satisfaction and Frustration Scale (BPNS-FS)</ListItem>
         <ListItem>Game preferences</ListItem>
       </OrderedList>
 
@@ -31,7 +31,7 @@ const Introduction: React.FC<{}> = () => {
       Before undertaking each one of this questionnaires, you will be presented with a short description of it, to help you understand its purpose.<br />
       Please keep in mind that, with no exceptions to the rule, you actually need to select or click on a response before you can proceed.<br />
       All data gathered by this web application is anonymous, so we trust that you'll respond honestly to the questions, since you won't be judged. :D<br />
-      You will have the opportunity to look at  results of both BHI and BNSF, since their output produces a score.
+      You will have the opportunity to look at  results of both BHI and BPNS-FS, since their output produces a score.
       <br />
       <br />
       We hope you'll have fun!
