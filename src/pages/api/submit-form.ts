@@ -56,7 +56,7 @@ export default async function handler(
             if(reCaptchaRes?.score>0.5) {
                 res.status(200).json("FINALLY")
             } else {
-                res.status(200).json("WHY")
+                res.status(200).json("WHY IT FAILS")
             }
         })
         response;
