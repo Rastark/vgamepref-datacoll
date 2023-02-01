@@ -51,6 +51,7 @@ export default async function handler(
         const token = (req.body.gReCaptchaToken);
         const response = await verifyReCaptcha(token);
         console.log(response.json());
+        res.status(200).json("WHY");
     // } catch (e: any) {
     //     res.status(400).json(`Failure. ${e.error}`);
     // }
