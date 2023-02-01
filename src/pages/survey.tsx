@@ -56,7 +56,7 @@ const Survey: React.FC<{
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        gRecaptchaToken: gReCaptchaToken,
+        gReCaptchaToken: gReCaptchaToken,
       }),
     })
     .then((res) => res.json())
