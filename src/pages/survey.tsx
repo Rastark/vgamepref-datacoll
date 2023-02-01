@@ -215,7 +215,7 @@ const Survey: React.FC<{
   const calcSelfDetScore: TestScore[] = useCalcDimScores(props.selfDetProps.items, answers.self_determination);
 
   return (<>
-    <Script src={`http://www.google.com/recaptcha/api.js?render=${SITE_KEY}`}/>
+    <Script src={`https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`}/>
 
     <Box height="auto" alignItems="center" justifyContent="center" className="page-box-ext">
       <Box height="auto" background="gray.100" p={12} rounded={6} className="page-box-int">
