@@ -38,17 +38,36 @@ export default async function handler(
     // Run the middleware
     await runMiddleware(req, res, cors)
 
-    const {recaptchaResponse} = req.body;
+    const {recaptchaResponse} = req.body.gRecaptchaToken;
 
     const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${recaptchaResponse}`;
 
-    try {
-        const recaptchaRes = await fetch(verifyUrl);
+    // try {
+        const recaptchaRes = await fetch(verifyUrl)
+            .then((reCaptchaRes) => reCaptchaRes.json())
+            .then((reCaptchaRes) => {
+                console.log(
+                    reCaptchaRes,
+                    "Response from Google reCaptcha verification API"
+                );
+                if (reCaptchaRes?.score > 0.5) {
+                    // Save data to db
+                    res.status(200).json({
+                        status: "success",
+                        message: "Form submitted successfully",
+                    });
+                } else {
+                    res.status(200).json({
+                        status: "failure",
+                        message: "Google ReCaptcha Failure",
+                    })
+                }
+            });
         
-        const recaptchaJson = await recaptchaRes.json();
+    //     const recaptchaJson = await recaptchaRes.json();
 
-        res.status(200).json(recaptchaJson);
-    } catch (e: any) {
-        res.status(400).json(e.error);
-    }
+    //     res.status(200).json(recaptchaJson);
+    // } catch (e: any) {
+    //     res.status(400).json(e.error);
+    // }
 }
