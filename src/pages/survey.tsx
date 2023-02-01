@@ -50,14 +50,14 @@ const Survey: React.FC<{
 
   const submitForm = async (gReCaptchaToken: any) => {
     const data = { gReCaptchaToken: gReCaptchaToken }
-    console.log("stringified", JSON.stringify(data));
+    // console.log("stringified", JSON.stringify(data));
     await fetch("/api/submit-form", {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: gReCaptchaToken,
     })
     .then((res) => res.json())
     .then(async (res) => {
