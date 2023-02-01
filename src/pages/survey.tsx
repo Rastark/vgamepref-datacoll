@@ -42,7 +42,7 @@ const Survey: React.FC<{
     e.preventDefault();
 
     // Generate catpcha token
-    executeRecaptcha("submit-form").then((gReCaptchaToken) => {
+    executeRecaptcha("submitForm").then((gReCaptchaToken) => {
       console.log(gReCaptchaToken, "response Google reCaptcha server");
       submitForm(gReCaptchaToken);
     })
