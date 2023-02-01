@@ -64,9 +64,9 @@ const Survey: React.FC<{
         answers.timestamp = ts;
         setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
         setIsDocSubmitted(true);
-        new Notification(res?.message);
+        console.log(res?.message);
       } else {
-        new Notification(res?.message);
+        console.log(res?.message);
       }
     })
   }
