@@ -50,7 +50,7 @@ export default async function handler(
     if (req.method === "POST") {
     // try {
         const token = (req.body.gReCaptchaToken);
-        console.log("token", token)
+        console.log("token", JSON.stringify(token))
         await verifyReCaptcha(token)
         // .then((ReCaptchaRes) => ReCaptchaRes.type)
         .then((reCaptchaRes) => reCaptchaRes.json())
