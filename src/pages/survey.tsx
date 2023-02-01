@@ -51,24 +51,24 @@ const Survey: React.FC<{
   const submitForm = async (gReCaptchaToken: string) => {
     const data = { gReCaptchaToken: gReCaptchaToken }
     console.log("stringified", JSON.stringify(data));
-    await fetch("/api/submit-form", {
+    fetch("/api/submit-form", {
       method: "POST",
       body: JSON.stringify(data),
     })
-    .then((res) => res.json())
-    .then(async (res) => {
-      console.log(res, "response from backend");
-      if(res?.status === "success") {
-        const ts = Date.now()
-        setTimestamp(ts);
-        answers.timestamp = ts;
-        setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
-        setIsDocSubmitted(true);
-        new Notification(res?.message);
-      } else {
-        new Notification(res?.message);
-      }
-    })
+    // .then((res) => res.json())
+    // .then(async (res) => {
+    //   console.log(res, "response from backend");
+    //   if(res?.status === "success") {
+    //     const ts = Date.now()
+    //     setTimestamp(ts);
+    //     answers.timestamp = ts;
+    //     setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
+    //     setIsDocSubmitted(true);
+    //     new Notification(res?.message);
+    //   } else {
+    //     new Notification(res?.message);
+    //   }
+    // })
   }
 
   // Demographic vars

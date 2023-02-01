@@ -10,15 +10,15 @@ const SITE_KEY: any = process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY;
 function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <ReCaptchaProvider
-        reCaptchaKey={SITE_KEY}
-      >
-        <AuthProvider>
-          <SidebarWithHeader>
+      <AuthProvider>
+        <SidebarWithHeader>
+          <ReCaptchaProvider
+            reCaptchaKey={SITE_KEY}
+          >
             <Component {...pageProps} />
-          </SidebarWithHeader>
-        </AuthProvider>
-      </ReCaptchaProvider>
+          </ReCaptchaProvider>
+        </SidebarWithHeader>
+      </AuthProvider>
     </ChakraProvider>
   );
 }
