@@ -53,7 +53,10 @@ const Survey: React.FC<{
     console.log("stringified", JSON.stringify(data));
     fetch("/api/submit-form", {
       method: "POST",
-      headers: {"Content-type": "application/json"},
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
       body: JSON.stringify(data),
     })
     .then((res) => res.json())
