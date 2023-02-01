@@ -44,6 +44,10 @@ export type FormItems = {
   selectedOption: QuestionOption[]
 };
 
+export type PrefGamesFormItem = FormItems & {
+  firstGameTitles: string[];
+}
+
 //Question Options
 export type QuestionOption = OptionBase & {
   label: string;

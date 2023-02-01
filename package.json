@@ -28,6 +28,7 @@
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-google-recaptcha-v3": "^1.10.1",
     "react-hook-form": "^7.35.0",
     "react-icons": "^4.4.0",
     "uuid": "^9.0.0",

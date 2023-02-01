@@ -76,7 +76,7 @@ const SelfDetQre: React.FC<{
         </Flex>
         <Box p={4} rounded={6} marginX="10%" className="disclaimer-box">
           { isFirstQuestion
-          ? <Text><u>Disclaimer:</u> Even if the cursor is on 3 (Neutral), you need to click on it to validate your response and continue! ;)</Text>
+          ? <Text><u>Disclaimer:</u> Even if the cursor is on 3 (Neutral), you'll need to click on the bar to validate your response and continue! ;)</Text>
           :<></>
           }
         </Box>

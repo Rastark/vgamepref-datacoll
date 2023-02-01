@@ -1,17 +1,19 @@
 import { Box, Button, Flex, Heading, List, ListItem, Text, UnorderedList } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import BhiQre from "../common/questionnaires/BhiQre";
 import DemographicQre from "../common/questionnaires/DemographicQre";
 import FinalResults from "../common/FinalResults";
 import GamesQre from "../common/questionnaires/GamesQre";
 import SelfDetQre from "../common/questionnaires/SelfDetQre";
 import { loadBhiProps, loadCatalogGames, loadDemographicProps, loadGames, loadGemProps, loadPrefGamesProps, loadSelfDetProps } from "../lib/load-games";
-import { FormItems, QuestionOption } from "../types_interfaces/types";
+import { PrefGamesFormItem, QuestionOption } from "../types_interfaces/types";
 import { JsonProps, BHIQuestion, DemographicQuestion, FormItem, SurveyAnswers, SelfDetQuestion, GameProps, GemProps, TestScore, PrefGamesQuestion } from "../types_interfaces/types";
 import { addNewAnswersDoc, addNewDoc } from "../utils/insertJson";
 import { useCalcDimScores } from "../utils/qre-hooks";
 import { simpleHash } from "../utils/security-utils";
 import QreDescription from "../common/sharable/QreDescription";
+import { GoogleReCaptcha, useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import Script from "next/script";
 
 const Survey: React.FC<{
   bhiProps: JsonProps<BHIQuestion>,
@@ -23,19 +25,55 @@ const Survey: React.FC<{
   gemProps: GemProps[]
 }> = (props) => {
 
+  const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY;
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const nTitles = 4;
+
   const [timestamp, setTimestamp] = useState(-1);
 
   const [submittedDocId, setSubmittedDocId] = useState("")
   const [isDocSubmitted, setIsDocSubmitted] = useState(false)
 
   // Uploads the json doc to cloud firebase
-  const handleSubmit = async () => {
-    const ts = Date.now()
-    setTimestamp(ts);
-    answers.timestamp = ts;
-    setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
-    setIsDocSubmitted(true);
+  const handleSubmit = async () => {   
+      if (!executeRecaptcha) {
+      console.log("Execute recaptcha not yet available");
+      return;
+    }
+    executeRecaptcha("formSubmit").then((gReCaptchaToken) => {
+      console.log(gReCaptchaToken, "response Google reCaptcha server");
+      submitForm(gReCaptchaToken);
+    })
   };
+
+  const submitForm = (gRecaptchaToken: any) => {
+    fetch("/api/submit-form", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        gRecaptchaToken: gRecaptchaToken,
+      }),
+    })
+    .then((res) => res.json())
+    .then(async (res) => {
+      console.log(res, "response from backend");
+      if(res?.status === "success") {
+        const ts = Date.now()
+        setTimestamp(ts);
+        answers.timestamp = ts;
+        setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
+        setIsDocSubmitted(true);
+        new Notification(res?.message);
+      } else {
+        new Notification(res?.message);
+      }
+    })
+  }
 
   // Demographic vars
   const [demographicQuestions, setDemographicQuestions] = useState({
@@ -56,6 +94,7 @@ const Survey: React.FC<{
       The BHI is designed to be a shorter and more efficient version of the HPI, while still maintaining good reliability and validity.
       <br /><br />
       Please answer considering how much you agree with the following statements on a scale from 1 (Strongly Disagree) to 5 (Strongly Agree).
+      Remember: there's no right or wrong option!
       <br />
     </Text>
   </>
@@ -71,11 +110,11 @@ const Survey: React.FC<{
       <Heading size="md">3. Basic Needs Satisfaction and Frustration Scale</Heading>
       <br />
       The Basic Needs Satisfaction and Frustration Scale (BPNS-FS)
-      is a tool that is used to assess the degree to which people's
-      basic psychological needs are being met or thwarted.
-      three basic psychological needs that the BNFS measures are autonomy, competence, and relatedness.
+      is a tool that assesses the fulfillment and thwarting of three basic psychological needs: autonomy, competence, and relatedness.
+      Each one of them is considered to be fundamental for well-being and optimal functioning.
       <br /><br />
       Please answer considering how much you agree with the following statements on a scale from 1 (Strongly Disagree) to 5 (Strongly Agree).
+      Remember: there's no right or wrong option!
       <br />
     </Text>
   </>
@@ -108,7 +147,11 @@ const Survey: React.FC<{
   </>
   const [prefGameQuestions, setPrefGameQuestions] = useState({
     show: true,
-    formData: new Array<FormItems>(props.gameProps.length).fill({ id: -1, selectedOption: new Array<QuestionOption>(3).fill({ label: "", value: -1 }) })
+    formData: new Array<PrefGamesFormItem>(props.gameProps.length).fill({
+      id: -1,
+      selectedOption: new Array<QuestionOption>(3).fill({ label: "", value: -1 }),
+      firstGameTitles: new Array<string>(nTitles).fill("")
+    })
   });
 
   // Page state triggers
@@ -165,13 +208,15 @@ const Survey: React.FC<{
   const updateSelfDet = (input: { show: boolean, formData: FormItem[] }) =>
     setSelfDetQuestions(input);
 
-  const updateGames = (input: { show: boolean, formData: FormItems[] }) =>
+  const updateGames = (input: { show: boolean, formData: PrefGamesFormItem[] }) =>
     setPrefGameQuestions(input);
 
   const calcBhiScore: TestScore[] = useCalcDimScores(props.bhiProps.items, answers.personality);
   const calcSelfDetScore: TestScore[] = useCalcDimScores(props.selfDetProps.items, answers.self_determination);
 
-  return (
+  return (<>
+    <Script src={`http://www.google.com/recaptcha/api.js?render=${SITE_KEY}`}/>
+
     <Box height="auto" alignItems="center" justifyContent="center" className="page-box-ext">
       <Box height="auto" background="gray.100" p={12} rounded={6} className="page-box-int">
         {demographicQuestions.show
@@ -245,6 +290,7 @@ const Survey: React.FC<{
         }
       </Box>
     </Box>
+  </>
   )
 }
 
