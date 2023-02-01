@@ -33,7 +33,7 @@ function runMiddleware(
 }
 
 const verifyReCaptcha = async (token: any) => {
-    const SECRET_KEY = process.env.SECRETKEY;
+    const SECRET_KEY = process.env.RECAPTCHA_SECRETKEY;
 
     const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
     console.log("verifyUrl", verifyUrl)
