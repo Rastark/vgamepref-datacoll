@@ -43,7 +43,7 @@ export default async function handler(
     const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${recaptchaResponse}`;
 
     // try {
-        const recaptchaRes = await fetch(verifyUrl)
+        await fetch(verifyUrl)
             .then((reCaptchaRes) => reCaptchaRes.json())
             .then((reCaptchaRes) => {
                 console.log(
