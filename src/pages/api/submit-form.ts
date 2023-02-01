@@ -46,13 +46,14 @@ export default async function handler(
     // Run the middleware
     await runMiddleware(req, res, cors)
     
-    if (req.method === "POST")
-    try {
+    if (req.method === "POST") {
+    // try {
         const { gReCaptchaToken: token } = (req.body);
         const response = await verifyReCaptcha(token);
         console.log(response);
-    } catch (e: any) {
-        res.status(400).json(`Failure. ${e.error}`);
+    // } catch (e: any) {
+    //     res.status(400).json(`Failure. ${e.error}`);
+    // }
     }
     }
 
