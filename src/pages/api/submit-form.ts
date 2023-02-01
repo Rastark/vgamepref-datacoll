@@ -36,7 +36,6 @@ const verifyReCaptcha = async (token: any) => {
     const SECRET_KEY = process.env.RECAPTCHA_SECRETKEY;
 
     const verifyUrl= `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
-    console.log("verifyUrl", verifyUrl)
     return await fetch(verifyUrl);
 }
 
@@ -50,7 +49,7 @@ export default async function handler(
     if (req.method === "POST") {
     // try {
         const {gReCaptchaToken: token} = req.body;
-        console.log("token", JSON.stringify(token))
+        res.status(200).json(("token" + JSON.stringify(token)));
         await verifyReCaptcha(token)
         // .then((ReCaptchaRes) => ReCaptchaRes.type)
         .then((reCaptchaRes) => reCaptchaRes.json())
