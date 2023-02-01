@@ -14,6 +14,7 @@ import { simpleHash } from "../utils/security-utils";
 import QreDescription from "../common/sharable/QreDescription";
 import { GoogleReCaptcha, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Script from "next/script";
+import { useReCaptcha } from "next-recaptcha-v3";
 
 const Survey: React.FC<{
   bhiProps: JsonProps<BHIQuestion>,
@@ -27,26 +28,25 @@ const Survey: React.FC<{
 
   const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY;
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  const { executeRecaptcha } = useReCaptcha();
 
   const nTitles = 4;
 
   const [timestamp, setTimestamp] = useState(-1);
 
-  const [submittedDocId, setSubmittedDocId] = useState("")
-  const [isDocSubmitted, setIsDocSubmitted] = useState(false)
+  const [submittedDocId, setSubmittedDocId] = useState("");
+  const [isDocSubmitted, setIsDocSubmitted] = useState(false);
 
   // Uploads the json doc to cloud firebase
-  const handleSubmit = async () => {   
-      if (!executeRecaptcha) {
-      console.log("Execute recaptcha not yet available");
-      return;
-    }
-    executeRecaptcha("formSubmit").then((gReCaptchaToken) => {
+  const handleSubmit = useCallback(async (e: { preventDefault: () => void; }) => {   
+    e.preventDefault();
+
+    // Generate catpcha token
+    executeRecaptcha("submit-form").then((gReCaptchaToken) => {
       console.log(gReCaptchaToken, "response Google reCaptcha server");
       submitForm(gReCaptchaToken);
     })
-  };
+  }, []);
 
   const submitForm = async (gReCaptchaToken: any) => {
     const data = { gReCaptchaToken: gReCaptchaToken }
