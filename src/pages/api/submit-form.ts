@@ -49,9 +49,19 @@ export default async function handler(
     if (req.method === "POST") {
     // try {
         const token = (req.body.gReCaptchaToken);
-        const response = await verifyReCaptcha(token);
-        console.log(response.json());
-        res.status(200).json("WHY");
+        const response = await verifyReCaptcha(token)
+        .then((reCaptchaRes) => reCaptchaRes.json())
+        .then((reCaptchaRes) => {
+            console.log(reCaptchaRes, "Response from verification api");
+            if(reCaptchaRes?.score>0.5) {
+                res.status(200).json("FINALLY")
+            } else {
+                res.status(200).json("WHY")
+            }
+        })
+        response;
+      // console.log(response.json());
+        // res.status(200).json("WHY");
     // } catch (e: any) {
     //     res.status(400).json(`Failure. ${e.error}`);
     // }
