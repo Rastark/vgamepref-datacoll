@@ -5,6 +5,7 @@ import path from 'path';
 import Cors from 'cors';
 import { METHODS } from 'http';
 import { ReCAPTCHAProps } from 'react-google-recaptcha';
+import { ReCaptcha } from 'next-recaptcha-v3';
 
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -49,17 +50,17 @@ export default async function handler(
     if (req.method === "POST") {
     // try {
         const token = (req.body.gReCaptchaToken);
-        const response = await verifyReCaptcha(token)
-        .then((reCaptchaRes) => reCaptchaRes.json())
+        await verifyReCaptcha(token)
+        .then((ReCaptchaRes) => ReCaptchaRes.type)
+        // .then((reCaptchaRes) => reCaptchaRes.json())
         .then((reCaptchaRes) => {
             console.log(reCaptchaRes, "Response from verification api");
-            if(reCaptchaRes?.score>0.5) {
-                res.status(200).json({status: "success", message: "successful upload"})
+            if(reCaptchaRes.length>0) {
+                res.status(200).json({status: "success", message: `successful upload ${reCaptchaRes}`})
             } else {
-                res.status(200).json({status: "failure", message: `failure ${JSON.parse(reCaptchaRes)}`})
+                res.status(200).json({status: "failure", message: `failure ${reCaptchaRes}`})
             }
         })
-        response;
       // console.log(response.json());
         // res.status(200).json("WHY");
     // } catch (e: any) {
