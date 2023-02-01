@@ -56,9 +56,9 @@ export default async function handler(
         .then((reCaptchaRes) => {
             console.log(reCaptchaRes, "Response from verification api");
             if(reCaptchaRes?.score>0.5 && reCaptchaRes.success===true) {
-                res.status(200).json({status: "success", message: `successful upload ${reCaptchaRes}`})
+                res.status(200).json({status: "success", message: `successful upload ${JSON.stringify(reCaptchaRes)}`})
             } else {
-                res.status(200).json({status: "failure", message: `failure ${reCaptchaRes}`})
+                res.status(200).json({status: "failure", message: `failure ${JSON.stringify(reCaptchaRes)}`})
             }
         })
       // console.log(response.json());
