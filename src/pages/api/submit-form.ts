@@ -51,11 +51,11 @@ export default async function handler(
     // try {
         const token = (req.body.gReCaptchaToken);
         await verifyReCaptcha(token)
-        .then((ReCaptchaRes) => ReCaptchaRes.type)
-        // .then((reCaptchaRes) => reCaptchaRes.json())
+        // .then((ReCaptchaRes) => ReCaptchaRes.type)
+        .then((reCaptchaRes) => reCaptchaRes.json())
         .then((reCaptchaRes) => {
             console.log(reCaptchaRes, "Response from verification api");
-            if(reCaptchaRes.length>0) {
+            if(reCaptchaRes?.score>0.5 && reCaptchaRes.success===true) {
                 res.status(200).json({status: "success", message: `successful upload ${reCaptchaRes}`})
             } else {
                 res.status(200).json({status: "failure", message: `failure ${reCaptchaRes}`})
