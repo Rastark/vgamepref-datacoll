@@ -5,15 +5,17 @@ import { AuthProvider } from '../lib/auth';
 import SidebarWithHeader from '../common/sharable/SidebarWithHeader';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
+const SITE_KEY: any = process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY;
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <GoogleReCaptchaProvider
-        reCaptchaKey="6LcqKkEkAAAAAN-cCHSDEbXaRIJYARF4GlqE9HPJ"
+        reCaptchaKey={SITE_KEY}
         scriptProps={{
           async: false,
           defer: false,
-          appendTo: "head",
+          appendTo: "body",
           nonce: undefined
         }}
       >
