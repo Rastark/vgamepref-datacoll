@@ -11,6 +11,7 @@ const answersConverter = {
       personality: answers.personality,
       self_determination: answers.self_determination,
       preferred_games: answers.preferred_games,
+      suggestions: answers.suggestions,
       timestamp: answers.timestamp
     }
   },
@@ -24,6 +25,7 @@ const answersConverter = {
       personality: data.personality,
       self_determination: data.self_determination,
       preferred_games: data.preferred_games,
+      suggestions: data.suggestions,
       timestamp: data.timestamp
     }
   }

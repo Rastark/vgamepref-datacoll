@@ -71,6 +71,7 @@ export type SurveyAnswers = {
   personality: FormItem[],
   self_determination: FormItem[],
   preferred_games: FormItems[],
+  suggestions: string,
   timestamp: number
 }
 

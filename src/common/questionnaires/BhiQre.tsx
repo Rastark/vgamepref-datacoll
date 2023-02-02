@@ -73,7 +73,7 @@ const BhiQre: React.FC<{
         </Flex>
         <Box p={4} rounded={6} marginX="10%" className="disclaimer-box">
           { isFirstQuestion
-          ? <Text><u>Disclaimer:</u> Even if the cursor is on 3 (Neutral), you must click on the bar to confirm your answer and continue! ;)</Text>
+          ? <Text><u>Disclaimer:</u> Even if at the beginning the cursor is on 3 (Neutral), you must click on the bar to confirm your answer and continue! ;)</Text>
           :<></>
           }
         </Box>

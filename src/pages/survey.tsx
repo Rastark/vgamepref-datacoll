@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, List, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, List, ListItem, Text, Textarea, UnorderedList } from "@chakra-ui/react";
 import React, { useCallback, useState } from "react";
 import BhiQre from "../common/questionnaires/BhiQre";
 import DemographicQre from "../common/questionnaires/DemographicQre";
@@ -32,16 +32,30 @@ const Survey: React.FC<{
 
   const nTitles = 4;
 
+  const [suggestions, setSuggestions] = useState("");
+
   const [timestamp, setTimestamp] = useState(-1);
+  const [isSuggSubmitted, setIsSuggSubmitted] = useState(false);
 
   const [submittedDocId, setSubmittedDocId] = useState("");
   const [isDocSubmitted, setIsDocSubmitted] = useState(false);
 
+  const handleInputChange = (e:any) => {
+    let inputValue = e.target.value;
+    setSuggestions(inputValue);
+    console.log(suggestions);
+    setIsSuggSubmitted(true);
+  }
+
   // Uploads the json doc to cloud firebase
   const handleSubmit = async () => {
+    // setSuggestions(suggestions);
+    // console.log(suggestions);
+    // answers.suggestions = suggestions;
     const ts = Date.now()
     setTimestamp(ts);
     answers.timestamp = ts;
+    answers.suggestions = suggestions;
     setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
     setIsDocSubmitted(true);
   }
@@ -197,6 +211,7 @@ const Survey: React.FC<{
     personality: bhiQuestions.formData,
     self_determination: selfDetQuestions.formData,
     preferred_games: prefGameQuestions.formData,
+    suggestions: suggestions,
     timestamp: timestamp
   };
 
@@ -271,10 +286,14 @@ const Survey: React.FC<{
                         formData={updateGames}
                       />
                       : <>
+                        <Heading size={"md"}>We've reached the end!</Heading>
+                        <br/>
                         <Text>
-                          We've reached the end! To submit your result and visualize your scores, click on the button below!
+                          If you want, you can leave some suggestions or comments into the text box right below.<br/>
+                          To submit your data and visualize your scores, click on the button!
                           <br />
                         </Text>
+                        <Textarea value={suggestions} maxLength={255} placeholder="My reason for existing is to be written on :D" onChange={handleInputChange}/>
                         <Button
                           alignItems={"center"}
                           isDisabled={isDocSubmitted}
