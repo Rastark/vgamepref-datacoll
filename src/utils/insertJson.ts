@@ -37,7 +37,7 @@ export const addNewDoc = async (
 ) => {
   const res = await db.collection(collection)
     .add(document);
-  console.log("Added document with ID: ", res.id, res);
+  console.log("Added document with ID: ",res.id, res);
   return res.id
 }
 
@@ -69,7 +69,7 @@ export const addNewAnswersDoc = async (
   const res = await db.collection(collection)
     .withConverter(answersConverter)
     .add(document);
-  console.log("Added document with ID: ", res.id, res);
+  // console.log("Added document with ID: ", res.id, res);
   return res.id
 }
 
@@ -83,6 +83,6 @@ export const getDoc = async (collectionName: string, docName: string) =>
   (await getDocRef(collectionName, docName)).get();
 
 
-export const answersSnap = db.collection('hexaco-tests')
-  .withConverter(answersConverter)
-  .doc("3KTlpGYXC4sOdATRsswj").get()
+// export const answersSnap = db.collection('hexaco-tests')
+//   .withConverter(answersConverter)
+//   .doc("3KTlpGYXC4sOdATRsswj").get()

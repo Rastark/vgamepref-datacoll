@@ -72,7 +72,7 @@ const GamesQre: React.FC<{
     for (let i = 0; i < nTitles; i++) {
       firstGameListTitles[i] = gameList[i].name;
     }
-    console.log("first titles:",firstGameListTitles);
+    // console.log("first titles:",firstGameListTitles);
     return firstGameListTitles;
   }
 
@@ -309,9 +309,9 @@ const GamesQre: React.FC<{
               setCurrId={setCurrentQuestionId}
             />
             {<Button
-              // isDisabled={!isLastQuestion || (inputValues[currentQuestionId].label[0].value === (-1 || "") ||
-              // inputValues[currentQuestionId].label[1].value === (-1 || "") ||
-              // inputValues[currentQuestionId].label[2].value === (-1 || ""))}
+              isDisabled={!isLastQuestion || (inputValues[currentQuestionId].label[0].value === (-1 || "") ||
+              inputValues[currentQuestionId].label[1].value === (-1 || "") ||
+              inputValues[currentQuestionId].label[2].value === (-1 || ""))}
               onClick={handleSubmit}>
               Go to Submission Page
             </Button>

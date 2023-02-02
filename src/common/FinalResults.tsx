@@ -16,14 +16,14 @@ const FinalResults: React.FC<{
   const printBhiScores =
     bhiScores.map(item =>
       <Text key={item.dimension}>
-        <u>{item.dimension}:</u> {Math.round(item.score/4/5*(100))}
+        <u>{item.dimension}:</u> {Math.round((item.score/4-1)/4*(100))}
       </Text>
     )
 
   const printSelfDetScores =
     selfDetScores.map(item =>
       <Text key={item.dimension}>
-        <u>{item.dimension}:</u> {Math.round(item.score/4/5*(100))}
+        <u>{item.dimension}:</u> {Math.round((item.score/4-1)/4*(100))}
       </Text>
     )
 
@@ -66,7 +66,7 @@ const FinalResults: React.FC<{
             <Heading>Thank you for your contribution!</Heading>
             <br/>
             <br/>
-            <Heading size={"sm"}><u>Please take note of your submission code for the eventual game recommendation phase!</u>
+            <Heading size={"sm"}><u>Please take note of your submission code if you want to partecipate to the game recommendation phase!</u>
             </Heading>
             <br/>
             <br/>

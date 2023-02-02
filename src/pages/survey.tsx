@@ -40,11 +40,14 @@ const Survey: React.FC<{
   const [submittedDocId, setSubmittedDocId] = useState("");
   const [isDocSubmitted, setIsDocSubmitted] = useState(false);
 
+  const [remainingTBoxChars, setRemainingTBoxChars] = useState(500);
+
   const handleInputChange = (e:any) => {
     let inputValue = e.target.value;
+    let inputLength = inputValue.length;
+    setRemainingTBoxChars(500 - inputLength);
     setSuggestions(inputValue);
-    console.log(suggestions);
-    setIsSuggSubmitted(true);
+    // console.log(suggestions);
   }
 
   // Uploads the json doc to cloud firebase
@@ -56,8 +59,9 @@ const Survey: React.FC<{
     setTimestamp(ts);
     answers.timestamp = ts;
     answers.suggestions = suggestions;
-    setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
+    setSubmittedDocId(await addNewAnswersDoc(answers, "survey_samples"));
     setIsDocSubmitted(true);
+    setIsSuggSubmitted(true);
   }
 
   // const handleSubmit = useCallback(async (e: { preventDefault: () => void; }) => {   
@@ -286,14 +290,23 @@ const Survey: React.FC<{
                         formData={updateGames}
                       />
                       : <>
-                        <Heading size={"md"}>We've reached the end!</Heading>
+                        <Heading size={"md"}>You're almost there!</Heading>
                         <br/>
                         <Text>
-                          If you want, you can leave some suggestions or comments into the text box right below.<br/>
+                          If you wish, you can leave some feedback for us into the text box right below. We'd be happy to hear your opinion. :)<br/>
                           To submit your data and visualize your scores, click on the button!
                           <br />
                         </Text>
-                        <Textarea value={suggestions} maxLength={255} placeholder="My reason for existing is to be written on :D" onChange={handleInputChange}/>
+                        <br/>
+                        <Text>Remaning characters: {remainingTBoxChars}</Text>
+                        <Textarea 
+                          isDisabled={isSuggSubmitted}
+                          value={suggestions} 
+                          maxLength={500} 
+                          placeholder="Write here something here... (max 500 characters)" 
+                          onChange={handleInputChange}
+                          />
+                        <br/><br/>
                         <Button
                           alignItems={"center"}
                           isDisabled={isDocSubmitted}
