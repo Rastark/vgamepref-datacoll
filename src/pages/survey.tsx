@@ -137,19 +137,20 @@ const Survey: React.FC<{
     <Text>
       <Heading size="md">4. Game Preferences</Heading>
       <br />
-      Congrats for having reached the last section of the survey! There are just a couple of question left. ;) <br /> <br />
-      You'll be asked about your game preferences regarding two subsets of games:
+      Congrats for having reached the last section of the survey! There are just a couple of questions left. ;) <br /> <br />
+      You'll be asked for your preferred titles among two subsets of games:
       <UnorderedList>
         <ListItem>
-          The first one is pretty small and contains relatively old games;
-          for this reason, shouldn't you know any of the games on the list,
-          there will be links below to check on each game information on IGDB.
+        The first is quite small and contains relatively old games. 
+        They were chosen because they represent a wide range of different game elements and mechanics.
         </ListItem>
         <ListItem>
-          The second one is larger (~500 games) and contains the most popular games
-          on IGDB, so we are confident that it contains a good number of your favorite ones!
+        The second one is bigger (~500 games) and contains the most popular games on IGDB, 
+        so we are confident that it will contain a large number of your favorite games!
         </ListItem>
       </UnorderedList>
+      Shouldn't you know any of the games on the lists, 
+      click on the cover to be redirected to the corresponding IGDB or PlayStore page.
       <br />
     </Text>
   </>

@@ -2,11 +2,11 @@
     "items": [
         {
             "id": 0,
-            "subject": "Please select your 3 most favourite games from the research catalog down below."
+            "subject": "Please use the following text boxes to search and select the 3 games you like or think you'd like the most from the list of titles below."
         },
         {
             "id": 1,
-            "subject": "Please select your 3 most favourite games from the list of famous games down below."
+            "subject": "Please use the following text boxes search and select the 3 FAMOUS games you like or think you'd like the most from the list of titles below."
         }
     ]
 }
