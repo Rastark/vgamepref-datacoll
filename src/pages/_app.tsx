@@ -12,11 +12,11 @@ function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <AuthProvider>
         <SidebarWithHeader>
-          <ReCaptchaProvider
+          {/* <ReCaptchaProvider
             reCaptchaKey={SITE_KEY}
-          >
+          > */}
             <Component {...pageProps} />
-          </ReCaptchaProvider>
+          {/* </ReCaptchaProvider> */}
         </SidebarWithHeader>
       </AuthProvider>
     </ChakraProvider>

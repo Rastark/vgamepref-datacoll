@@ -26,7 +26,7 @@ const Survey: React.FC<{
   gemProps: GemProps[]
 }> = (props) => {
 
-  const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY;
+  // const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY;
 
   const { executeRecaptcha } = useReCaptcha();
 
@@ -38,42 +38,50 @@ const Survey: React.FC<{
   const [isDocSubmitted, setIsDocSubmitted] = useState(false);
 
   // Uploads the json doc to cloud firebase
-  const handleSubmit = useCallback(async (e: { preventDefault: () => void; }) => {   
-    e.preventDefault();
-
-    // Generate catpcha token
-    executeRecaptcha("submitForm").then((gReCaptchaToken) => {
-      console.log(gReCaptchaToken, "response Google reCaptcha server");
-      submitForm(gReCaptchaToken);
-    })
-  }, []);
-
-  const submitForm = async (gReCaptchaToken: string) => {
-    const data = { gReCaptchaToken: gReCaptchaToken }
-    console.log("stringified", JSON.stringify(data));
-    fetch("/api/submit-form", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(data),
-    })
-    .then((res) => res.json())
-    .then(async (res) => {
-      console.log(res, "response from backend");
-      if(res?.status === "success") {
-        const ts = Date.now()
-        setTimestamp(ts);
-        answers.timestamp = ts;
-        setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
-        setIsDocSubmitted(true);
-        console.log(res?.message);
-      } else {
-        console.log(res?.message);
-      }
-    })
+  const handleSubmit = async () => {
+    const ts = Date.now()
+    setTimestamp(ts);
+    answers.timestamp = ts;
+    setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
+    setIsDocSubmitted(true);
   }
+
+  // const handleSubmit = useCallback(async (e: { preventDefault: () => void; }) => {   
+  //   e.preventDefault();
+
+  //   // Generate catpcha token
+  //   executeRecaptcha("submitForm").then((gReCaptchaToken) => {
+  //     console.log(gReCaptchaToken, "response Google reCaptcha server");
+  //     submitForm(gReCaptchaToken);
+  //   })
+  // }, []);
+
+  // const submitForm = async (gReCaptchaToken: string) => {
+  //   const data = { gReCaptchaToken: gReCaptchaToken }
+  //   console.log("stringified", JSON.stringify(data));
+  //   fetch("/api/submit-form", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json"
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //   .then((res) => res.json())
+  //   .then(async (res) => {
+  //     console.log(res, "response from backend");
+  //     if(res?.status === "success") {
+  //       const ts = Date.now()
+  //       setTimestamp(ts);
+  //       answers.timestamp = ts;
+  //       setSubmittedDocId(await addNewAnswersDoc(answers, "hexaco-tests"));
+  //       setIsDocSubmitted(true);
+  //       console.log(res?.message);
+  //     } else {
+  //       console.log(res?.message);
+  //     }
+  //   })
+  // }
 
   // Demographic vars
   const [demographicQuestions, setDemographicQuestions] = useState({
@@ -215,7 +223,7 @@ const Survey: React.FC<{
   const calcSelfDetScore: TestScore[] = useCalcDimScores(props.selfDetProps.items, answers.self_determination);
 
   return (<>
-    <Script src={`https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`}/>
+    {/* <Script src={`https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`}/> */}
 
     <Box height="auto" alignItems="center" justifyContent="center" className="page-box-ext">
       <Box height="auto" background="gray.100" p={12} rounded={6} className="page-box-int">
